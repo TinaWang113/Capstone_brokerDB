@@ -72,9 +72,10 @@ class StaffBrokerTest {
 
 	/**
 	 * Test method for {@link brokers.StaffBroker#findByIDList(int)}.
+	 * @throws SQLException 
 	 */
 	@Test
-	void testFindByIDList() throws SQLException{
+	void testFindByIDList() throws SQLException {
 		sb.insert(staff_1);
 		assertTrue(sb.isExisitng(staff_1.getsID()));
 		System.out.println(sb.findByIDList( staff_1.getsID()));
@@ -83,21 +84,22 @@ class StaffBrokerTest {
 
 	/**
 	 * Test method for {@link brokers.StaffBroker#delete(int)}.
+	 * @throws SQLException 
 	 */
 	@Test
-	void testDeleteByID()throws SQLException {
+	void testDeleteByID() throws SQLException {
 		sb.insert(staff_1);
 //		assertEquals((sb.findByIDList(staff_1.getsID()).get(0).getsID()), staff_1.getsID());
 		sb.delete(staff_1.getsID());
 		assertEquals(sb.isExisitng(staff_1.getsID()), false);
-		
 	}
 
 	/**
 	 * Test method for {@link brokers.StaffBroker#delete(model.Staff)}.
+	 * @throws SQLException 
 	 */
 	@Test
-	void testDeleteStaff()throws SQLException {
+	void testDeleteStaff() throws SQLException {
 		assertEquals(sb.insert(staff_2), true);
 		sb.delete(staff_2.getsID());
 		assertEquals(sb.isExisitng(staff_2.getsID()),false);
@@ -108,9 +110,10 @@ class StaffBrokerTest {
 
 	/**
 	 * Test method for {@link brokers.StaffBroker#update(model.Staff)}.
+	 * @throws SQLException 
 	 */
 	@Test
-	void testUpdate()throws SQLException {
+	void testUpdate() throws SQLException {
 		assertEquals(sb.insert(staff_1), true);
 		assertEquals(sb.insert(staff_2), true);
 		staff_1.setfName("update test");
@@ -120,21 +123,28 @@ class StaffBrokerTest {
 //		assertEquals(sb.findByIDList(staff_1.getsID()).get(0).getfName(), staff_1.getfName());
 	}
 
-	
+	/**
+	 * Test method for {@link brokers.StaffBroker#listing(java.sql.ResultSet)}.
+	 */
+	@Test
+	void testListing() {
+		fail("Not yet implemented");
+	}
 
 	/**
 	 * Test method for {@link brokers.StaffBroker#findAll()}.
 	 */
 	@Test
-	void testFindAll()throws SQLException {
-		
+	void testFindAll() {
+		fail("Not yet implemented");
 	}
 
 	/**
 	 * Test method for {@link brokers.StaffBroker#dataQty()}.
+	 * @throws SQLException 
 	 */
 	@Test
-	void testDataQty()throws SQLException {
+	void testDataQty() throws SQLException {
 		int number = sb.dataQty();
 		assertEquals(sb.insert(staff_1), true);
 		assertEquals(sb.dataQty(), (number+1));
@@ -142,5 +152,12 @@ class StaffBrokerTest {
 		assertEquals(sb.dataQty(), (number+1));
 	}
 
+	/**
+	 * Test method for {@link brokers.StaffBroker#deleteAll()}.
+	 */
+	@Test
+	void testDeleteAll() {
+		fail("Not yet implemented");
+	}
 
 }
