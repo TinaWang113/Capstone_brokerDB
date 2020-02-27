@@ -13,7 +13,7 @@ public class Item {
 	private String itemName;
 	private double itemPrice;
 	private String itemDesc;
-
+	private Menu menu;
 	private String photoLocalDirectory;
 	private String photoCloudDirectory;
 	
@@ -26,7 +26,7 @@ public class Item {
 	 * @param photoLocalDirectory
 	 * @param photoCloudDirectory
 	 */
-	public Item(int itemID, String itemName, double itemPrice, String itemDesc, String photoLocalDirectory,
+	public Item(int itemID, Category category, String itemName, double itemPrice, String itemDesc, String photoLocalDirectory,
 			String photoCloudDirectory) {
 		super();
 		this.itemID = itemID;
