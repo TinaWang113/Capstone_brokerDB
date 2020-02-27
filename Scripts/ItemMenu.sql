@@ -1,15 +1,4 @@
--- create menu
-/*
-CREATE TABLE capstone2020.menu (
-	menuid INT auto_increment NOT NULL,
-	menuname varchar(30) NOT NULL,
-	CONSTRAINT menu_pk PRIMARY KEY (menuid)
-)
-ENGINE=InnoDB
-DEFAULT CHARSET=utf8
-COLLATE=utf8_general_ci
-COMMENT='Menu type';
-*/
+
 -- create category
 CREATE TABLE capstone2020.category (
 	categoryID INT auto_increment NOT NULL,
