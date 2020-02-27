@@ -11,7 +11,7 @@
   </servlet>
   <servlet>
     <servlet-name>addStaff</servlet-name>
-    <servlet-class>servlets.AddStaffServlet</servlet-class>
+    <servlet-class>servlets.AddStaff</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>menu</servlet-name>
