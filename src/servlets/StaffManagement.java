@@ -21,7 +21,6 @@ import model.Staff;
 /**
  * Servlet implementation class StaffManagement
  */
-@WebServlet("/staffmanagement")
 public class StaffManagement extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
