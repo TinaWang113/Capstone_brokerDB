@@ -90,7 +90,7 @@ public class StaffBroker {
 				// MYSQL insert statement
 				//removed isActive in order to submit to the database - Nathan
 				stmtString = "INSERT INTO staff (sID, pin, isActive, fName, lName, contactNum, jobName) "
-						+ " VALUES (?, ?, ?, ?, ?,?,?)";
+						+ " VALUES (?, ?, ?, ?, ?, ?, ?)";
 				//create MySQL insert preparedstatement
 				preparedStmt = con.prepareStatement(stmtString);
 				preparedStmt.setInt(1, staff.getsID());
@@ -343,7 +343,7 @@ public class StaffBroker {
 	 * @return list  staff data
 	 * @throws SQLException
 	 */
-	public List<Staff> listing(ResultSet rs) throws SQLException {
+	public List<Staff> fillingData(ResultSet rs) throws SQLException {
 		if(rs != null) {			
 			List<Staff> staffs = new ArrayList<Staff>();
 			while(rs.next()) {
@@ -384,7 +384,7 @@ public class StaffBroker {
 //			System.out.println("[findAll] get data from DB success.");
 //			System.out.println("[findAll] get Qty of Db: " + dataQty(tableName));
 //			System.out.println("result:" + rs.toString());
-			List<Staff> listResultList = listing(rs);
+			List<Staff> listResultList = fillingData(rs);
 
 			preparedStmt.close();
 			rs.close();
