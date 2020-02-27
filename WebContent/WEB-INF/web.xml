@@ -7,7 +7,7 @@
   <!-- Servlets -->
   <servlet>
     <servlet-name>staffmanagement</servlet-name>
-    <servlet-class>servlets.StaffManagementServlet</servlet-class>
+    <servlet-class>servlets.StaffManagement</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>addStaff</servlet-name>
