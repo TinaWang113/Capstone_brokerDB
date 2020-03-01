@@ -13,7 +13,7 @@ public class Item {
 	private String itemName;
 	private double itemPrice;
 	private String itemDesc;
-	private Menu menu;
+	private Category category;
 	private String photoLocalDirectory;
 	private String photoCloudDirectory;
 	
@@ -26,11 +26,12 @@ public class Item {
 	 * @param photoLocalDirectory
 	 * @param photoCloudDirectory
 	 */
-	public Item(int itemID, Category category, String itemName, double itemPrice, String itemDesc, String photoLocalDirectory,
+	public Item(int itemID, String itemName,  Category category, double itemPrice, String itemDesc, String photoLocalDirectory,
 			String photoCloudDirectory) {
 		super();
 		this.itemID = itemID;
 		this.itemName = itemName;
+		this.category = category;
 		this.itemPrice = itemPrice;
 		this.itemDesc = itemDesc;
 		this.photoLocalDirectory = photoLocalDirectory;
@@ -114,6 +115,20 @@ public class Item {
 	 */
 	public void setPhotoCloudDirectory(String photoCloudDirectory) {
 		this.photoCloudDirectory = photoCloudDirectory;
+	}
+
+	/**
+	 * @return the category
+	 */
+	public Category getCategory() {
+		return category;
+	}
+
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	

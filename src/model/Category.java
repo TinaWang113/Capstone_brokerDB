@@ -3,15 +3,27 @@ package model;
 public class Category {
 	private int categoryID;
 	private String categoryName;
+	private int menuID;
 	
 	/**
 	 * @param categoryID
 	 * @param categoryName
 	 */
-	public Category(int categoryID, String categoryName) {
+	public Category(int categoryID, String categoryName, int menuID) {
 		super();
-		this.categoryID = categoryID;
-		this.categoryName = categoryName;
+		try {
+			this.categoryID = categoryID;
+			this.categoryName = categoryName;
+			//1:Regular, 2:AYCE, 3:Extra
+			if(String.valueOf(menuID).matches("^[1-3]$")) {
+				this.menuID = menuID;
+			}else {
+				throw new IndexOutOfBoundsException("menuID should be 1 to 3. 1:Regular, 2:AYCE, 3:Extra");
+			}
+		} catch (IndexOutOfBoundsException e) {
+			System.out.println(e);
+		}
+		
 	}
 	
 	/**
@@ -45,8 +57,36 @@ public class Category {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
+	
+
+	/**
+	 * @return the menuID
+	 */
+	public int getMenuID() {
+		return menuID;
+	}
+
+	/**
+	 * @param menuID the menuID to set
+	 */
+	public void setMenuID(int menuID) {
+		try {
+			if(String.valueOf(menuID).matches("^[1-3]$")) {
+				this.menuID = menuID;
+			}else {
+				throw new IndexOutOfBoundsException("menuID should be 1 to 3. 1:Regular, 2:AYCE, 3:Extra");
+			}
+		} catch (IndexOutOfBoundsException e) {
+			System.out.println(e);
+		}
+		
+	}
+	
+	/**
+	 * 
+	 */
 	@Override
 	public String toString() {
-		return "Category [categoryID=" + categoryID + ", categoryName=" + categoryName + "]";
+		return "Category [categoryID=" + categoryID + ", categoryName=" + categoryName + ", menuID=" + menuID + "]";
 	}
 }
