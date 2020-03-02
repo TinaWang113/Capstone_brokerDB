@@ -87,7 +87,7 @@ public class MenuBroker {
 	}
 	
 	public Connection connect() {
-		if(con != null) {
+		if(con == null) {
 			con = c2s.connect();
 		}else {
 			System.out.println("conntecting server");
