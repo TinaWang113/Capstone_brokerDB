@@ -15,6 +15,7 @@ import model.Staff;
 /**
  * Servlet implementation class AddStaff
  */
+
 public class AddStaffServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

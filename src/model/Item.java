@@ -2,60 +2,77 @@
  * 
  */
 package model;
-
-import java.io.Serializable;
-
 /**
- * @author 747136
+ * @author 730693
  *
  */
-public class Item implements Serializable {
+public class Item {
+	//attributes
+	private int itemID;
+	private String itemName;
+	private double itemPrice;
+	private String itemDesc;
+	private Category category;
+	private String photoLocalDirectory;
+	private String photoCloudDirectory;
+	
+	
 	/**
-	 * 
+	 * @param itemID
+	 * @param itemName
+	 * @param itemPrice
+	 * @param itemDesc
+	 * @param photoLocalDirectory
+	 * @param photoCloudDirectory
 	 */
-	private static final long serialVersionUID = -7417459817591162425L;
-	String itemName;
-	double itemPrice;
-	String description;
-	int categoryId;
-	String photoLocalDirectory;
-	String photoCloudDirectory;
-
-	public Item() {
-		
-	}
-
-	public Item(String itemName, double itemPrice, String description, int categoryId, String photoLocalDirectory, String photoCloudDirectory) {
-		
+	public Item(int itemID, String itemName,  Category category, double itemPrice, String itemDesc, String photoLocalDirectory,
+			String photoCloudDirectory) {
+		super();
+		this.itemID = itemID;
 		this.itemName = itemName;
+		this.category = category;
 		this.itemPrice = itemPrice;
-		this.description = description;
-		this.categoryId = categoryId;
+		this.itemDesc = itemDesc;
 		this.photoLocalDirectory = photoLocalDirectory;
 		this.photoCloudDirectory = photoCloudDirectory;
 	}
-
+	
+	/**
+	 * 
+	 */
+	public Item() {
+		// TODO Auto-generated constructor stub
+	}
+	/**
+	 * @return the itemID
+	 */
+	public int getItemID() {
+		return itemID;
+	}
+	/**
+	 * @param itemID the itemID to set
+	 */
+	public void setItemID(int itemID) {
+		this.itemID = itemID;
+	}
+	/*
+	 * @param itemName the itemName to set
+	 */
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
 	/**
 	 * @return the itemName
 	 */
 	public String getItemName() {
 		return itemName;
 	}
-
-	/**
-	 * @param itemName the itemName to set
-	 */
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
-	}
-
 	/**
 	 * @return the itemPrice
 	 */
 	public double getItemPrice() {
 		return itemPrice;
 	}
-
 	/**
 	 * @param itemPrice the itemPrice to set
 	 */
@@ -63,73 +80,55 @@ public class Item implements Serializable {
 		this.itemPrice = itemPrice;
 	}
 
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return description;
-	}
 
 	/**
-	 * @param description the description to set
+	 * @return the itemDesc
 	 */
-	public void setDescription(String description) {
-		this.description = description;
+	public String getItemDesc() {
+		return itemDesc;
 	}
-
 	/**
-	 * @return the categoryId
+	 * @param itemDesc the itemDesc to set
 	 */
-	public int getCategoryId() {
-		return categoryId;
+	public void setItemDesc(String itemDesc) {
+		this.itemDesc = itemDesc;
 	}
-
-	/**
-	 * @param categoryId the categoryId to set
-	 */
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
-	}
-
 	/**
 	 * @return the photoLocalDirectory
 	 */
 	public String getPhotoLocalDirectory() {
 		return photoLocalDirectory;
 	}
-
 	/**
 	 * @param photoLocalDirectory the photoLocalDirectory to set
 	 */
 	public void setPhotoLocalDirectory(String photoLocalDirectory) {
 		this.photoLocalDirectory = photoLocalDirectory;
 	}
-
 	/**
 	 * @return the photoCloudDirectory
 	 */
 	public String getPhotoCloudDirectory() {
 		return photoCloudDirectory;
 	}
-
 	/**
 	 * @param photoCloudDirectory the photoCloudDirectory to set
 	 */
 	public void setPhotoCloudDirectory(String photoCloudDirectory) {
 		this.photoCloudDirectory = photoCloudDirectory;
 	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * @return the category
 	 */
-	@Override
-	public String toString() {
-		return "Item [itemName=" + itemName + ", itemPrice=" + itemPrice + ", description=" + description
-				+ ", categoryId=" + categoryId + ", photoLocalDirectory=" + photoLocalDirectory
-				+ ", photoCloudDirectory=" + photoCloudDirectory + "]";
+	public Category getCategory() {
+		return category;
 	}
-	
-	
-	
+
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(Category category) {
+		this.category = category;
+	}	
 	
 }

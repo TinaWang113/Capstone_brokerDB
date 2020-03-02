@@ -1,42 +1,50 @@
-/**
- * 
- */
 package model;
 
-/**
- * @author 747136
- *
- */
 public class Category {
-
-	int categoryId;
-	String categoryName;
-	int menuId;
+	private int categoryID;
+	private String categoryName;
+	private int menuID;
 	
-	public Category() {
+	/**
+	 * @param categoryID
+	 * @param categoryName
+	 */
+	public Category(int categoryID, String categoryName, int menuID) {
+		super();
+		try {
+			this.categoryID = categoryID;
+			this.categoryName = categoryName;
+			//1:Regular, 2:AYCE, 3:Extra
+			if(String.valueOf(menuID).matches("^[1-3]$")) {
+				this.menuID = menuID;
+			}else {
+				throw new IndexOutOfBoundsException("menuID should be 1 to 3. 1:Regular, 2:AYCE, 3:Extra");
+			}
+		} catch (IndexOutOfBoundsException e) {
+			System.out.println(e);
+		}
 		
 	}
 	
-	public Category(int categoryId, String categoryName, int menuId) {
-		this.categoryId = categoryId;
-		this.categoryName = categoryName;
-		this.menuId = menuId;
-	}
-
 	/**
-	 * @return the categoryId
+	 * 
 	 */
-	public int getCategoryId() {
-		return categoryId;
+	public Category() {
+		// TODO Auto-generated constructor stub
 	}
-
+	
 	/**
-	 * @param categoryId the categoryId to set
+	 * @return the categoryID
 	 */
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
+	public int getCategoryID() {
+		return categoryID;
 	}
-
+	/**
+	 * @param categoryID the categoryID to set
+	 */
+	public void setCategoryID(int categoryID) {
+		this.categoryID = categoryID;
+	}
 	/**
 	 * @return the categoryName
 	 */
@@ -50,30 +58,36 @@ public class Category {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
+	
 
 	/**
-	 * @return the menuId
+	 * @return the menuID
 	 */
-	public int getMenuId() {
-		return menuId;
+	public int getMenuID() {
+		return menuID;
 	}
 
 	/**
-	 * @param menuId the menuId to set
+	 * @param menuID the menuID to set
 	 */
-	public void setMenuId(int menuId) {
-		this.menuId = menuId;
+	public void setMenuID(int menuID) {
+		try {
+			if(String.valueOf(menuID).matches("^[1-3]$")) {
+				this.menuID = menuID;
+			}else {
+				throw new IndexOutOfBoundsException("menuID should be 1 to 3. 1:Regular, 2:AYCE, 3:Extra");
+			}
+		} catch (IndexOutOfBoundsException e) {
+			System.out.println(e);
+		}
+		
 	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	
+	/**
+	 * 
 	 */
 	@Override
 	public String toString() {
-		return "Category [categoryId=" + categoryId + ", categoryName=" + categoryName + ", menuId=" + menuId + "]";
+		return "Category [categoryID=" + categoryID + ", categoryName=" + categoryName + ", menuID=" + menuID + "]";
 	}
-	
-	
-	
-	
 }
