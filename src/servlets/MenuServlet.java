@@ -23,19 +23,26 @@ public class MenuServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String menuChoice = "1";
+//		String menuChoice = request.getParameter("menuChoice");
+		String menuChoice = "2";
 		MenuBroker menubroker = new MenuBroker();
 		
-		if (menuChoice.equals("1")) {
+		
 			try {
-				ArrayList<Item> itemList = (ArrayList<Item>) menubroker.findAll();
+				ArrayList<Item> itemList = (ArrayList<Item>) menubroker.findItemAll();
 				System.out.println(itemList.toString());
+				if (menuChoice.equals("2"))
+				{
+					for (Item item : itemList)
+					{
+							
+					}
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
-		}
 		getServletContext().getRequestDispatcher("/StaffMgmtUI.jsp").forward(request, response);
 	}
 
@@ -43,21 +50,7 @@ public class MenuServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		String menuChoice = request.getParameter("menuChoice");
-		String menuChoice = "1";
-		MenuBroker menubroker = new MenuBroker();
 		
-		if (menuChoice.equals("1")) {
-			try {
-				ArrayList<Item> itemList = (ArrayList<Item>) menubroker.findAll();
-				System.out.println(itemList.toString());
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
 	}
 
 }
