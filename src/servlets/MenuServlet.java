@@ -28,7 +28,7 @@ public class MenuServlet extends HttpServlet {
 		
 		if (menuChoice.equals("1")) {
 			try {
-				ArrayList<Item> itemList = (ArrayList<Item>) menubroker.findAll();
+				ArrayList<Item> itemList = (ArrayList<Item>) menubroker.findItemAll();
 				System.out.println(itemList.toString());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -50,7 +50,7 @@ public class MenuServlet extends HttpServlet {
 		
 		if (menuChoice.equals("1")) {
 			try {
-				ArrayList<Item> itemList = (ArrayList<Item>) menubroker.findAll();
+				ArrayList<Item> itemList = (ArrayList<Item>) menubroker.findItemAll();
 				System.out.println(itemList.toString());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

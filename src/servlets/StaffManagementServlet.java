@@ -24,8 +24,6 @@ import model.Staff;
 
 public class StaffManagementServlet extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
-
 	/**
 	 * GET method, for loading the data from the database such as loading the list
 	 * and when a redirection is made from the POST method
