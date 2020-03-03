@@ -2,6 +2,7 @@
  * 
  */
 package model;
+
 /**
  * @author 730693
  *
@@ -25,10 +26,10 @@ public class Item {
 	 * @param photoLocalDirectory
 	 * @param photoCloudDirectory
 	 */
-	public Item(int itemID, String itemName,  Category category, double itemPrice, String itemDesc, String photoLocalDirectory,
+	public Item(String itemName,  Category category, double itemPrice, String itemDesc, String photoLocalDirectory,
 			String photoCloudDirectory) {
 		super();
-		this.itemID = itemID;
+		//this.itemID = itemID;
 		this.itemName = itemName;
 		this.category = category;
 		this.itemPrice = itemPrice;
@@ -55,17 +56,17 @@ public class Item {
 	public void setItemID(int itemID) {
 		this.itemID = itemID;
 	}
-	/*
-	 * @param itemName the itemName to set
-	 */
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
-	}
 	/**
 	 * @return the itemName
 	 */
 	public String getItemName() {
 		return itemName;
+	}
+	/**
+	 * @param itemName the itemName to set
+	 */
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
 	}
 	/**
 	 * @return the itemPrice
@@ -79,8 +80,6 @@ public class Item {
 	public void setItemPrice(double itemPrice) {
 		this.itemPrice = itemPrice;
 	}
-
-
 	/**
 	 * @return the itemDesc
 	 */
@@ -117,6 +116,7 @@ public class Item {
 	public void setPhotoCloudDirectory(String photoCloudDirectory) {
 		this.photoCloudDirectory = photoCloudDirectory;
 	}
+
 	/**
 	 * @return the category
 	 */
@@ -129,6 +129,15 @@ public class Item {
 	 */
 	public void setCategory(Category category) {
 		this.category = category;
-	}	
+	}
+
+	@Override
+	public String toString() {
+		return "Item [itemID=" + itemID + ", itemName=" + itemName + ", itemPrice=" + itemPrice + ", itemDesc="
+				+ itemDesc + ", category=" + category.toString() + ", photoLocalDirectory=" + photoLocalDirectory
+				+ ", photoCloudDirectory=" + photoCloudDirectory + "]";
+	}
+
+	
 	
 }

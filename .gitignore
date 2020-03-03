@@ -1,12 +1,5 @@
 /build/
-<<<<<<< HEAD
 /.dbeaver
-/bin/
+/.classpath
+/.project
 
-=======
-
-/.dbeaver
-
-
-
->>>>>>> 71c1c74d93eafcbe7ed33b37ed2c980906e4265d

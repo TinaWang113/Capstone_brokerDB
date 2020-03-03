@@ -9,7 +9,7 @@ public class Category {
 	 * @param categoryID
 	 * @param categoryName
 	 */
-	public Category(int categoryID, String categoryName, int menuID) {
+	public Category(String categoryName, int menuID) {
 		super();
 		try {
 			this.categoryID = categoryID;
