@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>Capstone2020</display-name>
+	<welcome-file-list>
+		<welcome-file>tableMonitor</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<servlet-name>staffmanagement</servlet-name>
+		<servlet-class>servlets.StaffManagement</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>addStaff</servlet-name>
+		<servlet-class>servlets.AddStaff</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>tableMonitor</servlet-name>
+		<servlet-class>servlets.TableMonitor</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>staffmanagement</servlet-name>
+		<url-pattern>/staffmanagement</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>addStaff</servlet-name>
+		<url-pattern>/addstaff</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>tableMonitor</servlet-name>
+		<url-pattern>/tableMonitor</url-pattern>
+	</servlet-mapping>
+</web-app>

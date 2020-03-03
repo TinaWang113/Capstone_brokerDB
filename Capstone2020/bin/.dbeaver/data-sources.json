@@ -1,0 +1,31 @@
+{
+	"folders": {},
+	"connections": {
+		"mysql8-16fce7e1624-4f7f5d28718f6556": {
+			"provider": "mysql",
+			"driver": "mysql8",
+			"name": "MySQL 8+ - capstone2020",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "harbor.cc7dvrrj6n2j.ca-central-1.rds.amazonaws.com",
+				"port": "3306",
+				"database": "capstone2020",
+				"url": "jdbc:mysql://harbor.cc7dvrrj6n2j.ca-central-1.rds.amazonaws.com:3306/capstone2020",
+				"home": "C:\\Program Files\\MySQL\\MySQL Router 8.0",
+				"type": "dev",
+				"handlers": {}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false
+		}
+	}
+}
