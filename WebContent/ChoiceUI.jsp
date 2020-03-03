@@ -6,27 +6,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Menu Selection</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/Navigation-Clean-1.css">
     <link rel="stylesheet" href="css/Navigation-Clean.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body><img id="logo" src="img/migarock logo.png">
-    <nav class="navbar navbar-light navbar-expand-md navigation-clean">
-        <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Menu&nbsp;</a>
-                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">Cat 1</a><a class="dropdown-item" role="presentation" href="#">Cat 2</a><a class="dropdown-item" role="presentation" href="#">Cat 2<br></a><a class="dropdown-item" role="presentation"
-                                href="#">Cat 3<br></a><a class="dropdown-item" role="presentation" href="#">Cat 4<br></a><a class="dropdown-item" role="presentation" href="#">Cat 5<br></a></div>
-                    </li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Order</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">View Bill</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Request Help</a></li>
-                </ul>
-            </div><a class="navbar-brand" href="#">Menu Title</a></div>
-    </nav>
+<body><img id="logo-1" src="img/migarock logo.png">
+	 <div class="jumbotron-fluid">
+	  <h1 class="display-4">Welcome!</h1>
+	  
+	  <h6 class="display-6">Please select a menu from below!</h6>
+	  <hr class="my-4">
+	 
+	</div>
+	
+	<div align="center">
+  		<button type="button" class="btn btn-light hell" aria-haspopup="true" aria-expanded="false" style="width:50%"><font size="6">Cancel</font>
+  		</button>
+  		<button type="button" class="btn btn-light" aria-haspopup="true" aria-expanded="false" style="width:50%"><font size="6">Proceed</font>
+  		</button>
+	</div>
+	
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 </body>

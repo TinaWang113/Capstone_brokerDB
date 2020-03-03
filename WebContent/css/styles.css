@@ -3,11 +3,29 @@
   padding: 40px;
 }
 
+.hell {
+  float: left;
+}
+
+.btn {
+    background-color: #bbb;
+    display: block;
+    width: 100%;
+    height:50%;
+}
+
 #loginPad {
   text-align: center;
 }
 
 #logo {
+  margin-left: auto;
+  margin-right: auto;
+  width: 25%;
+  height: 25%;
+}
+
+#logo-1 {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
@@ -26,10 +44,11 @@ body {
   text-align: center;
 }
 
-
-
 .h1, h1 {
   padding: 25px;
+  text-align: center;
+}
+h6 {
   text-align: center;
 }
 

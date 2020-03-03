@@ -73,60 +73,40 @@
 		</nav>
 	</div>
 	<!-- This screen contains Staff that are currently listed in the DB -->
-	<!-- Each Line is a Staff object, should include "edit" and "delete" buttons on each line -->
+	<!-- Each Line is a Staff object, include "edit" and "delete" buttons on each line -->
 	<section id="main">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3">
 					<div class="list-group">
-						<a href="staffmanagement" class="list-group-item active">Staff
-							Summary</a> <a href="addstaff" class="list-group-item ">Add
-							New Staff</a>
+						<a href="staffmanagement" class="list-group-item active">Staff Summary</a> 
+						<a href="addstaff" class="list-group-item ">Add New Staff</a>
 					</div>
 				</div>
 				<div class="col-md-9">
 					<div class="list-group">
-						<a href="#" class="list-group-item active">Current Staff</a>
+						<a class="list-group-item active">Current Staff</a>
 						<div class="list-group-item">
-							<div class="list-group">
-								<table class="table" id="staffListTable">
+							<div class="col-md-12">
+								<table class="table table-striped" id="staffListTable">
 									<tbody>
 										<tr>
-											<th class="mobile" style="width: 100px; text-align: center">Job Title</th>
-											<th class="mobile" style="width: 100px; text-align: center">ID</th>
-											<th class="mobile" style="width: 130px; text-align: center">First Name</th>
-											<th class="mobile" style="width: 130px; text-align: center">Last Name</th>
-											<th class="mobile" style="width: 150px; text-align: center">Phone</th>
-
-											<!-- Commented out this data to test with data coming from database - Nathan -->
-											<!-- <th class="mobile" style="width: 150px; text-align: center">Options</th>-->
-											<!-- <tr>
-                                    <td>PT Server</td>
-                                    <td>9999</td>
-                                    <td>Chris Lumsden</td>
-                                    <td>4039992846</td>
-                                    
-                                    <td colspan="4">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
-										  Edit
-										</button>
-                                    </td>
-                                    <td colspan="4">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">
-										  Delete
-										</button>
-                                    </td>
-                                    </tr>
-                                    -->
+											<th class="mobile" style=" width:20%; text-align: center">Job Title</th>
+											<th class="mobile" style=" width:20%; text-align: center">ID</th>
+											<th class="mobile" style=" width:20%; text-align: center">First Name</th>
+											<th class="mobile" style=" width:20%; text-align: center">Last Name</th>
+											<th class="mobile" style=" width:20%; text-align: center">Phone</th>
+											<th class="mobile" style=" width:20%; text-align: center">Edit</th>
+											<th class="mobile" style=" width:20%; text-align: center">Delete</th>
 										</tr>
 										<c:forEach items="${staffList}" var="staff">
 										<tr>
-											<td class="mobile" style="width: 100px; text-align: center">${staff.getJobName()}</td>
-											<td class="mobile" style="width: 100px; text-align: center">${staff.getsID()}</td>
-											<td class="mobile" style="width: 130px; text-align: center">${staff.getfName()}</td>
-											<td class="mobile" style="width: 130px; text-align: center">${staff.getlName()}</td>
-											<td class="mobile" style="width: 150px; text-align: center">${staff.getContactNum()}</td>
-											<td colspan="4">
+											<td class="mobile" style=" text-align: center">${staff.getJobName()}</td>
+											<td class="mobile" style=" text-align: center">${staff.getsID()}</td>
+											<td class="mobile" style=" text-align: center">${staff.getfName()}</td>
+											<td class="mobile" style=" text-align: center">${staff.getlName()}</td>
+											<td class="mobile" style=" text-align: center">${staff.getContactNum()}</td>
+											<td class="mobile">
                                         		<button type="button" class="btn btn-primary editStaffBtn" data-toggle="modal" data-target="#editModal" 
                                         		data-jobName="${staff.getJobName()}" 
                                         		data-fName="${staff.getfName()}"
@@ -134,8 +114,8 @@
                                         		data-pin="${staff.getPin()}"
                                         		data-contactNum="${staff.getContactNum()}" id="${staff.getsID()}">Edit</button>
                                     		</td>
-                                    		<td colspan="4">
-                                        		<button type="button" class="btn btn-primary deleteStaffBtn" data-toggle="modal" data-target="#deleteModal" data-id="${staff.getsID()}">Delete</button>
+                                    		<td class="mobile">
+                                        		<button type="button" class="btn btn-danger deleteStaffBtn" data-toggle="modal" data-target="#deleteModal" data-id="${staff.getsID()}">Delete</button>
                                     		</td>
                                    		</tr>
 										</c:forEach>
@@ -164,7 +144,12 @@
 				<div class="modal-body">
 					<form action="staffmanagement" method="POST" id="updateForm">
 						<div class="form-group">
-							<label>Job Title</label> <input type="text" class="form-control" id="jobName" name="jobName">
+							<label>Job Title</label>
+                            <select class="form-control" id="jobName" name="jobName">
+                                <option value="Manager">Manager</option>
+                                <option value="PT">PT Server</option>
+                                <option value="FT">FT Server</option>
+                            </select>
 						</div>
 						<div class="form-group">
 							<label>First Name</label> <input type="text" class="form-control" id="fName" name="fName">

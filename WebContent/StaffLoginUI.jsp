@@ -14,7 +14,8 @@
 
 <body>
     <div><img id="logo" src="img/migarock%20logo.png"></div>
-    <h1>Login</h1><form>
+    <h1>Login</h1>
+    <form>
 <div id="loginPad"><div class="btn-group-vertical ml-4 mt-4" role="group" aria-label="Basic example">
     
     <div class="btn-group">
@@ -40,7 +41,9 @@
         <button type="button" class="btn btn-outline-secondary py-3" onclick="document.getElementById('pin').value=document.getElementById('pin').value + '0';">0  </button>
         <button type="button" class="btn btn-primary py-3" onclick="">Enter</button>
     </div>
-</div></div></form>
+</div></div>
+
+</form>
     <div id="footer"><footer class="bg-dark mt-4 p-5 text-center" style="color: #ffffff;">
     Copyright &copy; 2020 Best Capstone Group</footer></div>
     <div></div>
