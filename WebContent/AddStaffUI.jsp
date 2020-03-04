@@ -8,7 +8,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <title>Migarock Management</title>
 </head>
-<body>
+<body onLoad="setPin()">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-success">
     <a class="navbar-brand" href="DashboardUI.jsp">Migarock Management System</a>
     <!--Allows NAV bar to adapt to any size screen-->
@@ -66,7 +66,7 @@
             </div>
             <div class="col-md-9">
                 <div class="list-group">
-                    <a href="#" class="list-group-item active">Input Staff Information</a>
+                    <a class="list-group-item active">Input Staff Information</a>
                     
                     <div class="list-group-item">
                         <form class="form-group" action="addstaff" method="POST">
