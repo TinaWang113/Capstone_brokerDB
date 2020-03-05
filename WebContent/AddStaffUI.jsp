@@ -158,7 +158,9 @@ function setPin(){
     else if(pinValue=="1"){
         textBox.value = "1234";
     }   
-}</script>
+}
+</script>
+
 <script src="js/jquery.min.js"></script>
 
 <script src="js/popper.min.js"></script>
