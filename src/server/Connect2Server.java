@@ -37,7 +37,7 @@ public class Connect2Server{
 	private final static String USERNAME = "root";
 //	private final static String PW = "password1234";
 	private final static String PW = "password";
-	private final static String DBNAME = "testdb1";
+	private final static String DBNAME = "capstone2020";
 	//for mysql 6.0up 
 	private static String driver = "com.mysql.cj.jdbc.Driver";
 	
