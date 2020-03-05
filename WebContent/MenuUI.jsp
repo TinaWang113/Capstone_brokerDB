@@ -19,8 +19,14 @@
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Menu&nbsp;</a>
-                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">Cat 1</a><a class="dropdown-item" role="presentation" href="#">Cat 2</a><a class="dropdown-item" role="presentation" href="#">Cat 2<br></a><a class="dropdown-item" role="presentation"
-                                href="#">Cat 3<br></a><a class="dropdown-item" role="presentation" href="#">Cat 4<br></a><a class="dropdown-item" role="presentation" href="#">Cat 5<br></a></div>
+                        <div class="dropdown-menu" role="menu">
+	                        <a class="dropdown-item" role="presentation" href="#">Cat 1</a>
+	                        <a class="dropdown-item" role="presentation" href="#">Cat 2</a>
+	                        <a class="dropdown-item" role="presentation" href="#">Cat 2<br></a>
+	                        <a class="dropdown-item" role="presentation" href="#">Cat 3<br></a>
+	                        <a class="dropdown-item" role="presentation" href="#">Cat 4<br></a>
+	                        <a class="dropdown-item" role="presentation" href="#">Cat 5<br></a>
+                        </div>
                     </li>
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Order</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#">View Bill</a></li>
