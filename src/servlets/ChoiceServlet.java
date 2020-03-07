@@ -6,22 +6,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import brokers.MenuBroker;
 
 /**
  * Servlet implementation class Choice
  */
-@WebServlet("/choice")
-public class ChoiceUI extends HttpServlet {
+public class ChoiceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		getServletContext().getRequestDispatcher("ChoiceUI.jsp").forward(request, response);
-		
+		getServletContext().getRequestDispatcher("/ChoiceUI.jsp").forward(request, response);
+
 	}
 
 	/**
@@ -29,7 +29,11 @@ public class ChoiceUI extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//TODO: Find functionality
+		String menuSelection = request.getParameter("action");
+		HttpSession session = request.getSession();
+		session.setAttribute("menuSelection", menuSelection);
+		
+		response.sendRedirect("menu");
 	}
 
 }

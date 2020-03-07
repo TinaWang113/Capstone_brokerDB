@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import brokers.MenuBroker;
 import model.Item;
@@ -18,24 +19,34 @@ import model.Item;
  */
 public class MenuServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+//	ArrayList<Item> regItemList = 
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String menuChoice = request.getParameter("menuChoice");
-		String menuChoice = "2";
+		HttpSession session = request.getSession();
+		String menuSelection = (String)session.getAttribute("menuSelection");
+		System.out.println(menuSelection + " THIS IS YOUR MENU SELECTION");
 		MenuBroker menubroker = new MenuBroker();
-		
-		
 			try {
 				ArrayList<Item> itemList = (ArrayList<Item>) menubroker.findItemAll();
-				System.out.println(itemList.toString());
-				if (menuChoice.equals("2"))
-				{
-					for (Item item : itemList)
-					{
+				
+				
+				if (menuSelection.equals("1")) {
+					
+					for (Item item : itemList) {
+						if (item.getCategory().getMenuID() == Integer.parseInt(menuSelection)) {
 							
+						}
+					}
+				}
+				else if (menuSelection.equals("2")) {
+					for (Item item : itemList) {
+						if (item.getCategory().getMenuID() == Integer.parseInt(menuSelection)) {
+							
+						}
 					}
 				}
 			} catch (SQLException e) {
@@ -43,7 +54,7 @@ public class MenuServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		getServletContext().getRequestDispatcher("/StaffMgmtUI.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/MenuUI.jsp").forward(request, response);
 	}
 
 	/**
