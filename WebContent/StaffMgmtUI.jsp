@@ -67,8 +67,7 @@
 	<div class="container">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb blue-grey lighten-4">
-				<li class="breadcrumb-item active"><a class="black-text">Staff
-						Summary</a>
+				<li class="breadcrumb-item active"><a class="black-text">Staff Summary</a>
 			</ol>
 		</nav>
 	</div>
@@ -145,10 +144,10 @@
 					<form action="staffmanagement" method="POST" id="updateForm">
 						<div class="form-group">
 							<label>Job Title</label>
-                            <select class="form-control" id="jobName" name="jobName">
-                                <option value="Manager">Manager</option>
-                                <option value="PT">PT Server</option>
-                                <option value="FT">FT Server</option>
+                            <select class="form-control" id="jobName" name="jobName" onChange="return setPin()">
+                                <option data-pin="0" value="Manager">Manager</option>
+                                <option data-pin="1" value="PT">PT Server</option>
+                                <option data-pin="1" value="FT">FT Server</option>
                             </select>
 						</div>
 						<div class="form-group">
@@ -158,7 +157,7 @@
 							<label>Last Name</label> <input type="text" class="form-control" id="lName" name="lName">
 						</div>
 						<div class="form-group">
-							<label>PIN</label> <input type="text" class="form-control" id="pin" name="pin">
+							<label>PIN</label> <input type="text" class="form-control" type="text" name="pin" id="pin" readonly>
 						</div>
 						<div class="form-group">
 							<label>Contact Number</label> <input type="text" class="form-control" id="contactNum" name="contactNum">
@@ -192,7 +191,6 @@
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>								
 							<input type="submit" value="Yes" class="btn btn-primary" data-miss="modal" name="action">
 							<input type="hidden" name="deletebtnConfirm" id="deletebtnConfirm" value="" data-miss="modal"> 
-<!-- data-target="#deleteConfirmModal" data-toggle="modal" data-dismiss="modal"-->
 						</div>
 					</form>
 				</div>
@@ -246,6 +244,27 @@
 
 
 	<!-- Scripts -->
+	<script>
+		function setPin(){
+		    // find the dropdown
+		    var ddl = document.getElementById("jobName");
+		    // find the selected option
+		    var selectedOption = ddl.options[ddl.selectedIndex];
+		    // find the attribute value
+		    var pinValue = selectedOption.getAttribute("data-pin");
+		    // find the textbox
+		    var textBox = document.getElementById("pin");
+		
+		    // set the textbox value
+		    if(pinValue=="0"){
+		        textBox.value = "4321";
+		    }
+		    else if(pinValue=="1"){
+		        textBox.value = "1234";
+		    }   
+		}
+	</script>
+	
 	<script src="js/jquery.min.js"></script>
 
 	<script src="js/popper.min.js"></script>

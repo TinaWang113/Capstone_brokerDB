@@ -13,24 +13,25 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body><img id="logo" src="img/migarock logo.png">
+<body><img id="logo-1" src="img/migarock logo.png">
     <nav class="navbar navbar-light navbar-expand-md navigation-clean">
         <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Menu&nbsp;</a>
                         <div class="dropdown-menu" role="menu">
-	                        <a class="dropdown-item" role="presentation" href="#">Cat 1</a>
-	                        <a class="dropdown-item" role="presentation" href="#">Cat 2</a>
-	                        <a class="dropdown-item" role="presentation" href="#">Cat 2<br></a>
-	                        <a class="dropdown-item" role="presentation" href="#">Cat 3<br></a>
-	                        <a class="dropdown-item" role="presentation" href="#">Cat 4<br></a>
-	                        <a class="dropdown-item" role="presentation" href="#">Cat 5<br></a>
+	                        <a class="dropdown-item" role="presentation" href="SubMenuUI.jsp">Cat 1</a>
+	                        <a class="dropdown-item" role="presentation" href="SubMenuUI.jsp">Cat 2</a>
+	                        <a class="dropdown-item" role="presentation" href="SubMenuUI.jsp">Cat 2<br></a>
+	                        <a class="dropdown-item" role="presentation" href="SubMenuUI.jsp">Cat 3<br></a>
+	                        <a class="dropdown-item" role="presentation" href="SubMenuUI.jsp">Cat 4<br></a>
+	                        <a class="dropdown-item" role="presentation" href="SubMenuUI.jsp">Cat 5<br></a>
+
                         </div>
                     </li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Order</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">View Bill</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Request Help</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="OrderUI.jsp">Order</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="BillUI.jsp">View Bill</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="HelpUI.jsp">Request Help</a></li>
                 </ul>
             </div><a class="navbar-brand" href="#">Main Menu</a></div>
     </nav>

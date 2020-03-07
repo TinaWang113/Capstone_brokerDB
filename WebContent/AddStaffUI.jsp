@@ -8,7 +8,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <title>Migarock Management</title>
 </head>
-<body>
+<body onLoad="setPin()">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-success">
     <a class="navbar-brand" href="DashboardUI.jsp">Migarock Management System</a>
     <!--Allows NAV bar to adapt to any size screen-->
@@ -66,24 +66,22 @@
             </div>
             <div class="col-md-9">
                 <div class="list-group">
-                    <a href="#" class="list-group-item active">Input Staff Information</a>
+                    <a class="list-group-item active">Input Staff Information</a>
                     
                     <div class="list-group-item">
                         <form class="form-group" action="addstaff" method="POST">
                         <label>Job Title</label>
-                            <select class="form-control" name="jobSelect">
-                                <option selected>Manager</option>
-                                <option value="PT">PT Server</option>
-                                <option value="FT">FT Server</option>
+                            <select class="form-control" name="jobSelect" id="jobSelect" onChange="return setPin()">
+                                <option data-pin="0" value="manager">Manager</option>
+                                <option data-pin="1" value="PT">PT Server</option>
+                                <option data-pin="1" value="FT">FT Server</option>
                             </select><br>
                             <label>First Name</label>
                             <input class="form-control" type="text" name="fName"><br>
 							<label>Last Name</label>
                             <input class="form-control" type="text" name="lName"><br>
                             <label>PIN</label>
-                            <input class="form-control" type="text" name="pin"><br>
-                            <label>Confirm PIN</label>
-                            <input class="form-control" type="text"><br>
+                            <input class="form-control" type="text" name="pin" id="pin" readonly><br>
                             <label>Phone</label>
                             <input class="form-control" type="tel" id="example-tel-input" name="contactNum"><br>
                             
@@ -141,6 +139,28 @@
 
 
 <!-- Scripts -->
+
+<script>
+function setPin(){
+    // find the dropdown
+    var ddl = document.getElementById("jobSelect");
+    // find the selected option
+    var selectedOption = ddl.options[ddl.selectedIndex];
+    // find the attribute value
+    var pinValue = selectedOption.getAttribute("data-pin");
+    // find the textbox
+    var textBox = document.getElementById("pin");
+
+    // set the textbox value
+    if(pinValue=="0"){
+        textBox.value = "4321";
+    }
+    else if(pinValue=="1"){
+        textBox.value = "1234";
+    }   
+}
+</script>
+
 <script src="js/jquery.min.js"></script>
 
 <script src="js/popper.min.js"></script>
