@@ -4,21 +4,29 @@ input {
     text-align: center; 
 }
 
-.itemBox {
-	border:1px solid #021a40;
+#intTextBox{
+	background-color: #DFD9E2;
+	padding: 1px;
+    text-align: center; 
+}
+
+#itemBox {
     width: 100%;
-    overflow: hidden; /* this should be clear-fixed instead */
+    overflow: clear-fixed; 
 }
-.qnty{
-	width: 25%;
-}
-.itemPic{
+
+#itemPic{
 	width: 70%;
+	heigth: 40%;
 	border:1px solid #021a40;
 }
 
+#itemPicInfo{
+	width: 100%;
+	border:1px solid #021a40;
+}
 .Arrows{
-	width: 25px;
+	width: 50px;
 }
 
 #logo-1 {
