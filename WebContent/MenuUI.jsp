@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     
 <!DOCTYPE html>
 <html>
@@ -26,15 +26,17 @@
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Menu&nbsp;</a>
                         <div class="dropdown-menu" role="menu">
-	                         <form action="submenu" method="GET">
+	                         
 	                       
 	                       <c:forEach var="category" items="${parsedCategoryList}">
-	                       
+	                       <!-- ASK JOHN FOR MORE APPROPRIATE SOLUTION -->
+	                       		<form action="submenu" method="GET">
 	                        	<input type="submit" class="dropdown-item" role="presentation"  data-value="${category.getCategoryID()}" value ="${category.getCategoryName()}">
-	                        	
+	                        	<input type="hidden" name="categorySelection" value="${category.getCategoryID()}">
+	                        	</form>
 	                        </c:forEach>
 	                        
-                        </form>
+                        
                         </div>
                     </li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="OrderUI.jsp">Order</a></li>
@@ -45,10 +47,12 @@
             	<a class="navbar-brand" href="#">Main Menu</a>
          </div>
     </nav>
-    
+    <!-- THIS IS CARD -->
+    <br>
+    <c:forEach items="${parsedItemList}" var="item">
     <div class="card mx-auto" style="width: 20rem;">
 		  <div class="card-body">
-		    <h5 class="card-title">Item name</h5>
+		    <h5 class="card-title">${item.getItemName() }</h5>
 			  <div id="itemBox">
 				    	<img id="itemPic" src="img/migarock logo.png" class="rounded float-left, itemPic"> 
 				  	<div class="float-right">
@@ -62,15 +66,19 @@
 						</div>
 				 	</div>
 			  </div>
+			  
 		  
 		  <div class="card-body">
-		  <p class="card-text">Price $$</p>
+		  <p class="card-text">${item.getItemPrice()}</p>
 		  <p class="card-text">Some quick example text to build on the item description and make up the bulk of the card's content.</p>
 		   <button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#infoModal">More Info</button>
 		   
 		  </div>
 		  </div>
 	</div> 
+	<br>
+	</c:forEach>
+	
 	
 <!-- More Info Modal -->
 <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalTitle" aria-hidden="true">

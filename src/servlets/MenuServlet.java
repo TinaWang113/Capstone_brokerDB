@@ -55,20 +55,18 @@ public class MenuServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-				
+				System.out.println();
 			request.setAttribute("parsedItemList", parsedItemList);
 			request.setAttribute("parsedCategoryList", parsedCategoryList);
 			getServletContext().getRequestDispatcher("/MenuUI.jsp").forward(request, response);
 			parsedCategoryList.clear();
+			parsedItemList.clear();
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		
-//		session.setAttribute("orderedItems", );
 	}
 
 }

@@ -20,15 +20,9 @@ public class ChoiceServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		if (session.isNew() != true)
-		{
-			System.out.println(session.getCreationTime());
-			response.sendRedirect("menu");
-		}
-		else {
-			getServletContext().getRequestDispatcher("/ChoiceUI.jsp").forward(request, response);
-		}
+		
+		getServletContext().getRequestDispatcher("/ChoiceUI.jsp").forward(request, response);
+		
 		
 
 	}
