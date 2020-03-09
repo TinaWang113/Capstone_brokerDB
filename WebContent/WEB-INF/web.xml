@@ -44,3 +44,4 @@
     <servlet-name>Choice</servlet-name>
     <url-pattern>/choice</url-pattern>
   </servlet-mapping>
+  </web-app>
