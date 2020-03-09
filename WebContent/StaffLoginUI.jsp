@@ -9,7 +9,7 @@
     <title>login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/Footer-Dark.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/LoginStyle.css">
 </head>
 
 <body>
@@ -17,7 +17,7 @@
     <h1>Login</h1>
 
     <form action="loginservlet" method="POST">
-<div id="loginPad"><div class="btn-group-vertical ml-4 mt-4" role="group" aria-label="Basic example">
+	<div id="loginPad"><div class="btn-group-vertical ml-4 mt-4" role="group" aria-label="Basic example">
     
     <div class="btn-group">
         <input class="text-center form-control-lg mb-2" type="text" id="pin" name="pin" maxlength="4">
@@ -39,16 +39,11 @@
     </div>
     <div class="btn-group">
         <input type="reset" class="btn btn-outline-secondary py-3" value ="Clear">
-        <button type="button" class="btn btn-outline-secondary py-3" onclick="document.getElementById('pin').value=document.getElementById('pin').value + '0';">0  </button>
+        <button type="button" class="btn btn-outline-secondary py-3" onclick="document.getElementById('pin').value=document.getElementById('pin').value + '0';">0</button>
         <input type="submit" class="btn btn-primary py-3" value="Enter" onclick="">
     </div>
-<<<<<<< HEAD
 </div>
 </div>
-=======
-</div></div>
-
->>>>>>> branch 'MenuAndOrder' of https://github.com/Capstone-SAITSD-2020/CapstoneMOS.git
 </form>
     <div id="footer"><footer class="bg-dark mt-4 p-5 text-center" style="color: #ffffff;">
     Copyright &copy; 2020 Best Capstone Group</footer></div>
