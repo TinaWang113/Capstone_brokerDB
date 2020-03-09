@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `capstone2020`.`category` (
   PRIMARY KEY (`categoryID`),
   UNIQUE INDEX `categoryName` (`categoryName` ASC) )
 ENGINE = InnoDB
-AUTO_INCREMENT = 12
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8
 COMMENT = 'Meal category';
 

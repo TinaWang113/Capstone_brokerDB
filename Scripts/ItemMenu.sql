@@ -1,5 +1,5 @@
 
--- create category
+ create category
 CREATE TABLE capstone2020.category (
 	categoryID INT auto_increment NOT NULL,
 	categoryName varchar(30) UNIQUE NOT NULL,
@@ -7,10 +7,10 @@ CREATE TABLE capstone2020.category (
 	CONSTRAINT category_pk PRIMARY KEY (categoryid)
     /*CONSTRAINT category_fk FOREIGN KEY (menuid) REFERENCES capstone2020.menu(menuid)*/
 )
-ENGINE=InnoDB
-DEFAULT CHARSET=utf8
-COLLATE=utf8_general_ci
-COMMENT='Meal category';
+--ENGINE=InnoDB
+--DEFAULT CHARSET=utf8
+--COLLATE=utf8_general_ci
+--COMMENT='Meal category';
 
 -- create item
 CREATE TABLE capstone2020.item (

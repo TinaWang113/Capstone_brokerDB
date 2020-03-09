@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
 <!DOCTYPE html>
 <html>
 
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="css/Navigation-Clean-1.css">
     <link rel="stylesheet" href="css/Navigation-Clean.css">
     <link rel="stylesheet" href="css/styles.css">
+    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 </head>
 
 <body><img id="logo-1" src="img/migarock logo.png">
@@ -20,13 +22,15 @@
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Menu&nbsp;</a>
                         <div class="dropdown-menu" role="menu">
-	                        <a class="dropdown-item" role="presentation" href="SubMenuUI.jsp">Cat 1</a>
-	                        <a class="dropdown-item" role="presentation" href="SubMenuUI.jsp">Cat 2</a>
-	                        <a class="dropdown-item" role="presentation" href="SubMenuUI.jsp">Cat 2<br></a>
-	                        <a class="dropdown-item" role="presentation" href="SubMenuUI.jsp">Cat 3<br></a>
-	                        <a class="dropdown-item" role="presentation" href="SubMenuUI.jsp">Cat 4<br></a>
-	                        <a class="dropdown-item" role="presentation" href="SubMenuUI.jsp">Cat 5<br></a>
-
+	                       <form action="submenu" method="GET">
+	                       
+	                       <c:forEach var="category" items="${parsedCategoryList}">
+	                       
+	                        	<input type="submit" class="dropdown-item" role="presentation"  data-value="${category.getCategoryID()}" value ="${category.getCategoryName()}">
+	                        	
+	                        </c:forEach>
+	                        
+                        </form>
                         </div>
                     </li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="OrderUI.jsp">Order</a></li>
