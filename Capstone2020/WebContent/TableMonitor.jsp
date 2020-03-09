@@ -26,9 +26,11 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 <link href="./css/tableMonitor.css" rel="stylesheet">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 </head>
 
 <body>
+
 	<!-- 
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
         <h3 class="my-0 mr-md-auto font-weight-normal">Migarock Table Monitoring System</h3>
@@ -46,7 +48,7 @@
 						</div>
 						<div class="card-body">
 							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
+								data-toggle="modal" href="#tableModal" data-table-id="1">Check</a>
 						</div>
 					</div>
 				</div>
@@ -63,7 +65,7 @@
 						</div>
 						<div class="card-body">
 							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
+								data-toggle="modal" href="#tableModal" data-table-id="2">Check</a>
 						</div>
 					</div>
 				</div>
@@ -80,7 +82,7 @@
 						</div>
 						<div class="card-body">
 							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
+								data-toggle="modal" href="#tableModal" data-table-id="3">Check</a>
 						</div>
 					</div>
 				</div>
@@ -97,7 +99,7 @@
 						</div>
 						<div class="card-body">
 							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
+								data-toggle="modal" href="#tableModal" data-table-id="4">Check</a>
 						</div>
 					</div>
 				</div>
@@ -114,7 +116,7 @@
 						</div>
 						<div class="card-body">
 							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
+								data-toggle="modal" href="#tableModal" data-table-id="5">Check</a>
 						</div>
 					</div>
 				</div>
@@ -131,319 +133,7 @@
 						</div>
 						<div class="card-body">
 							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-2">
-			<div class="container">
-				<div class="card-deck mb-3 text-center">
-					<div class="card mb-4 box-shadow">
-						<div class="card-header">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_07</strong>
-							</h3>
-						</div>
-						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-2">
-			<div class="container">
-				<div class="card-deck mb-3 text-center">
-					<div class="card mb-4 box-shadow">
-						<div class="card-header">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_08</strong>
-							</h3>
-						</div>
-						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-2">
-			<div class="container">
-				<div class="card-deck mb-3 text-center">
-					<div class="card mb-4 box-shadow">
-						<div class="card-header">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_09</strong>
-							</h3>
-						</div>
-						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-2">
-			<div class="container">
-				<div class="card-deck mb-3 text-center">
-					<div class="card mb-4 box-shadow">
-						<div class="card-header">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_10</strong>
-							</h3>
-						</div>
-						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-2">
-			<div class="container">
-				<div class="card-deck mb-3 text-center">
-					<div class="card mb-4 box-shadow">
-						<div class="card-header">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_11</strong>
-							</h3>
-						</div>
-						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-2">
-			<div class="container">
-				<div class="card-deck mb-3 text-center">
-					<div class="card mb-4 box-shadow">
-						<div class="card-header">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_12</strong>
-							</h3>
-						</div>
-						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-2">
-			<div class="container">
-				<div class="card-deck mb-3 text-center">
-					<div class="card mb-4 box-shadow">
-						<div class="card-header">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_13</strong>
-							</h3>
-						</div>
-						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-2">
-			<div class="container">
-				<div class="card-deck mb-3 text-center">
-					<div class="card mb-4 box-shadow">
-						<div class="card-header">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_14</strong>
-							</h3>
-						</div>
-						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-2">
-			<div class="container">
-				<div class="card-deck mb-3 text-center">
-					<div class="card mb-4 box-shadow">
-						<div class="card-header">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_15</strong>
-							</h3>
-						</div>
-						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-2">
-			<div class="container">
-				<div class="card-deck mb-3 text-center">
-					<div class="card mb-4 box-shadow">
-						<div class="card-header">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_16</strong>
-							</h3>
-						</div>
-						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-2">
-			<div class="container">
-				<div class="card-deck mb-3 text-center">
-					<div class="card mb-4 box-shadow">
-						<div class="card-header">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_17</strong>
-							</h3>
-						</div>
-						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-2">
-			<div class="container">
-				<div class="card-deck mb-3 text-center">
-					<div class="card mb-4 box-shadow">
-						<div class="card-header">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_18</strong>
-							</h3>
-						</div>
-						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-2">
-			<div class="container">
-				<div class="card-deck mb-3 text-center">
-					<div class="card mb-4 box-shadow">
-						<div class="card-header">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_19</strong>
-							</h3>
-						</div>
-						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-2">
-			<div class="container">
-				<div class="card-deck mb-3 text-center">
-					<div class="card mb-4 box-shadow">
-						<div class="card-header">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_20</strong>
-							</h3>
-						</div>
-						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-2">
-			<div class="container">
-				<div class="card-deck mb-3 text-center">
-					<div class="card mb-4 box-shadow">
-						<div class="card-header">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_21</strong>
-							</h3>
-						</div>
-						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-2">
-			<div class="container">
-				<div class="card-deck mb-3 text-center">
-					<div class="card mb-4 box-shadow">
-						<div class="card-header">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_22</strong>
-							</h3>
-						</div>
-						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-2">
-			<div class="container">
-				<div class="card-deck mb-3 text-center">
-					<div class="card mb-4 box-shadow">
-						<div class="card-header">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_23</strong>
-							</h3>
-						</div>
-						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-2">
-			<div class="container">
-				<div class="card-deck mb-3 text-center">
-					<div class="card mb-4 box-shadow">
-						<div class="card-header">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_24</strong>
-							</h3>
-						</div>
-						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#registerModal">Check</a>
+								data-toggle="modal" href="#tableModal" data-table-id="6">Check</a>
 						</div>
 					</div>
 				</div>
@@ -451,12 +141,14 @@
 		</div>
 	</div>
 
-	<div class="modal fade" id="registerModal" tabindex="1" role="dialog"
+
+	<div class="modal fade" id="tableModal" tabindex="1" role="dialog"
 		aria-labelledby="modal" aria-hidden="true">
+
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h2 class="modal-title" id="modal">Table_02 Status</h2>
+					<h2 class="modal-title" id="modal">Table Status</h2>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="close">
 						<span aria-hidden="true">&times;</span>
@@ -479,7 +171,14 @@
 						</div>
 					</div>
 					<div>
+
+
 						<div class="modal-body">
+						<h3> My name is ${test}</h3>
+							<%
+								String test = (String) request.getAttribute("test");
+							%>
+							<%=test%>
 							<!-- <form action="./evaluationRegisterAction.jsp" method="post"> -->
 							<div class="scrollbar scrollbar-primary">
 								<!-- <div> -->
@@ -496,123 +195,30 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr style="text-align: center;">
-											<td style="text-align: center;">
-												<div class="form-check">
-													<input type="checkbox" class="select-item checkbox"
-														name="select-item">
+										<c:out value="${requestScope.orders}">
+											<c:forEach items="${orders}" var="order">
+												<tr style="text-align: center;">
+													<td style="text-align: center;">
+														<div class="form-check">
+															<input type="checkbox" class="select-item checkbox"
+																name="select-item">
 
-												</div>
-											</td>
-											<td>2020-02-30 15:00</td>
-											<td>Cold Noodle</td>
-											<td>1</td>
-											<td>$12</td>
-											<td>
-												<!-- <a class="btn btn-light btn-sm mx-1 mt-2" data-toggle="modal"
-                                                href="#changeStatus">Ordered</a> -->
-												<a class="btn btn-dark btn-sm mx-1 mt-2" data-toggle="modal"
-												href="#changeStatus">Delivered</a>
-											</td>
-										</tr>
-										<tr style="text-align: center;">
-											<td style="text-align: center;">
-												<div class="form-check">
-													<input type="checkbox" class="select-item checkbox"
-														name="select-item">
-												</div>
-											</td>
-											<td>2020-02-30 15:05</td>
-											<td>Ramen</td>
-											<td>2</td>
-											<td>$12</td>
-											<td>
-												<!-- <a class="btn btn-light btn-sm mx-1 mt-2" data-toggle="modal"
-                                                href="#changeStatus">Ordered</a> -->
-												<a class="btn btn-dark btn-sm mx-1 mt-2" data-toggle="modal"
-												href="#changeStatus">Delivered</a>
-											</td>
-										</tr>
-										<tr style="text-align: center;">
-											<td>
-												<div class="form-check">
-													<input type="checkbox" class="select-item checkbox"
-														name="select-item">
-												</div>
-											</td>
-											<td>2020-02-30 15:10</td>
-											<td>Soju</td>
-											<td>2</td>
-											<td>$12</td>
-											<td><a class="btn btn-light btn-sm mx-1 mt-2"
-												data-toggle="modal" href="#changeStatus">Ordered</a> <!-- <a class="btn btn-dark btn-sm mx-1 mt-2" data-toggle="modal"
+														</div>
+													</td>
+
+													<td><span id="orders"></span> ${order.getTimeStamp()}</td>
+													<td>{order.getOrderItem()}</td>
+													<td>{order.getOrderQty()}</td>
+													<td>{order.getOrderPrice()}</td>
+													<td>{order.getOrderStatus()}</td>
+
+													<td><a class="btn btn-light btn-sm mx-1 mt-2"
+														data-toggle="modal" href="#changeStatus">Ordered</a> <!-- <a class="btn btn-dark btn-sm mx-1 mt-2" data-toggle="modal"
                                                 href="#changeStatus">Delivered</a> -->
-											</td>
-										</tr>
-										<tr style="text-align: center;">
-											<td>
-												<div class="form-check">
-													<input type="checkbox" class="select-item checkbox"
-														name="select-item">
-												</div>
-											</td>
-											<td>2020-02-30 15:10</td>
-											<td>Soju</td>
-											<td>2</td>
-											<td>$12</td>
-											<td><a class="btn btn-light btn-sm mx-1 mt-2"
-												data-toggle="modal" href="#changeStatus">Ordered</a> <!-- <a class="btn btn-dark btn-sm mx-1 mt-2" data-toggle="modal"
-                                                href="#changeStatus">Delivered</a> -->
-											</td>
-										</tr>
-										<tr style="text-align: center;">
-											<td>
-												<div class="form-check">
-													<input type="checkbox" class="select-item checkbox"
-														name="select-item">
-												</div>
-											</td>
-											<td>2020-02-30 15:10</td>
-											<td>Soju</td>
-											<td>2</td>
-											<td>$12</td>
-											<td><a class="btn btn-light btn-sm mx-1 mt-2"
-												data-toggle="modal" href="#changeStatus">Ordered</a> <!-- <a class="btn btn-dark btn-sm mx-1 mt-2" data-toggle="modal"
-                                                href="#changeStatus">Delivered</a> -->
-											</td>
-										</tr>
-										<tr style="text-align: center;">
-											<td>
-												<div class="form-check">
-													<input type="checkbox" class="select-item checkbox"
-														name="select-item">
-												</div>
-											</td>
-											<td>2020-02-30 15:10</td>
-											<td>Soju</td>
-											<td>2</td>
-											<td>$12</td>
-											<td><a class="btn btn-light btn-sm mx-1 mt-2"
-												data-toggle="modal" href="#changeStatus">Ordered</a> <!-- <a class="btn btn-dark btn-sm mx-1 mt-2" data-toggle="modal"
-                                                href="#changeStatus">Delivered</a> -->
-											</td>
-										</tr>
-										<tr style="text-align: center;">
-											<td>
-												<div class="form-check">
-													<input type="checkbox" class="select-item checkbox"
-														name="select-item">
-												</div>
-											</td>
-											<td>2020-02-30 15:10</td>
-											<td>Soju</td>
-											<td>2</td>
-											<td>$12</td>
-											<td><a class="btn btn-light btn-sm mx-1 mt-2"
-												data-toggle="modal" href="#changeStatus">Ordered</a> <!-- <a class="btn btn-dark btn-sm mx-1 mt-2" data-toggle="modal"
-                                                href="#changeStatus">Delivered</a> -->
-											</td>
-										</tr>
+													</td>
+												</tr>
+											</c:forEach>
+										</c:out>
 									</tbody>
 								</table>
 							</div>
@@ -624,7 +230,7 @@
 										<h4>Total</h4>
 									</td>
 									<td colspan="3">
-										<h4>$ 145</h4>
+										<h4>(total)</h4>
 									</td>
 								</tr>
 							</table>
@@ -648,6 +254,7 @@
 				</div>
 			</div>
 		</div>
+
 	</div>
 
 
@@ -749,6 +356,30 @@
 				all.checked = len === total;
 			}
 		});
+
+		$('#tableModal')
+				.on(
+						'show.bs.modal',
+						function(e) {
+							var tableID = $(e.relatedTarget).data('table-id');
+							console.log("test: ", tableID)
+							$(e.currentTarget).find('input[name="tableID"]')
+									.val(tableID);
+							var xhttp = new XMLHttpRequest();
+							xhttp.onreadystatechange = function() {
+								if (this.readyState == 4 && this.status == 200) {
+									// Typical action to be performed when the document is ready:
+									document.getElementById("response").value = xhttp.responseText;
+								}
+							};
+							xhttp.open("POST", "TableMonitor", true);
+							xhttp.setRequestHeader("Content-type",
+									"application/x-www-form-urlencoded");
+							xhttp.send("tableId=" + tableID);
+
+							var orders = $(this).data('orders');
+							$('#orders').html(orders);
+						});
 	</script>
 </body>
 
