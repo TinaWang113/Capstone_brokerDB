@@ -17,8 +17,8 @@ public class Connect2Server{
 	static Connection con = null;
 //	private final static String URL = "jdbc:mysql://harbor.cc7dvrrj6n2j.ca-central-1.rds.amazonaws.com:3306/";
 	private final static String URL =  "jdbc:mysql://localhost:3306/";
-//	private final static String USERNAME = "admin";
-	private final static String USERNAME = "root";
+	private final static String USERNAME = "admin";
+//	private final static String USERNAME = "root";
 //	private final static String PW = "password1234";
 	private final static String PW = "password";
 	private final static String DBNAME = "capstone2020";
