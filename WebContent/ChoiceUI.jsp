@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/Navigation-Clean-1.css">
     <link rel="stylesheet" href="css/Navigation-Clean.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/ChoiceStyle.css">
 </head>
 
 <body><img id="logo-1" src="img/migarock logo.png">

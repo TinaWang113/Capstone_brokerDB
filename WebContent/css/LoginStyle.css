@@ -1,0 +1,36 @@
+
+#login {
+  text-align: center;
+  padding: 40px;
+}
+
+#loginPad {
+  text-align: center;
+}
+
+#logo {
+  margin-left: auto;
+  margin-right: auto;
+  width: 25%;
+  height: 25%;
+}
+
+body {
+  background-color: #e3f8f9;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.h1, h1 {
+  padding: 25px;
+  text-align: center;
+}
+h6 {
+  text-align: center;
+}

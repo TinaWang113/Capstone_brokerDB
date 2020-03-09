@@ -8,9 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Main Menu</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/Navigation-Clean-1.css">
     <link rel="stylesheet" href="css/Navigation-Clean.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/MenuStyle.css">
 </head>
 
 <body><img id="logo-1" src="img/migarock logo.png">
@@ -26,15 +27,66 @@
 	                        <a class="dropdown-item" role="presentation" href="SubMenuUI.jsp">Cat 3<br></a>
 	                        <a class="dropdown-item" role="presentation" href="SubMenuUI.jsp">Cat 4<br></a>
 	                        <a class="dropdown-item" role="presentation" href="SubMenuUI.jsp">Cat 5<br></a>
-
                         </div>
                     </li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="OrderUI.jsp">Order</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="BillUI.jsp">View Bill</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="HelpUI.jsp">Request Help</a></li>
                 </ul>
-            </div><a class="navbar-brand" href="#">Main Menu</a></div>
+            </div>
+            	<a class="navbar-brand" href="#">Main Menu</a>
+         </div>
     </nav>
+    
+    <div class="card mx-auto" style="width: 20rem;">
+		  <div class="card-body">
+		    <h5 class="card-title">Item name</h5>
+			  <div id="itemBox">
+				    	<img id="itemPic" src="img/migarock logo.png" class="rounded float-left, itemPic"> 
+				  	<div class="float-right">
+					  	<div id="qnty">
+					  		<div class="col text-center">
+							  	<button type="button" class="btn btn-light btn-sm Arrows"><i class="fa fa-chevron-up"></i></button><br>
+								  	<input id="intTextBox" size="1" maxlength="3"><br>
+							  	<button type="button" class="btn btn-light btn-sm Arrows"><i class="fa fa-chevron-down"></i></button>
+						  	</div>
+						</div>
+				 	</div>
+			  </div>
+		  <ul class="list-group list-group-flush">
+		    <li class="list-group-item">Description</li>
+		  </ul>
+		  <div class="card-body">
+		    <button type="button" class="btn btn-default btn-lg">
+  					<span aria-hidden="true"></span>More Info
+				</button>
+		  </div>
+		  </div>
+	</div> 
+	<script>
+	// Restricts input for the given textbox to the given inputFilter.
+	function setInputFilter(textbox, inputFilter) {
+	  ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+	    textbox.addEventListener(event, function() {
+	      if (inputFilter(this.value)) {
+	        this.oldValue = this.value;
+	        this.oldSelectionStart = this.selectionStart;
+	        this.oldSelectionEnd = this.selectionEnd;
+	      } else if (this.hasOwnProperty("oldValue")) {
+	        this.value = this.oldValue;
+	        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+	      } else {
+	        this.value = "";
+	      }
+	    });
+	  });
+	}
+
+
+	// Install input filters.
+	setInputFilter(document.getElementById("intTextBox"), function(value) {
+	  return /^-?\d*$/.test(value); });
+	</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 </body>

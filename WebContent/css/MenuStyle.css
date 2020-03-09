@@ -1,0 +1,44 @@
+.itemBox {
+	border:1px solid #021a40;
+    width: 100%;
+    overflow: hidden; /* this should be clear-fixed instead */
+}
+.qnty{
+	width: 25%;
+}
+.itemPic{
+	width: 70%;
+	border:1px solid #021a40;
+}
+
+.Arrows{
+	width: 25px;
+}
+
+#logo-1 {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 25%;
+}
+
+body {
+  background-color: #e3f8f9;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.h1, h1 {
+  padding: 25px;
+  text-align: center;
+}
+h6 {
+  text-align: center;
+}
+
