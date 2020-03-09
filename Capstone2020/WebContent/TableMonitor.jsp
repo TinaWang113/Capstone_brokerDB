@@ -174,11 +174,7 @@
 
 
 						<div class="modal-body">
-						<h3> My name is ${test}</h3>
-							<%
-								String test = (String) request.getAttribute("test");
-							%>
-							<%=test%>
+							<h3>My name is ${test}</h3>
 							<!-- <form action="./evaluationRegisterAction.jsp" method="post"> -->
 							<div class="scrollbar scrollbar-primary">
 								<!-- <div> -->
