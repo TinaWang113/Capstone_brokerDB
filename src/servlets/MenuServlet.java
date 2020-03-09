@@ -20,7 +20,7 @@ import model.Item;
 public class MenuServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-//	ArrayList<Item> regItemList = 
+	ArrayList<Item> parsedItemList = new ArrayList<>(); 
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -28,24 +28,23 @@ public class MenuServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String menuSelection = (String)session.getAttribute("menuSelection");
-		System.out.println(menuSelection + " THIS IS YOUR MENU SELECTION");
+		
 		MenuBroker menubroker = new MenuBroker();
 			try {
 				ArrayList<Item> itemList = (ArrayList<Item>) menubroker.findItemAll();
-				
 				
 				if (menuSelection.equals("1")) {
 					
 					for (Item item : itemList) {
 						if (item.getCategory().getMenuID() == Integer.parseInt(menuSelection)) {
-							
+							parsedItemList.add(item);
 						}
 					}
 				}
 				else if (menuSelection.equals("2")) {
 					for (Item item : itemList) {
 						if (item.getCategory().getMenuID() == Integer.parseInt(menuSelection)) {
-							
+							parsedItemList.add(item);
 						}
 					}
 				}
@@ -53,6 +52,7 @@ public class MenuServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			request.setAttribute("parsedItemList", parsedItemList);
 			
 		getServletContext().getRequestDispatcher("/MenuUI.jsp").forward(request, response);
 	}
@@ -61,7 +61,9 @@ public class MenuServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		
+//		session.setAttribute("orderedItems", );
 	}
 
 }
