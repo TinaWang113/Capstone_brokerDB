@@ -42,7 +42,7 @@
 		<div class="collapse navbar-collapse justify-content-between"
 			id="navbar">
 			<div class="navbar-nav">
-				<a class="nav-item nav-link " href="DashboardUI.jsp">Dashboard</a> <a
+				<a class="nav-item nav-link " href="Mgmt_Report.jsp">Report</a> <a
 					class="nav-item nav-link " href="MenuUI.jsp">Menu</a> <a
 					class="nav-item nav-link active" href="staffmanagement">Staff</a> <a
 					class="nav-item nav-link " href="DataBaseUI.jsp">Backup/

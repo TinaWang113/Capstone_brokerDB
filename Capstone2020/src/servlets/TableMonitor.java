@@ -12,6 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.google.gson.Gson;
 
 import brokers.TableBrokder;
 import model.Order;
@@ -37,14 +40,20 @@ public class TableMonitor extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		HttpSession session = request.getSession();
+//		String test = (String) session.getAttribute("test");
+		session.setAttribute("test", "test");
 		getServletContext().getRequestDispatcher("/TableMonitor.jsp").forward(request, response);
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		String table_id = request.getParameter("tableId");
 		String action = request.getParameter("action");
 
@@ -63,10 +72,21 @@ public class TableMonitor extends HttpServlet {
 		}
 //		response.sendRedirect("TableMonitor");
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/TableMonitor.jsp");
-		request.setAttribute("orders", orders);
-		request.setAttribute("test", "test");
-		dispatcher.forward(request, response);
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("/TableMonitor.jsp");
+//		request.setAttribute("orders", orders);
+//		request.setAttribute("test1", "test1");
+//		session.setAttribute("orders", "orders");
+//		dispatcher.forward(request, response);
+
+		// convert your list of orders to json
+		String json = new Gson().toJson(orders);
+
+		// add json to response
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(json);
+
+		getServletContext().getRequestDispatcher("/TableMonitor.jsp").forward(request, response);
 	}
 
 }

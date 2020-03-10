@@ -139,6 +139,10 @@
 				</div>
 			</div>
 		</div>
+		<%
+			String test = (String) request.getAttribute("test");
+		%><%=test%>
+		${test} ${orders} ${test1}
 	</div>
 
 
@@ -175,6 +179,7 @@
 
 						<div class="modal-body">
 							<h3>My name is ${test}</h3>
+							${orders} ${test1}
 							<!-- <form action="./evaluationRegisterAction.jsp" method="post"> -->
 							<div class="scrollbar scrollbar-primary">
 								<!-- <div> -->
@@ -202,11 +207,6 @@
 														</div>
 													</td>
 
-													<td><span id="orders"></span> ${order.getTimeStamp()}</td>
-													<td>{order.getOrderItem()}</td>
-													<td>{order.getOrderQty()}</td>
-													<td>{order.getOrderPrice()}</td>
-													<td>{order.getOrderStatus()}</td>
 
 													<td><a class="btn btn-light btn-sm mx-1 mt-2"
 														data-toggle="modal" href="#changeStatus">Ordered</a> <!-- <a class="btn btn-dark btn-sm mx-1 mt-2" data-toggle="modal"
@@ -353,8 +353,7 @@
 			}
 		});
 
-		$('#tableModal')
-				.on(
+		$('#tableModal').on(
 						'show.bs.modal',
 						function(e) {
 							var tableID = $(e.relatedTarget).data('table-id');
