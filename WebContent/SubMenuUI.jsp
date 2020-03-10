@@ -13,8 +13,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/Navigation-Clean-1.css">
     <link rel="stylesheet" href="css/Navigation-Clean.css">
-    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/MenuStyle.css">
+    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 </head>
 
 <body><img id="logo-1" src="img/migarock logo.png">
