@@ -17,6 +17,7 @@ public class OrderedItem {
 		this.qty = qty;
 		setItemAmount(item.getItemPrice()*qty);
 	}
+	
 
 	/**
 	 * @return the item

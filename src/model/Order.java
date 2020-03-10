@@ -15,20 +15,37 @@ import com.mysql.cj.xdevapi.Table;
 public class Order {
 	//Attributes
 	private int orderID;
-	private Date orderDate;
-	private Table table;
-	//private double orderAmount;
-	private List<OrderedItem>orderedItems;
+	private Date timeStamp;
+	private double orderAmount;
+	/*orderedItems : 
+	  containing qty of item, total price of item, 
+	  and the info of item (Item object)
+	*/
+	private List<Item>orderedItems;
 	
-	public Order(Date orderDate, Table table, List<OrderedItem> orderedItems) {
-		this.orderDate = orderDate;
-		this.table = table;
+	
+	
+	/**
+	 * @param orderID
+	 * @param timeStamp
+	 * @param orderAmount
+	 * @param orderedItems
+	 */
+	public Order(int orderID, Date timeStamp, double orderAmount, List<Item> orderedItems) {
+		super();
+		this.orderID = orderID;
+		this.timeStamp = timeStamp;
+		this.orderAmount = orderAmount;
 		this.orderedItems = orderedItems;
 	}
-	
+
+
+
 	public void Order() {
 		
 	}
+
+
 
 	/**
 	 * @return the orderID
@@ -37,6 +54,8 @@ public class Order {
 		return orderID;
 	}
 
+
+
 	/**
 	 * @param orderID the orderID to set
 	 */
@@ -44,52 +63,66 @@ public class Order {
 		this.orderID = orderID;
 	}
 
-	/**
-	 * @return the orderDate
-	 */
-	public Date getOrderDate() {
-		return orderDate;
-	}
+
 
 	/**
-	 * @param orderDate the orderDate to set
+	 * @return the timeStamp
 	 */
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
+	public Date getTimeStamp() {
+		return timeStamp;
 	}
 
-	/**
-	 * @return the table
-	 */
-	public Table getTable() {
-		return table;
-	}
+
 
 	/**
-	 * @param table the table to set
+	 * @param timeStamp the timeStamp to set
 	 */
-	public void setTable(Table table) {
-		this.table = table;
+	public void setTimeStamp(Date timeStamp) {
+		this.timeStamp = timeStamp;
 	}
+
+
+
+	/**
+	 * @return the orderAmount
+	 */
+	public double getOrderAmount() {
+		return orderAmount;
+	}
+
+
+
+	/**
+	 * @param orderAmount the orderAmount to set
+	 */
+	public void setOrderAmount(double orderAmount) {
+		this.orderAmount = orderAmount;
+	}
+
+
 
 	/**
 	 * @return the orderedItems
 	 */
-	public List<OrderedItem> getOrderedItems() {
+	public List<Item> getOrderedItems() {
 		return orderedItems;
 	}
+
+
 
 	/**
 	 * @param orderedItems the orderedItems to set
 	 */
-	public void setOrderedItems(List<OrderedItem> orderedItems) {
+	public void setOrderedItems(List<Item> orderedItems) {
 		this.orderedItems = orderedItems;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Order [orderID=" + orderID + ", orderDate=" + orderDate + ", table=" + table + ", orderedItems="
-				+ orderedItems + "]";
+		return "Order [orderID=" + orderID + ", timeStamp=" + timeStamp + ", orderAmount=" + orderAmount
+				+ ", orderedItems=" + orderedItems + "]";
 	}
 
 	
