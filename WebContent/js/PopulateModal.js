@@ -25,3 +25,19 @@ $(document).ready(function () {
 		
     });
 });
+
+$(document).ready(function () {
+    $('.moreInforBtn').click(function () {
+		var itemName = $(this).attr('data-itemName');
+		var itemDescription = $(this).attr('data-itemDescription');
+		var itemPrice = $(this).attr('data-itemPrice');
+		var itemAllergy = $(this).attr('data-allergyInfo')
+
+		$("#infoModalLongTitle").text(itemName);
+		$("#itemDesc").text(itemDescription);
+		$("#itemPrice").val(itemPrice);
+		// $("data-content").val(itemAllergy);
+		// $("#editbtnConfirm").val(id);
+		
+    });
+});

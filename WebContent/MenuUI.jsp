@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="css/Navigation-Clean-1.css">
     <link rel="stylesheet" href="css/Navigation-Clean.css">
     <link rel="stylesheet" href="css/MenuStyle.css">
+    <script src="js/PopulateModal.js" type="text/javascript"></script>
+    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 </head>
 
 <body><img id="logo-1" src="img/migarock logo.png">
@@ -22,7 +24,7 @@
         <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Menu&nbsp;</a>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">Menu&nbsp;</a>
                         <div class="dropdown-menu" role="menu">                     
 	                       
 	                       <c:forEach var="category" items="${parsedCategoryList}">
@@ -65,7 +67,12 @@
 			  
 		  
 		  <div class="card-body">		  
-		   <button type="button" class="btn btn-secondary float-left" data-toggle="modal" data-target="#infoModal">More Info</button>
+		   <button type="button" class="btn btn-secondary float-left moreInforBtn" data-toggle="modal" data-target="#infoModal"
+		   		data-itemName="${item.getItemName()}"
+		   		data-itemDescription="description"
+		   		data-itemPrice="${item.getItemPrice()}"
+		   		data-allergyInfo="THESE ARE SOME SERIOUS ALLERGIES TO NUTS"
+		   >More Info</button>
 		   <div class="float-right">
 		   <p>${item.getItemPrice()}</p>
 		   </div>

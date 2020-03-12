@@ -22,12 +22,14 @@ import model.Item;
 public class SubMenuServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ArrayList<Item> subMenuItemList = new ArrayList<>();
-
+	ArrayList<Category> parsedCategoryList = new ArrayList<>();
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		HttpSession session = request.getSession();
+		String menuSelection = (String)session.getAttribute("menuSelection");
+		System.out.println(menuSelection + " THIS IS MENU SELECTION");
 		String categorySelection = request.getParameter("categorySelection");
 		
 		MenuBroker menuBroker = new MenuBroker();
@@ -35,21 +37,37 @@ public class SubMenuServlet extends HttpServlet {
 		
 		try {
 			ArrayList<Item> subItemList = (ArrayList<Item>) menuBroker.findItemAll();
+			ArrayList<Category> categoryList = (ArrayList<Category>) menuBroker.findCategoryAll();
 			
+			for (Category category : categoryList) {
+				
+				if (category.getMenuID() == Integer.parseInt(menuSelection)) {
+					parsedCategoryList.add(category);
+				}
+			}
 			for (Item item : subItemList) {
-				System.out.println(item.getCategory().getCategoryID() + " CATEGORY ID");
-				System.out.println(categorySelection + " CATEGORY SELECTION");
+				
 				if (item.getCategory().getCategoryID() == Integer.parseInt(categorySelection)) {
 					subMenuItemList.add(item);
 				}
 			}
 			
+			
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(subMenuItemList.toString());
+		
+		request.setAttribute("test", "TEST");
+		
+		request.setAttribute("subMenuItemList", subMenuItemList);
+		request.setAttribute("parsedCategoryList", parsedCategoryList);
+		
+//		getServletContext().getRequestDispatcher("/MenuUI.jsp").forward(request, response);
 		getServletContext().getRequestDispatcher("/SubMenuUI.jsp").forward(request, response);
+		subMenuItemList.clear();
+		parsedCategoryList.clear();
 	}
 
 	/**

@@ -34,10 +34,10 @@ public class MenuServlet extends HttpServlet {
 		
 		String menuSelection = (String)session.getAttribute("menuSelection");
 		
-		MenuBroker menubroker = new MenuBroker();
+		MenuBroker menuBroker = new MenuBroker();
 			try {
-				ArrayList<Item> itemList = (ArrayList<Item>) menubroker.findItemAll();
-				ArrayList<Category> categoryList = (ArrayList<Category>) menubroker.findCategoryAll();
+				ArrayList<Item> itemList = (ArrayList<Item>) menuBroker.findItemAll();
+				ArrayList<Category> categoryList = (ArrayList<Category>) menuBroker.findCategoryAll();
 					
 				for (Category category : categoryList) {
 					if (category.getMenuID() == Integer.parseInt(menuSelection)) {
@@ -55,9 +55,10 @@ public class MenuServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-				System.out.println();
+				
 			request.setAttribute("parsedItemList", parsedItemList);
 			request.setAttribute("parsedCategoryList", parsedCategoryList);
+			session.setAttribute("parsedCategoryList", parsedCategoryList);
 			getServletContext().getRequestDispatcher("/MenuUI.jsp").forward(request, response);
 			parsedCategoryList.clear();
 			parsedItemList.clear();

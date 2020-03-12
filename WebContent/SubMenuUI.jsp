@@ -1,20 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+    pageEncoding="utf-8"%>  
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    
     <title>Sub-Menu</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/Navigation-Clean-1.css">
     <link rel="stylesheet" href="css/Navigation-Clean.css">
-    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/MenuStyle.css">
+    <script src="js/PopulateModal.js" type="text/javascript"></script>
+    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 </head>
 
 <body><img id="logo-1" src="img/migarock logo.png">
@@ -22,15 +24,16 @@
         <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Menu&nbsp;</a>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="">Menu&nbsp;</a>
                         <div class="dropdown-menu" role="menu">
-                        <form action="submenu" method="GET">
-	                        <input type="submit" class="dropdown-item" role="presentation" value ="">
-	                        <input type="submit" class="dropdown-item" role="presentation" value ="">
-	                        <input type="submit" class="dropdown-item" role="presentation" value ="">
-	                        <input type="submit" class="dropdown-item" role="presentation" value ="">
-	                        <input type="submit" class="dropdown-item" role="presentation" value ="">
-                        </form>
+               			
+                        <c:forEach var="category" items="${parsedCategoryList}">
+	                       
+	                       		<form action="submenu" method="GET">
+	                        	<input type="submit" class="dropdown-item" role="presentation"  data-value="${category.getCategoryID()}" value ="${category.getCategoryName()}">
+	                        	<input type="hidden" name="categorySelection" value="${category.getCategoryID()}">
+	                        	</form>
+	                        </c:forEach>
                         </div>
                     </li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="OrderUI.jsp">Order</a></li>
@@ -39,16 +42,18 @@
                 </ul>
             </div><a class="navbar-brand" href="#">SubMenu Title</a></div>
     </nav>
+    
+    <c:forEach items="${subMenuItemList}" var="subMenuItem">
      <div class="card mx-auto" style="width: 25rem;">
 		  <div class="card-body">
-		    <h5 class="card-title">Item name</h5>
+		    <h5 class="card-title">${subMenuItem.getItemName()}</h5>
 			  <div id="itemBox">
 				    	<img id="itemPic" src="img/migarock logo.png" class="rounded float-left, itemPic"> 
 				  	<div class="float-right">
 					  	<div id="qnty">
 					  		<div class="col text-center">
 							  	<button type="button" class="btn btn-light btn-sm Arrows" onclick="incrementValue()"><i class="fa fa-chevron-up"></i></button><br>
-								  	<input id="intTextBox" size="4" maxlength="2"><br>
+								  	<input size="4" maxlength="2"><br>
 							  	<button type="button" class="btn btn-light btn-sm Arrows" onclick="decrementValue()"><i class="fa fa-chevron-down"></i></button><br>
 							  	<button type="button" class="btn btn-primary btn-sm">Add </button>
 						  	</div>
@@ -57,21 +62,30 @@
 			  </div>
 		  
 		  <div class="card-body">
-		  
-		   <button type="button" class="btn btn-secondary float-left" data-toggle="modal" data-target="#infoModal">More Info</button>
+		  <!-- LEAVING IT HERE -->
+		   <button type="button" class="btn btn-secondary float-left moreInforBtn" 
+		   		data-toggle="modal" 
+		   		data-target="#infoModal"
+		   		data-itemName="${subMenuItem.getItemName()}"
+		   		data-itemDescription="description"
+		   		data-itemPrice="${subMenuItem.getItemPrice()}"
+		   		data-allergyInfo="THESE ARE SOME SERIOUS ALLERGIES TO NUTS"
+		   >More Info</button>
 		   <div class="float-right">
-		   <p>Price $$</p>
+		   <p>${subMenuItem.getItemPrice()}</p>
 		   </div>
 		  </div>
 		  </div>
 	</div> 
+	<br>
+	</c:forEach>
 	
 <!-- More Info Modal -->
 <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="infoModalLongTitle">Item Name</h5>
+        <h5 class="modal-title" id="infoModalLongTitle"></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -85,8 +99,8 @@
 		  
 		  <div class="card-body">
 		  	
-		  <p class="card-text">Some quick example text to build on the item description and make up the bulk of the card's content.</p>
-		 	<button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" 
+		  <p class="card-text" id="itemDesc">Some quick example text to build on the item description and make up the bulk of the card's content.</p>
+		 	<button id="" type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" 
 		  		data-content="Product contains: Shell fish, peanuts, and deez nuts">
   				Allergy Info
 			</button>
@@ -164,9 +178,9 @@
 	<script src="js/bootstrap.min.js"></script>
 	
 	<script src="js/mdb.min.js"></script>
+	
+	
    
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+   
 </body>
 </html>
