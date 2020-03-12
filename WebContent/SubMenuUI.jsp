@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="css/Navigation-Clean-1.css">
     <link rel="stylesheet" href="css/Navigation-Clean.css">
     <link rel="stylesheet" href="css/MenuStyle.css">
+
     <script src="js/PopulateModal.js" type="text/javascript"></script>
+
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 </head>
 

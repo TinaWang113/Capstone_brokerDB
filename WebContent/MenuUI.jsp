@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
     <title>Main menu</title>
     
@@ -18,6 +18,7 @@
     <script src="js/PopulateModal.js" type="text/javascript"></script>
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 </head>
+
 
 <body><img id="logo-1" src="img/migarock logo.png">
     <nav class="navbar navbar-light navbar-expand-md navigation-clean">
