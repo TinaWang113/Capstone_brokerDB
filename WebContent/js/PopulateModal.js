@@ -1,3 +1,4 @@
+//populates the staff edit modal
 $(document).ready(function () {
     $('.editStaffBtn').click(function () {
 		var jobName = $(this).attr('data-jobName');
@@ -17,6 +18,8 @@ $(document).ready(function () {
     });
 });
 
+//populates the delete modal confirm button with the id
+//for the staff delete
 $(document).ready(function () {
     $('.deleteStaffBtn').click(function () {
 		var id = $(this).attr('data-id');
@@ -26,18 +29,16 @@ $(document).ready(function () {
     });
 });
 
+//populates item more info modal
 $(document).ready(function () {
     $('.moreInforBtn').click(function () {
 		var itemName = $(this).attr('data-itemName');
 		var itemDescription = $(this).attr('data-itemDescription');
 		var itemPrice = $(this).attr('data-itemPrice');
-		var itemAllergy = $(this).attr('data-allergyInfo')
 
 		$("#infoModalLongTitle").text(itemName);
 		$("#itemDesc").text(itemDescription);
 		$("#itemPrice").val(itemPrice);
-		// $("data-content").val(itemAllergy);
-		// $("#editbtnConfirm").val(id);
 		
     });
 });

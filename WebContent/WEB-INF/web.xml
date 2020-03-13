@@ -25,8 +25,12 @@
     <servlet-class>servlets.ChoiceServlet</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>submenu</servlet-name>
-  	<servlet-class>servlets.SubMenuServlet</servlet-class>
+    <servlet-name>submenu</servlet-name>
+    <servlet-class>servlets.SubMenuServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>order</servlet-name>
+    <servlet-class>servlets.Order</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>staffmanagement</servlet-name>
@@ -51,5 +55,9 @@
   <servlet-mapping>
     <servlet-name>submenu</servlet-name>
     <url-pattern>/submenu</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>order</servlet-name>
+    <url-pattern>/order</url-pattern>
   </servlet-mapping>
 </web-app>

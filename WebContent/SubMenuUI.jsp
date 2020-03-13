@@ -42,7 +42,7 @@
                     <li class="nav-item" role="presentation"><a class="nav-link" href="BillUI.jsp">View Bill</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="HelpUI.jsp">Request Help</a></li>
                 </ul>
-            </div><a class="navbar-brand" href="#">SubMenu Title</a></div>
+            </div><a class="navbar-brand" href="#">${subMenuTitle}</a></div>
     </nav>
     
     <c:forEach items="${subMenuItemList}" var="subMenuItem">
@@ -55,7 +55,7 @@
 					  	<div id="qnty">
 					  		<div class="col text-center">
 							  	<button type="button" class="btn btn-light btn-sm Arrows" onclick="incrementValue()"><i class="fa fa-chevron-up"></i></button><br>
-								  	<input size="4" maxlength="2"><br>
+								  	<input size="4" maxlength="2" name="itemQuantity"><br>
 							  	<button type="button" class="btn btn-light btn-sm Arrows" onclick="decrementValue()"><i class="fa fa-chevron-down"></i></button><br>
 							  	<button type="button" class="btn btn-primary btn-sm">Add </button>
 						  	</div>

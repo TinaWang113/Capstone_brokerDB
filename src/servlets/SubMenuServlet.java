@@ -29,15 +29,18 @@ public class SubMenuServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String menuSelection = (String)session.getAttribute("menuSelection");
-		System.out.println(menuSelection + " THIS IS MENU SELECTION");
+		
 		String categorySelection = request.getParameter("categorySelection");
 		
 		MenuBroker menuBroker = new MenuBroker();
 		
 		
+		
+		
 		try {
 			ArrayList<Item> subItemList = (ArrayList<Item>) menuBroker.findItemAll();
 			ArrayList<Category> categoryList = (ArrayList<Category>) menuBroker.findCategoryAll();
+			Category subMenuTitle = menuBroker.findByID(Integer.parseInt(categorySelection));
 			
 			for (Category category : categoryList) {
 				
@@ -53,18 +56,17 @@ public class SubMenuServlet extends HttpServlet {
 			}
 			
 			
-			
+			request.setAttribute("subMenuTitle", subMenuTitle.getCategoryName());
+			request.setAttribute("subMenuItemList", subMenuItemList);
+			request.setAttribute("parsedCategoryList", parsedCategoryList);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		request.setAttribute("test", "TEST");
 		
-		request.setAttribute("subMenuItemList", subMenuItemList);
-		request.setAttribute("parsedCategoryList", parsedCategoryList);
 		
-//		getServletContext().getRequestDispatcher("/MenuUI.jsp").forward(request, response);
+		
 		getServletContext().getRequestDispatcher("/SubMenuUI.jsp").forward(request, response);
 		subMenuItemList.clear();
 		parsedCategoryList.clear();
