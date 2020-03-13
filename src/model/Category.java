@@ -12,7 +12,7 @@ public class Category {
 	public Category(String categoryName, int menuID) {
 		super();
 		try {
-			this.categoryID = categoryID;
+			//this.categoryID = categoryID;
 			this.categoryName = categoryName;
 			//1:Regular, 2:AYCE, 3:Extra
 			if(String.valueOf(menuID).matches("^[1-3]$")) {
