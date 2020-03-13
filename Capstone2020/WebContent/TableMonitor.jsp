@@ -41,14 +41,44 @@
 			<div class="container">
 				<div class="card-deck mb-3 text-center ">
 					<div class="card mb-4 box-shadow ">
-						<div class="card-header status1">
-							<h3 class="my-0 font-weight-normal ">
-								<strong>Table_01</strong>
-							</h3>
-						</div>
+						<c:if test="${table_1==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_01</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_1==2}">
+							<div class="card-header status2"
+								style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_01</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_1==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_01</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_1==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_01</strong>
+								</h3>
+							</div>
+						</c:if>
+
 						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#tableModal" data-table-id="1">Check</a>
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="1" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -58,14 +88,43 @@
 			<div class="container">
 				<div class="card-deck mb-3 text-center">
 					<div class="card mb-4 box-shadow">
-						<div class="card-header">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_02</strong>
-							</h3>
-						</div>
+						<c:if test="${table_2==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_02</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_2==2}">
+							<div class="card-header status2"
+								style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_02</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_2==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_02</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_2==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_02</strong>
+								</h3>
+							</div>
+						</c:if>
 						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#tableModal" data-table-id="2">Check</a>
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="2" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -75,14 +134,42 @@
 			<div class="container">
 				<div class="card-deck mb-3 text-center">
 					<div class="card mb-4 box-shadow">
-						<div class="card-header status2">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_03</strong>
-							</h3>
-						</div>
+						<c:if test="${table_3==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_03</strong> 
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_3==2}">
+							<div class="card-header status2" style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_03</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_3==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_03</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_3==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_03</strong>
+								</h3>
+							</div>
+						</c:if>
 						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#tableModal" data-table-id="3">Check</a>
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="3" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -92,14 +179,42 @@
 			<div class="container">
 				<div class="card-deck mb-3 text-center">
 					<div class="card mb-4 box-shadow">
-						<div class="card-header">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_04</strong>
-							</h3>
-						</div>
+							<c:if test="${table_4==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_04</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_4==2}">
+							<div class="card-header status2" style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_04</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_4==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_04</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_4==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_04</strong>
+								</h3>
+							</div>
+						</c:if>
 						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#tableModal" data-table-id="4">Check</a>
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="4" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -109,14 +224,42 @@
 			<div class="container">
 				<div class="card-deck mb-3 text-center">
 					<div class="card mb-4 box-shadow">
-						<div class="card-header">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_05</strong>
-							</h3>
-						</div>
+							<c:if test="${table_5==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_05</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_5==2}">
+							<div class="card-header status2" style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_05</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_5==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_05</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_5==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_05</strong>
+								</h3>
+							</div>
+						</c:if>
 						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#tableModal" data-table-id="5">Check</a>
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="5" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -126,136 +269,865 @@
 			<div class="container">
 				<div class="card-deck mb-3 text-center">
 					<div class="card mb-4 box-shadow ">
-						<div class="card-header status3">
-							<h3 class="my-0 font-weight-normal">
-								<strong>Table_06</strong>
-							</h3>
-						</div>
+							<c:if test="${table_6==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_06</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_6==2}">
+							<div class="card-header status2" style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_06</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_6==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_06</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_6==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_06</strong>
+								</h3>
+							</div>
+						</c:if>
 						<div class="card-body">
-							<a class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
-								data-toggle="modal" href="#tableModal" data-table-id="6">Check</a>
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="6" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<%
-			String test = (String) request.getAttribute("test");
-		%><%=test%>
-		${test} ${orders} ${test1}
 	</div>
-
-
-	<div class="modal fade" id="tableModal" tabindex="1" role="dialog"
-		aria-labelledby="modal" aria-hidden="true">
-
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h2 class="modal-title" id="modal">Table Status</h2>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="controlBar">
-					<div class="row">
-						<div class="col-8" style="text-align: left;">
-							<button type="button" class="btn btn-outline-success btn-lg"
-								data-dismiss="modal">Add item</button>
-							<button type="button" class="btn btn-outline-secondary btn-lg"
-								data-dismiss="modal">Change Status</button>
-
-						</div>
-						<div class="col-4" style="text-align: right; padding-right: 10%;">
-							<button type="button" class="btn btn-outline-warning btn-lg"
-								data-dismiss="modal">Help</button>
-							<button type="button" class="btn btn-outline-info btn-lg"
-								data-dismiss="modal">Bill</button>
+	<div class="row">
+		<div class="col-2">
+			<div class="container">
+				<div class="card-deck mb-3 text-center ">
+					<div class="card mb-4 box-shadow ">
+							<c:if test="${table_7==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_07</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_7==2}">
+							<div class="card-header status2" style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_07</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_7==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_07</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_7==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_07</strong>
+								</h3>
+							</div>
+						</c:if>
+						<div class="card-body">
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="7" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
 						</div>
 					</div>
-					<div>
-
-
-						<div class="modal-body">
-							<h3>My name is ${test}</h3>
-							${orders} ${test1}
-							<!-- <form action="./evaluationRegisterAction.jsp" method="post"> -->
-							<div class="scrollbar scrollbar-primary">
-								<!-- <div> -->
-								<table class="table">
-									<thead>
-										<tr style="text-align: center;">
-											<th scope="col"><input type="checkbox"
-												class="select-all checkbox" name="select-all" /></th>
-											<th scope="col">OrderTime</th>
-											<th scope="col">Item</th>
-											<th scope="col">QTY</th>
-											<th scope="col">Price</th>
-											<th scope="col">Status</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:out value="${requestScope.orders}">
-											<c:forEach items="${orders}" var="order">
-												<tr style="text-align: center;">
-													<td style="text-align: center;">
-														<div class="form-check">
-															<input type="checkbox" class="select-item checkbox"
-																name="select-item">
-
-														</div>
-													</td>
-
-
-													<td><a class="btn btn-light btn-sm mx-1 mt-2"
-														data-toggle="modal" href="#changeStatus">Ordered</a> <!-- <a class="btn btn-dark btn-sm mx-1 mt-2" data-toggle="modal"
-                                                href="#changeStatus">Delivered</a> -->
-													</td>
-												</tr>
-											</c:forEach>
-										</c:out>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div>
-							<table class="table">
-								<tr style="text-align: center;">
-									<td colspan="3">
-										<h4>Total</h4>
-									</td>
-									<td colspan="3">
-										<h4>(total)</h4>
-									</td>
-								</tr>
-							</table>
-						</div>
-						<div class="controlBar">
-							<div class="row">
-								<div class="col-6" style="text-align: left;">
-									<button type="button" class="btn btn-danger btn-lg"
-										data-dismiss="modal">Close Session</button>
-								</div>
-								<div class="col-6"
-									style="text-align: right; padding-right: 10%;">
-
-									<button type="button" class="btn btn-outline-danger btn-lg"
-										data-dismiss="modal">Close Window</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- </form> -->
 				</div>
 			</div>
 		</div>
-
+		<div class="col-2">
+			<div class="container">
+				<div class="card-deck mb-3 text-center">
+					<div class="card mb-4 box-shadow">
+							<c:if test="${table_8==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_08</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_8==2}">
+							<div class="card-header status2" style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_08</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_8==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_08</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_8==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_08</strong>
+								</h3>
+							</div>
+						</c:if>
+						<div class="card-body">
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="8" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-2">
+			<div class="container">
+				<div class="card-deck mb-3 text-center">
+					<div class="card mb-4 box-shadow">
+							<c:if test="${table_9==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_09</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_9==2}">
+							<div class="card-header status2" style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_09</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_9==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_09</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_9==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_09</strong>
+								</h3>
+							</div>
+						</c:if>
+						<div class="card-body">
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="9" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-2">
+			<div class="container">
+				<div class="card-deck mb-3 text-center">
+					<div class="card mb-4 box-shadow">
+							<c:if test="${table_10==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_10</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_10==2}">
+							<div class="card-header status2" style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_10</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_10==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_10</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_10==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_10</strong>
+								</h3>
+							</div>
+						</c:if>
+						<div class="card-body">
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="10" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-2">
+			<div class="container">
+				<div class="card-deck mb-3 text-center">
+					<div class="card mb-4 box-shadow">
+						<c:if test="${table_11==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_11</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_11==2}">
+							<div class="card-header status2" style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_11</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_11==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_11</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_11==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_11</strong>
+								</h3>
+							</div>
+						</c:if>
+						<div class="card-body">
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="11" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-2">
+			<div class="container">
+				<div class="card-deck mb-3 text-center">
+					<div class="card mb-4 box-shadow ">
+							<c:if test="${table_12==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_12</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_12==2}">
+							<div class="card-header status2" style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_12</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_12==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_12</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_12==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_12</strong>
+								</h3>
+							</div>
+						</c:if>
+						<div class="card-body">
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="12" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-
-
+	<div class="row">
+		<div class="col-2">
+			<div class="container">
+				<div class="card-deck mb-3 text-center ">
+					<div class="card mb-4 box-shadow ">
+							<c:if test="${table_13==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_13</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_13==2}">
+							<div class="card-header status2" style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_13</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_13==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_13</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_13==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_13</strong>
+								</h3>
+							</div>
+						</c:if>
+						<div class="card-body">
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="13" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-2">
+			<div class="container">
+				<div class="card-deck mb-3 text-center">
+					<div class="card mb-4 box-shadow">
+							<c:if test="${table_14==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_14</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_14==2}">
+							<div class="card-header status2" style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_14</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_14==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_14</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_14==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_14</strong>
+								</h3>
+							</div>
+						</c:if>
+						<div class="card-body">
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="14" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-2">
+			<div class="container">
+				<div class="card-deck mb-3 text-center">
+					<div class="card mb-4 box-shadow">
+							<c:if test="${table_15==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_15</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_15==2}">
+							<div class="card-header status2" style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_15</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_15==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_15/strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_15==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_15</strong>
+								</h3>
+							</div>
+						</c:if>
+						<div class="card-body">
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="15" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-2">
+			<div class="container">
+				<div class="card-deck mb-3 text-center">
+					<div class="card mb-4 box-shadow">
+							<c:if test="${table_16==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_16</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_16==2}">
+							<div class="card-header status2" style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_16</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_16==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_16</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_16==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_16</strong>
+								</h3>
+							</div>
+						</c:if>
+						<div class="card-body">
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="16" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-2">
+			<div class="container">
+				<div class="card-deck mb-3 text-center">
+					<div class="card mb-4 box-shadow">
+							<c:if test="${table_17==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_17</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_17==2}">
+							<div class="card-header status2" style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_17</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_17==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_17</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_17==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_17</strong>
+								</h3>
+							</div>
+						</c:if>
+						<div class="card-body">
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="17" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-2">
+			<div class="container">
+				<div class="card-deck mb-3 text-center">
+					<div class="card mb-4 box-shadow ">
+							<c:if test="${table_18==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_18</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_18==2}">
+							<div class="card-header status2" style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_18</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_18==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_18</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_18==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_18</strong>
+								</h3>
+							</div>
+						</c:if>
+						<div class="card-body">
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="18" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2">
+			<div class="container">
+				<div class="card-deck mb-3 text-center ">
+					<div class="card mb-4 box-shadow ">
+							<c:if test="${table_19==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_19</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_19==2}">
+							<div class="card-header status2" style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_19</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_19==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_19</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_19==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_19</strong>
+								</h3>
+							</div>
+						</c:if>
+						<div class="card-body">
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="19" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-2">
+			<div class="container">
+				<div class="card-deck mb-3 text-center">
+					<div class="card mb-4 box-shadow">
+							<c:if test="${table_20==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_20</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_20==2}">
+							<div class="card-header status2" style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_20</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_20==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_20</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_20==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_20</strong>
+								</h3>
+							</div>
+						</c:if>
+						<div class="card-body">
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="20" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-2">
+			<div class="container">
+				<div class="card-deck mb-3 text-center">
+					<div class="card mb-4 box-shadow">
+							<c:if test="${table_21==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>table_21</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_21==2}">
+							<div class="card-header status2" style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_21</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_21==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_21</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_21==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_21</strong>
+								</h3>
+							</div>
+						</c:if>
+						<div class="card-body">
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="21" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-2">
+			<div class="container">
+				<div class="card-deck mb-3 text-center">
+					<div class="card mb-4 box-shadow">
+							<c:if test="${table_22==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_22</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_22==2}">
+							<div class="card-header status2" style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_22</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_22==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_22</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_22==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_22</strong>
+								</h3>
+							</div>
+						</c:if>
+						<div class="card-body">
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="22" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-2">
+			<div class="container">
+				<div class="card-deck mb-3 text-center">
+					<div class="card mb-4 box-shadow">
+							<c:if test="${table_23==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_23</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_23==2}">
+							<div class="card-header status2" style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_23</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_23==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_23</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_23==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_23</strong>
+								</h3>
+							</div>
+						</c:if>
+						<div class="card-body">
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="23" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-2">
+			<div class="container">
+				<div class="card-deck mb-3 text-center">
+					<div class="card mb-4 box-shadow ">
+							<c:if test="${table_24==1}">
+							<div class="card-header status1" style="background-color: red;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_24</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_24==2}">
+							<div class="card-header status2" style="background-color: yellow;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_24</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_24==3}">
+							<div class="card-header status3" style="background-color: green;">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_24</strong>
+								</h3>
+							</div>
+						</c:if>
+						<c:if test="${table_24==0}">
+							<div class="card-header">
+								<h3 class="my-0 font-weight-normal ">
+									<strong>Table_24</strong>
+								</h3>
+							</div>
+						</c:if>
+						<div class="card-body">
+							<form action="tableDetail" method="POST">
+								<input type="hidden" name="tableId" value="24" />
+								<button
+									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
+									name="check">
+									Check</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<footer class="pt-4 my-md-5 pt-md-5 border-top"> </footer>
-	</div>
 
 
 	<!-- Bootstrap core JavaScript
@@ -352,29 +1224,6 @@
 				all.checked = len === total;
 			}
 		});
-
-		$('#tableModal').on(
-						'show.bs.modal',
-						function(e) {
-							var tableID = $(e.relatedTarget).data('table-id');
-							console.log("test: ", tableID)
-							$(e.currentTarget).find('input[name="tableID"]')
-									.val(tableID);
-							var xhttp = new XMLHttpRequest();
-							xhttp.onreadystatechange = function() {
-								if (this.readyState == 4 && this.status == 200) {
-									// Typical action to be performed when the document is ready:
-									document.getElementById("response").value = xhttp.responseText;
-								}
-							};
-							xhttp.open("POST", "TableMonitor", true);
-							xhttp.setRequestHeader("Content-type",
-									"application/x-www-form-urlencoded");
-							xhttp.send("tableId=" + tableID);
-
-							var orders = $(this).data('orders');
-							$('#orders').html(orders);
-						});
 	</script>
 </body>
 

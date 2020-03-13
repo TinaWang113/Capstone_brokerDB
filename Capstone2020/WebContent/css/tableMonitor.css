@@ -1,12 +1,4 @@
-.status1 {
-        background-color: red;
-}
-.status2 {
-    background-color: yellow;
-}
-.status3 {
-    background-color: green;
-}
+
 
 /* Important part */
 .modal-dialog{
@@ -60,4 +52,16 @@ scrollbar-color: #4285F4 #F5F5F5;
 .controlBar{
     margin: 15px;
     text-align: center;
+}
+<!-- Help -->
+.status1 {
+        background-color: red;
+}
+<!-- Bill -->
+.status2 {
+    background-color: yellow;
+}
+<!-- Occupided -->
+.status3 {
+    background-color: green;
 }

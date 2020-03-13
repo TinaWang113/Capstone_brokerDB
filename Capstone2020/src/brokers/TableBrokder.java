@@ -27,6 +27,7 @@ public class TableBrokder {
 	boolean executedResult = false;
 	List<Item> items;
 	List<Order> orders;
+	List<Table> tables;
 
 	/**
 	 * 
@@ -36,9 +37,9 @@ public class TableBrokder {
 	public List<Order> getOrderAll(int tableID) throws SQLException {
 		executedResult = false;
 		connect();
-		System.out.println("tableId: "+tableID);
 		stmtString = "select t.tableID, o.timestamp, o.orderID, o.orderItem, orderQty, orderPrice,orderStatus "
-				+ "from capstone2020.table t, capstone2020.order o " + "where t.tableID=o.tableID and o.tableID=" + tableID;
+				+ "from capstone2020.table t, capstone2020.order o " + "where t.tableID=o.tableID and o.tableID="
+				+ tableID + " order by o.timestamp desc";
 		preparedStmt = con.prepareStatement(stmtString);
 		rs = preparedStmt.executeQuery();
 		if (rs != null) {
@@ -60,6 +61,30 @@ public class TableBrokder {
 		}
 		close();
 		return orders;
+	}
+
+	// select * from capstone2020.table;
+	public List<Table> getTableAll() throws SQLException {
+		executedResult = false;
+		connect();
+		stmtString = "select tableID, timestamp, tableStatus from capstone2020.table";
+		preparedStmt = con.prepareStatement(stmtString);
+		rs = preparedStmt.executeQuery();
+		if (rs != null) {
+			tables = new ArrayList<Table>();
+			while (rs.next()) {
+				Table table = new Table();
+				table.setTableID(rs.getInt(1));
+				table.setTimeStamp(rs.getString(2));
+				table.setTableStatus(rs.getInt(3));
+				tables.add(table);
+				System.out.println(tables.toString());
+			}
+		} else {
+			System.out.println("SQL stmt is problem.");
+		}
+		close();
+		return tables;
 	}
 
 	/**

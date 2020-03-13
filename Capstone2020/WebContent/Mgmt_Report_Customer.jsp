@@ -76,16 +76,15 @@
 			<div class="row">
 				<div class="col-md-3">
 					<div class="list-group">
-						<a href="Mgmt_Report.jsp" class="list-group-item active">User
+						<a href="Mgmt_Report.jsp" class="list-group-item active">Customer
 							Report</a> <a href="userReport.jsp" class="list-group-item ">Sales
-							Report</a> <a href="staffReport.jsp" class="list-group-item ">Staff
-							Report</a>
+							Report</a> 
 					</div>
 				</div>
 				<div class="col-md-9">
 					<div class="list-group">
 						<a href="index.html" class="list-group-item active">Today's
-							User Report</a>
+							Customer Report</a>
 						<div class="list-group-item">
 							<div class="row m-1">
 								<div class="col-md-3 text-center bg-light p-5">

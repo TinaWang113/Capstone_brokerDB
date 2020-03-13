@@ -2,35 +2,28 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import com.google.gson.Gson;
 
 import brokers.TableBrokder;
 import model.Order;
-import model.Table;
 
 /**
- * Servlet implementation class TableMonitor
+ * Servlet implementation class TableDetail
  */
-@WebServlet("/TableMonitor")
-public class TableMonitor extends HttpServlet {
+@WebServlet("/TableDetail")
+public class TableDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public TableMonitor() {
+	public TableDetail() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -41,27 +34,33 @@ public class TableMonitor extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String tableId = request.getParameter("tableId");
+		double totalAmount = 0;
+		double subTotal = 0;
+		double tax = 0;
 
-		HttpSession session = request.getSession();
-
-		List<Table> tables = null;
+		List<Order> orders = null;
 		TableBrokder tb = new TableBrokder();
-
 		try {
-			tables = tb.getTableAll();
+			orders = tb.getOrderAll(Integer.parseInt(tableId));
 		} catch (NumberFormatException | SQLException e) {
 			e.printStackTrace();
 		}
 
-		for (int i = 0; i < tables.size(); i++) {
-			int value = 0;
-			System.out.println(tables.get(i).toString());
-			value = tables.get(i).getTableStatus();
-			request.setAttribute("table_"+(i+1), value);
+		for (int i = 0; i < orders.size(); i++) {
+			orders.get(i).toString();
+			subTotal += orders.get(i).getOrderPrice();
 		}
+		tax = Math.round(subTotal * 0.05);
+		totalAmount = tax + subTotal;
 
-		request.setAttribute("tables", tables);
-		getServletContext().getRequestDispatcher("/TableMonitor.jsp").forward(request, response);
+		request.setAttribute("orders", orders);
+		request.setAttribute("tableId", tableId);
+		request.setAttribute("subTotal", subTotal);
+		request.setAttribute("tax", tax);
+		request.setAttribute("totalAmount", totalAmount);
+		getServletContext().getRequestDispatcher("/TableDetail.jsp").forward(request, response);
+
 	}
 
 	/**
@@ -70,7 +69,8 @@ public class TableMonitor extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		getServletContext().getRequestDispatcher("/TableMonitor.jsp").forward(request, response);
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

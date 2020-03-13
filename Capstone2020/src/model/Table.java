@@ -15,7 +15,6 @@ public class Table {
 		super();
 		this.tableID = tableID;
 		this.timeStamp = timeStamp;
-		this.totalAmount = totalAmount;
 		this.tableStatus = tableStatus;
 	}
 
@@ -35,14 +34,6 @@ public class Table {
 		this.timeStamp = timeStamp;
 	}
 
-	public double getTotalAmount() {
-		return totalAmount;
-	}
-
-	public void setTotalAmount(double totalAmount) {
-		this.totalAmount = totalAmount;
-	}
-
 	public int getTableStatus() {
 		return tableStatus;
 	}
@@ -53,8 +44,7 @@ public class Table {
 
 	@Override
 	public String toString() {
-		return "Table [tableID=" + tableID + ", timeStamp=" + timeStamp + ", totalAmount=" + totalAmount
-				+ ", tableStatus=" + tableStatus + "]";
+		return "Table [tableID=" + tableID + ", timeStamp=" + timeStamp + ", tableStatus=" + tableStatus + "]";
 	}
 
 
