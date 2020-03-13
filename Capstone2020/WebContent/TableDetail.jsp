@@ -33,20 +33,31 @@
 	<div>
 		<h2 class="modal-title" id="modal">Table#${tableId} Status</h2>
 	</div>
-	<!--  	<div class="controlBar">-->
-	<div class="row">
-		<div class="col-8" style="text-align: left;">
-			<button type="button" class="btn btn-outline-success btn-lg"
-				data-dismiss="modal">Add item</button>
-			<button type="button" class="btn btn-outline-secondary btn-lg"
-				data-dismiss="modal">Change Status</button>
+	<div class="controlBar">
+		<div class="row">
+			<div class="col-8" style="text-align: left;">
+				<button type="button" class="btn btn-outline-success btn-lg">Add
+					item</button>
+			</div>
+			<div class="col-4" style="text-align: right; padding-right: 10%;">
+				<form action="tableDetail" method="POST">
+					<input type="hidden" name="action" value="requestStatus"> <input
+						type="hidden" name="tableId" value="${tableId}">
 
-		</div>
-		<div class="col-4" style="text-align: right; padding-right: 10%;">
-			<button type="button" class="btn btn-outline-warning btn-lg"
-				data-dismiss="modal">Help</button>
-			<button type="button" class="btn btn-outline-info btn-lg"
-				data-dismiss="modal">Bill</button>
+					<c:if test="${table.getTableStatus()==1}">
+						<button type="submit" class="btn btn-danger btn-lg">Help</button>
+					</c:if>
+					<c:if test="${table.getTableStatus()!=1}">
+						<button type="submit" class="btn btn-outline-danger btn-lg">Help</button>
+					</c:if>
+					<c:if test="${table.getTableStatus()==2}">
+						<button type="submit" class="btn btn-warning btn-lg">Bill</button>
+					</c:if>
+					<c:if test="${table.getTableStatus()!=2}">
+						<button type="submit" class="btn btn-outline-warning btn-lg">Bill</button>
+					</c:if>
+				</form>
+			</div>
 		</div>
 	</div>
 	<br>
@@ -56,8 +67,6 @@
 				<table class="table">
 					<thead>
 						<tr style="text-align: center;">
-							<th scope="col"><input type="checkbox"
-								class="select-all checkbox" name="select-all" /></th>
 							<th scope="col">Order Time</th>
 							<th scope="col">Order Item</th>
 							<th scope="col">QTY</th>
@@ -68,23 +77,26 @@
 					<tbody>
 						<c:forEach items="${orders}" var="order">
 							<tr style="text-align: center;">
-								<td style="text-align: center;">
-									<div class="form-check">
-										<input type="checkbox" class="select-item checkbox"
-											name="select-item">
-									</div>
-								</td>
 								<td>${order.getTimeStamp()}</td>
 								<td>${order.getOrderItem()}</td>
 								<td>${order.getOrderQty()}</td>
 								<td>${order.getOrderPrice()}</td>
-								<td><c:if test="${order.getOrderStatus()==0}">
-										<a class="btn btn-light btn-sm mx-1 mt-2" data-toggle="modal"
-											href="#changeStatus">Ordered</a>
-									</c:if> <c:if test="${order.getOrderStatus()!=0}">
-										<a class="btn btn-dark btn-sm mx-1 mt-2" data-toggle="modal"
-											href="#changeStatus">Delivered</a>
-									</c:if></td>
+								<td>
+									<form action="tableDetail" method="POST">
+										<input type="hidden" name="action" value="orderStatus">
+										<input type="hidden" name="orderItem"
+											value="${order.getOrderID()}"> <input type="hidden"
+											name="tableId" value="${tableId}">
+
+										<c:if test="${order.getOrderStatus()==0}">
+											<button type="submit" class="btn btn-light btn-sm mx-1 mt-2"
+												href="#changeStatus">Ordered</button>
+										</c:if>
+										<c:if test="${order.getOrderStatus()!=0}">
+											<button type="submit" class="btn btn-dark btn-sm mx-1 mt-2">Delivered</button>
+										</c:if>
+									</form>
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -121,8 +133,12 @@
 		<div class="controlBar">
 			<div class="row">
 				<div class="col-6" style="text-align: left;">
-					<button type="button" class="btn btn-danger btn-lg"
-						data-dismiss="modal">Close Session</button>
+					<form action="tableDetail" method="POST">
+						<input type="hidden" name="action" value="closeSession"> <input
+							type="hidden" name="tableId" value="${tableId}">
+						<button type="submit" class="btn btn-danger btn-lg">Close
+							Session</button>
+					</form>
 				</div>
 				<div class="col-6" style="text-align: right; padding-right: 10%;">
 

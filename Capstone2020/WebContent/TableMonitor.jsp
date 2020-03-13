@@ -72,7 +72,7 @@
 						</c:if>
 
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="1" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -118,7 +118,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="2" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -163,7 +163,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="3" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -208,7 +208,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="4" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -253,7 +253,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="5" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -298,7 +298,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="6" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -345,7 +345,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="7" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -390,7 +390,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="8" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -435,7 +435,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="9" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -480,7 +480,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="10" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -525,7 +525,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="11" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -570,7 +570,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="12" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -617,7 +617,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="13" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -662,7 +662,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="14" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -707,7 +707,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="15" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -752,7 +752,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="16" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -797,7 +797,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="17" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -842,7 +842,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="18" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -889,7 +889,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="19" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -934,7 +934,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="20" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -979,7 +979,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="21" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -1024,7 +1024,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="22" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -1069,7 +1069,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="23" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
@@ -1114,7 +1114,7 @@
 							</div>
 						</c:if>
 						<div class="card-body">
-							<form action="tableDetail" method="POST">
+							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="24" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"

@@ -55,11 +55,9 @@ public class TableMonitor extends HttpServlet {
 
 		for (int i = 0; i < tables.size(); i++) {
 			int value = 0;
-			System.out.println(tables.get(i).toString());
 			value = tables.get(i).getTableStatus();
-			request.setAttribute("table_"+(i+1), value);
+			request.setAttribute("table_" + (i + 1), value);
 		}
-
 		request.setAttribute("tables", tables);
 		getServletContext().getRequestDispatcher("/TableMonitor.jsp").forward(request, response);
 	}
