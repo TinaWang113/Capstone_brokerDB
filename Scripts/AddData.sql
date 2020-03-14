@@ -131,3 +131,64 @@ insert into item (itemID, itemName, itemPrice, itemDesc,categoryID,photoLocalDir
 Values(null,'Ice Cream (Tea)',2.5,'',8,'','');
 insert into item (itemID, itemName, itemPrice, itemDesc,categoryID,photoLocalDirectory,photoCloudDirectory)
 Values(null,'Coffee',2.5,'',8,'','');
+
+-- Table Data
+insert into capstone2020.table(tableID, endTime, tableStatus)
+Values(null, now()+2,3);
+insert into capstone2020.table(tableID, endTime, tableStatus)
+Values(null, now()+3,3);
+insert into capstone2020.table(tableID, endTime, tableStatus)
+Values(null, now()+1,3);
+insert into capstone2020.table(tableID, endTime, tableStatus)
+Values(null, null,1);
+insert into capstone2020.table(tableID, endTime, tableStatus)
+Values(null, null,2);
+insert into capstone2020.table(tableID, endTime, tableStatus)
+Values(null, null,1);
+insert into capstone2020.table(tableID, endTime, tableStatus)
+Values(null, null,0);
+
+-- order Data
+insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
+SELECT 
+   2 AS orderItemQty,
+   12.99*2 AS orderAmount,
+   1 AS orderStatus,
+   2 AS item_itemID,
+   2 AS table_tableID,
+   startTime
+     FROM capstone2020.table
+     Where tableID = 2;
+
+insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
+SELECT 
+   5 AS orderItemQty,
+   5*18.99 AS orderAmount,
+   3 AS orderStatus,
+   9 AS item_itemID,
+   5 AS table_tableID,
+   startTime
+     FROM capstone2020.table
+     Where tableID = 5;
+
+insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
+SELECT 
+   1 AS orderItemQty,
+   2.5 AS orderAmount,
+   0 AS orderStatus,
+   52 AS item_itemID,
+   1 AS table_tableID,
+   startTime
+     FROM capstone2020.table
+     Where tableID = 1;
+ 
+insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
+SELECT 
+   1 AS orderItemQty,
+   2.5 AS orderAmount,
+   1 AS orderStatus,
+   53 AS item_itemID,
+   1 AS table_tableID,
+   startTime
+     FROM capstone2020.table
+     Where tableID = 1;    

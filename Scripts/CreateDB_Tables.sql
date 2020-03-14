@@ -21,18 +21,6 @@ DROP SCHEMA IF EXISTS `capstone2020` ;
 CREATE SCHEMA IF NOT EXISTS `capstone2020` DEFAULT CHARACTER SET utf8 ;
 USE `capstone2020` ;
 
--- -----------------------------------------------------
--- Table `capstone2020`.`bill`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `capstone2020`.`bill` ;
-
-CREATE TABLE IF NOT EXISTS `capstone2020`.`bill` (
-  `billID` INT(11) NOT NULL AUTO_INCREMENT,
-  `totalAmount` DECIMAL(10,2) NOT NULL,
-  PRIMARY KEY (`billID`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
 
 -- -----------------------------------------------------
 -- Table `capstone2020`.`category`
@@ -58,37 +46,12 @@ CREATE TABLE IF NOT EXISTS `capstone2020`.`table` (
   `tableID` INT(11) NOT NULL AUTO_INCREMENT,
   `startTime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `endTime` DATETIME NULL DEFAULT NULL,
-  `totalAmont` DOUBLE NOT NULL DEFAULT '0',
   `tableStatus` INT(11) NOT NULL DEFAULT '0',
-  `billID` INT(11) NOT NULL,
-  PRIMARY KEY (`tableID`, `startTime`),
-  INDEX `fk_table_bill1_idx` (`billID` ASC),
-  CONSTRAINT `fk_table_bill1`
-    FOREIGN KEY (`billID`)
-    REFERENCES `capstone2020`.`bill` (`billID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`tableID`, `startTime`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
--- -----------------------------------------------------
--- Table `capstone2020`.`help`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `capstone2020`.`help` ;
-
-CREATE TABLE IF NOT EXISTS `capstone2020`.`help` (
-  `helpID` INT(11) NOT NULL,
-  `helpStatusID` INT(11) NOT NULL,
-  `table_tableID` INT(11) NOT NULL,
-  INDEX `fk_help_table1_idx` (`table_tableID` ASC),
-  CONSTRAINT `fk_help_table1`
-    FOREIGN KEY (`table_tableID`)
-    REFERENCES `capstone2020`.`table` (`tableID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------

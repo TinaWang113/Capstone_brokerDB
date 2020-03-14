@@ -12,29 +12,51 @@ import java.util.List;
  */
 public class Table {
 	//attributes
-	private int tableID;
-	private Date startDate;
-	private Date enDate;
-	private double totalAmount;
-	private int tableStatus;
-	private List<Order>orders;
+	// if tableID is 0, the DB will auto increment;
+	//otherwise, following the value that is assigned to tabelID 
+	private int tableID = 0 ;
+	//auto create now() in DB, if timeStamp' value is null
+	private Date startTime = null;
+	private Date endTime = null;
+	private int tableStatus =0;
+	
 	/**
 	 * @param tableID
-	 * @param startDate
-	 * @param enDate
-	 * @param totalAmount
+	 * @param startTime
+	 * @param endTime
 	 * @param tableStatus
-	 * @param orders
 	 */
-	public Table(int tableID, Date startDate, Date enDate, double totalAmount, int tableStatus, List<Order> orders) {
+	public Table(int tableID, Date startTime, Date endTime, int tableStatus) {
 		super();
 		this.tableID = tableID;
-		this.startDate = startDate;
-		this.enDate = enDate;
-		this.totalAmount = totalAmount;
+		this.startTime = startTime;
+		this.endTime = endTime;
 		this.tableStatus = tableStatus;
-		this.orders = orders;
 	}
+	
+	/**
+	 * @param endTime
+	 * @param tableStatus
+	 */
+	public Table(Date endTime, int tableStatus) {
+		super();
+		this.endTime = endTime;
+		this.tableStatus = tableStatus;
+	}
+	
+	public Table(int tableID, Date sTime) {
+		setTableID(tableID);
+		setStartTime(sTime);
+	}
+	
+	/**
+	 * 
+	 */
+	public Table() {
+		
+	}
+	
+	
 	/**
 	 * @return the tableID
 	 */
@@ -48,40 +70,28 @@ public class Table {
 		this.tableID = tableID;
 	}
 	/**
-	 * @return the startDate
+	 * @return the startTime
 	 */
-	public Date getStartDate() {
-		return startDate;
+	public Date getStartTime() {
+		return startTime;
 	}
 	/**
-	 * @param startDate the startDate to set
+	 * @param startTime the startTime to set
 	 */
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
 	}
 	/**
-	 * @return the enDate
+	 * @return the endTime
 	 */
-	public Date getEnDate() {
-		return enDate;
+	public Date getEndTime() {
+		return endTime;
 	}
 	/**
-	 * @param enDate the enDate to set
+	 * @param endTime the endTime to set
 	 */
-	public void setEnDate(Date enDate) {
-		this.enDate = enDate;
-	}
-	/**
-	 * @return the totalAmount
-	 */
-	public double getTotalAmount() {
-		return totalAmount;
-	}
-	/**
-	 * @param totalAmount the totalAmount to set
-	 */
-	public void setTotalAmount(double totalAmount) {
-		this.totalAmount = totalAmount;
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
 	}
 	/**
 	 * @return the tableStatus
@@ -95,22 +105,11 @@ public class Table {
 	public void setTableStatus(int tableStatus) {
 		this.tableStatus = tableStatus;
 	}
-	/**
-	 * @return the orders
-	 */
-	public List<Order> getOrders() {
-		return orders;
-	}
-	/**
-	 * @param orders the orders to set
-	 */
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
 	@Override
 	public String toString() {
-		return "Table [tableID=" + tableID + ", startDate=" + startDate + ", enDate=" + enDate + ", totalAmount="
-				+ totalAmount + ", tableStatus=" + tableStatus + ", orders=" + orders + "]";
+		return "TableBroker [tableID=" + tableID + ", startTime=" + startTime + ", endTime=" + endTime
+				+ ", tableStatus=" + tableStatus + "]";
 	}
+	
 	
 }
