@@ -78,7 +78,7 @@ public class TableDetail extends HttpServlet {
 		String tableId = request.getParameter("tableId");
 		String action = request.getParameter("action");
 		String orderItemId = request.getParameter("orderItem");
-		
+
 		double totalAmount = 0;
 		double subTotal = 0;
 		double tax = 0;
@@ -93,7 +93,7 @@ public class TableDetail extends HttpServlet {
 				tb.closeSession(tableId);
 			} else if (action.equalsIgnoreCase("orderStatus")) {
 				tb.changeOrderStatus(orderItemId);
-			} 
+			}
 			orders = tb.getOrderAll(tableId);
 			table = tb.getTable(tableId);
 
@@ -116,13 +116,13 @@ public class TableDetail extends HttpServlet {
 		request.setAttribute("tax", tax);
 		request.setAttribute("totalAmount", totalAmount);
 
-		System.out.println("check: "+tableId);
-		
-		if (action.equalsIgnoreCase("closeSession")) {
+		System.out.println("check: " + tableId);
+
+		if (action.equalsIgnoreCase("closeSession") || action.equalsIgnoreCase("requestStatus")) {
 			response.sendRedirect("/Capstone2020/tableMonitor");
 		} else if (action.equalsIgnoreCase("orderStatus")) {
-			response.sendRedirect("/Capstone2020/tableDetail?tableId="+tableId+"&check=");
-		}else {
+			response.sendRedirect("/Capstone2020/tableDetail?tableId=" + tableId + "&check=");
+		} else {
 			getServletContext().getRequestDispatcher("/TableDetail.jsp").forward(request, response);
 
 		}

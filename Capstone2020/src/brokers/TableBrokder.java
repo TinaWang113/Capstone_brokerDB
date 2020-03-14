@@ -145,7 +145,7 @@ public class TableBrokder {
 			System.out.println("update object is incorrect, ");
 			return false;
 		}
-		close();
+		con.close();
 		return true;
 	}
 
@@ -175,7 +175,7 @@ public class TableBrokder {
 			System.out.println("update object is incorrect, ");
 			return false;
 		}
-		close();
+		con.close();
 		return true;
 	}
 
