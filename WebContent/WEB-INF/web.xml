@@ -30,7 +30,7 @@
   </servlet>
   <servlet>
     <servlet-name>order</servlet-name>
-    <servlet-class>servlets.Order</servlet-class>
+    <servlet-class>servlets.OrderServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>staffmanagement</servlet-name>

@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/Navigation-Clean.css">
     <link rel="stylesheet" href="css/MenuStyle.css">
     <script src="js/PopulateModal.js" type="text/javascript"></script>
+    <script src="js/addFunctions.js" type="text/javascript"></script>
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 </head>
 
@@ -37,8 +38,8 @@
 	                        </c:forEach>
                         </div>
                     </li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="OrderUI.jsp">Order</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="BillUI.jsp">View Bill</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="OrderUI.jsp">Order<span class="badge badge-light" id="quantityupdate"></span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="BillUI.jsp" >View Bill</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="HelpUI.jsp">Request Help</a></li>
                 </ul>
             </div>
@@ -58,9 +59,13 @@
 					  	<div id="qnty">
 					  		<div class="col text-center">
 							  	<button type="button" class="btn btn-light btn-sm Arrows" onclick="incrementValue()"><i class="fa fa-chevron-up"></i></button><br>
-								  	<input id="intTextBox" size="4" maxlength="2"><br>
+								  	<input id="intTextBox" size="4" maxlength="2" ><br>
 							  	<button type="button" class="btn btn-light btn-sm Arrows" onclick="decrementValue()"><i class="fa fa-chevron-down"></i></button><br>
-							  	<button type="button" class="btn btn-primary btn-sm">Add </button>
+							  	
+							  	<button type="button" class="btn btn-primary btn-sm addToOrderBtn" id="addToOrderBtn"
+							  	data-itemId="${item.getItemID()}"
+							  	>Add </button>
+							  	
 						  	</div>
 						</div>
 				 	</div>
