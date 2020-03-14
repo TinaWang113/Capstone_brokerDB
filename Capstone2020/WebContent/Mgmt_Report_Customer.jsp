@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,7 +66,7 @@
 
 	<div class="container">
 		<ol class="breadcrumb">
-			<li class="active">Diplay the report based on the criteria</li>
+			<li class="active">Display the report based on the criteria</li>
 
 		</ol>
 	</div>
@@ -78,7 +78,7 @@
 					<div class="list-group">
 						<a href="Mgmt_Report.jsp" class="list-group-item active">Customer
 							Report</a> <a href="userReport.jsp" class="list-group-item ">Sales
-							Report</a> 
+							Report</a>
 					</div>
 				</div>
 				<div class="col-md-9">
@@ -112,9 +112,17 @@
 						</div>
 					</div>
 					<div class="list-group mt-3">
-						<a href="#" class="list-group-item active">Visitor Trends</a>
+						<a href="#" class="list-group-item active">Average Customer
+							Satisfaction</a>
 						<div class="list-group-item">
-							<canvas id="lineChart"></canvas>
+							<canvas id="pieChart"></canvas>
+						</div>
+					</div>
+					<div class="list-group mt-3">
+						<a href="#" class="list-group-item active">Specific Customer
+							Satisfaction</a>
+						<div class="list-group-item">
+							<canvas id="barChart"></canvas>
 						</div>
 					</div>
 				</div>
@@ -133,36 +141,64 @@
 	<!--MDB 자바스크립트 추가하기 (맨 밑에 있어야 함)-->
 	<script src="js/mdb.min.js"></script>
 	<script>
-		var ctxL = document.getElementById("lineChart").getContext('2d');
-		var myLineChart = new Chart(ctxL, {
-			type : 'line',
+		//pie
+		var ctxP = document.getElementById("pieChart").getContext('2d');
+		var myPieChart = new Chart(ctxP,
+				{
+					type : 'pie',
+					data : {
+						labels : [ "Very Poor", "Poor", "Average", "Good",
+								"Excellent" ],
+						datasets : [ {
+							data : [ 26, 34, 40, 32, 12 ],
+							backgroundColor : [ "#4D5360", , "#46BFBD",
+									"#FDB45C", "#F7464A", "#4D5360" ],
+							hoverBackgroundColor : [ "#FF5A5E", "#5AD3D1",
+									"#FFC870", "#A8B3C5", "#616774" ]
+						} ]
+					},
+					options : {
+						responsive : true
+					}
+				});
+	</script>
+	<script>
+		//bar
+		var ctxB = document.getElementById("barChart").getContext('2d');
+		var myBarChart = new Chart(ctxB, {
+			type : 'bar',
 			data : {
-				labels : [ "January", "February", "March", "April", "May",
-						"June", "July" ],
+				labels : [ "Food", "Service", "Atmosphere", "Speed" ],
 				datasets : [ {
-					label : "This Year",
-					data : [ 12, 22, 35, 41, 56, 67, 90 ],
-					backgroundColor : [ 'rgba(105, 0, 132, .2)', ],
-					borderColor : [ 'rgba(200, 99, 132, .7)', ],
-					borderWidth : 2
-				}, {
-					label : "Last Year",
-					data : [ 8, 13, 22, 29, 35, 44, 70 ],
-					backgroundColor : [ 'rgba(0, 137, 132, .2)', ],
-					borderColor : [ 'rgba(0, 10, 130, .7)', ],
-					borderWidth : 2
+					label : '# of 5 Stars',
+					data : [ 4.5, 4, 3.5, 3 ],
+					backgroundColor : [ 'rgba(255, 99, 132, 0.2)',
+							'rgba(54, 162, 235, 0.2)',
+							'rgba(255, 206, 86, 0.2)',
+							'rgba(75, 192, 192, 0.2)',
+							'rgba(153, 102, 255, 0.2)',
+							'rgba(255, 159, 64, 0.2)' ],
+					borderColor : [ 'rgba(255,99,132,1)',
+							'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)',
+							'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)',
+							'rgba(255, 159, 64, 1)' ],
+					borderWidth : 1
 				} ]
 			},
 			options : {
-				responsive : true
+				scales : {
+					yAxes : [ {
+						ticks : {
+							beginAtZero : true
+						}
+					} ]
+				}
 			}
 		});
 	</script>
-
-	<!-- Footer -->
-	<footer class="bg-dark mt-4 p-5 text-center" style="color: #ffffff;">
-		Copyright &copy; 2020 Best Capstone Group </footer>
+</head>
 
 
-</body>
+
+
 </html>
