@@ -33,7 +33,7 @@ public class TableBroker {
 			if(table.getTableID() == 0 || !isExisting(table)) {
 				connect();	
 				//  `tableID`,  `startTime`, `endTime`, `tableStatus`
-				stmtString = "insert table (tableID, startTime, endTime, tableStatus)"
+				stmtString = "insert `table` (tableID, startTime, endTime, tableStatus)"
 						+ "values  (?, ?,?,?)";
 			}else {			
 				System.out.println("the table, "+ table.getTableStatus()+" is existing in DB");
@@ -69,8 +69,8 @@ public class TableBroker {
 		}else {
 			try {
 				connect();
-				stmtString = "select count(*) from table "
-						+ "where tableID = " + table.getTableID()+ "AND startTime = " + table.getStartTime();
+				stmtString = "select count(*) from `table` "
+						+ "where tableID = " + table.getTableID()+ " AND startTime = " + table.getStartTime();
 				preparedStmt = con.prepareStatement(stmtString);
 				if(preparedStmt.execute()) {
 					executedResult = true;
@@ -99,7 +99,7 @@ public class TableBroker {
 						+ " startTime= " + table.getStartTime() + " endTime ="+ table.getEndTime()
 						+ " tableStatus=" + table.getTableStatus() + " where tableID = "+table.getTableID();
 				*/
-				stmtString = "update table SET "
+				stmtString = "update `table` SET "
 						+ " endTime ="+ table.getEndTime()
 						+ " tableStatus=" + table.getTableStatus() + " where tableID = "+table.getTableID();
 				preparedStmt = con.prepareStatement(stmtString);
@@ -126,7 +126,7 @@ public class TableBroker {
 		}else {
 			try {
 				connect();
-				stmtString = "update table "
+				stmtString = "update `table` "
 						+ "tableStatus=" + table.getTableStatus() + "where tableID = "+table.getTableID();
 				preparedStmt = con.prepareStatement(stmtString);
 				if(preparedStmt.executeUpdate() == 1) {
@@ -148,7 +148,7 @@ public class TableBroker {
 		if(table.getTableID() > 0 && table.getStartTime() != null) {
 			try {
 				connect();			
-				stmtString = "delete from table "
+				stmtString = "delete from `table` "
 						+ "where tableID = " + table.getTableID() +" AND startTime = " + table.getStartTime();
 				preparedStmt = con.prepareStatement(stmtString);
 				if(preparedStmt.executeUpdate() == 1) {
@@ -171,7 +171,7 @@ public class TableBroker {
 		executedResult = false;
 		try {
 			connect();			
-			stmtString = "delete from table";
+			stmtString = "delete from `table`";
 			preparedStmt = con.prepareStatement(stmtString);
 			if(preparedStmt.executeUpdate() == 1) {
 				System.out.println("[Table] All data is deleted.");
@@ -189,7 +189,7 @@ public class TableBroker {
 	public int qtyData() {
 		int qty = 0;
 		try {
-			stmtString = "select count(*) from table";
+			stmtString = "select count(*) from `table`";
 			preparedStmt = con.prepareStatement(stmtString);
 			rs = preparedStmt.executeQuery();
 			rs.next();
@@ -208,7 +208,7 @@ public class TableBroker {
 		if(isExisting(table)) {
 			try {
 				connect();
-				stmtString = "select endTime, tableStatus from table "
+				stmtString = "select endTime, tableStatus from `table` "
 						+ "where tableID = "+ tableID + " AND startTime = "+ startTime;
 				preparedStmt = con.prepareStatement(stmtString);
 				rs = preparedStmt.executeQuery();
@@ -230,7 +230,7 @@ public class TableBroker {
 		if(isExisting(table)) {
 			try {
 				connect();
-				stmtString = "select endTime, tableStatus from table "
+				stmtString = "select endTime, tableStatus from `table` "
 						+ "where tableID = "+ table.getTableID() + " AND startTime = "+ table.getStartTime();
 				preparedStmt = con.prepareStatement(stmtString);
 				rs = preparedStmt.executeQuery();
@@ -252,7 +252,7 @@ public class TableBroker {
 		tables = new ArrayList<Table> ();
 		try {
 			connect();
-			stmtString = "select * from table";
+			stmtString = "select * from `table`";
 			preparedStmt = con.prepareStatement(stmtString);
 			rs = preparedStmt.executeQuery();
 			while(rs.next()) {

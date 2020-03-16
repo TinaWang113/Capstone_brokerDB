@@ -14,8 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import brokers.MenuBroker;
+import brokers.OrderBroker;
+import brokers.TableBroker;
 import model.Item;
 import model.Order;
+import model.Table;
 
 /**
  * Servlet implementation class Order
@@ -23,12 +26,21 @@ import model.Order;
 
 public class OrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	ArrayList<Item> ItemList = new ArrayList<>();
+//	ArrayList<Item> itemList = new ArrayList<>();
+	ArrayList<Order> orderList = new ArrayList<>();
+	int currentSize;
+	int difference;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		
+		ArrayList<Order> parsedOrderList = (ArrayList<Order>)session.getAttribute("orderList");
+		
+		request.setAttribute("parsedOrderList", parsedOrderList);
 		
 		getServletContext().getRequestDispatcher("/OrderUI.jsp").forward(request, response);
 	}
@@ -39,32 +51,70 @@ public class OrderServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
+		
+		
+		TableBroker tableBroker = new TableBroker();
+		
+		Table table = (Table)session.getAttribute("table");
+		
+		
 		if (session.isNew() != true) {
 			
-			String itemId = request.getParameter("itemId");
-			String itemQuantity = request.getParameter("itemQuantity");
+			String addOrSubmitBtn = request.getParameter("action");
 			
-			MenuBroker menuBroker = new MenuBroker();
-			try {
+			if (addOrSubmitBtn.equals("addToOrder")) {
 				
-				Item item = menuBroker.findbyID(Integer.parseInt(itemId));
-				ItemList.add(item);
-//				Order order = new Order(1, new Date(System.currentTimeMillis()), 0, ItemList);
+				String itemId = request.getParameter("itemId");
+				int itemQuantity = Integer.parseInt(request.getParameter("itemQuantity"));
 				
-				System.out.println(ItemList.toString() + " THIS IS THE ITEM LIST");
+				MenuBroker menuBroker = new MenuBroker();
+					
+					
+					try {
+						
+						Item item = menuBroker.findbyID(Integer.parseInt(itemId));
+						
+						Order order = new Order();
+						order.setTable(table);
+						order.setOrderID(9);
+						order.setOrderItemQty(itemQuantity);
+						order.setOrderItem(item);
+						
+						orderList.add(order);
+						
+						
+						session.setAttribute("orderList", orderList);
+						response.setContentType("text/html;charset=UTF-8");
+						
+						
+							 
+						
+						
+				        response.getWriter().write(Integer.toString(orderList.size()));
+				        
+	
+					} catch (NumberFormatException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			
+			else if (addOrSubmitBtn.equals("submitForOrder")) {
 				
-//				System.out.println(order.toString() + " THIS IS YOUR ORDER");
-				response.setContentType("text/html;charset=UTF-8");
-		        response.getWriter().write(item.getItemName() + " ");
-//		        response.getWriter().write(ItemList.size());
-			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				
+				OrderBroker orderBroker = new OrderBroker();
+				
+//				for (Order order : orderList) {
+//					orderBroker.insert(order);
+//				}
+				
+				response.sendRedirect("menu");
 			}
 		}
+			
 		else {
 			System.out.println("THE SESSION HAS CHANGED");
 		}

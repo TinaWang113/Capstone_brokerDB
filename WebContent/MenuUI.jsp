@@ -30,7 +30,7 @@
                         <div class="dropdown-menu" role="menu">                     
 	                       
 	                       <c:forEach var="category" items="${parsedCategoryList}">
-	                       <!-- ASK JOHN FOR MORE APPROPRIATE SOLUTION -->
+	                       
 	                       		<form action="submenu" method="GET">
 	                        	<input type="submit" class="dropdown-item" role="presentation"  data-value="${category.getCategoryID()}" value ="${category.getCategoryName()}">
 	                        	<input type="hidden" name="categorySelection" value="${category.getCategoryID()}">
@@ -38,7 +38,7 @@
 	                        </c:forEach>
                         </div>
                     </li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="OrderUI.jsp">Order<span class="badge badge-light" id="quantityupdate"></span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="order">Order<span class="badge badge-light" id="quantityupdate"></span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="BillUI.jsp" >View Bill</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="HelpUI.jsp">Request Help</a></li>
                 </ul>
@@ -52,19 +52,19 @@
     
     <div class="card mx-auto" style="width: 25rem;">
 		  <div class="card-body">
-		    <h5 class="card-title">${item.getItemName() }</h5>
+		    <h5 class="card-title">${item.getItemName()}</h5>
 			  <div id="itemBox">
 				    	<img id="itemPic" src="img/migarock logo.png" class="rounded float-left, itemPic"> 
 				  	<div class="float-right">
 					  	<div id="qnty">
 					  		<div class="col text-center">
-							  	<button type="button" class="btn btn-light btn-sm Arrows" onclick="incrementValue()"><i class="fa fa-chevron-up"></i></button><br>
-								  	<input id="intTextBox" size="4" maxlength="2" ><br>
-							  	<button type="button" class="btn btn-light btn-sm Arrows" onclick="decrementValue()"><i class="fa fa-chevron-down"></i></button><br>
+							  	<button type="button" class="btn btn-light btn-sm Arrows upArrow"><i class="fa fa-chevron-up"></i></button><br>
+								  	<input id="${item.getItemID()}" size="4" maxlength="2" value="" placeholder="0"><br>
+							  	<button type="button" class="btn btn-light btn-sm Arrows downArrow" ><i class="fa fa-chevron-down"></i></button><br>
 							  	
-							  	<button type="button" class="btn btn-primary btn-sm addToOrderBtn" id="addToOrderBtn"
+							  	<button type="button" class="btn btn-primary btn-sm addToOrderBtn" id="addToOrderBtn" name="action"
 							  	data-itemId="${item.getItemID()}"
-							  	>Add </button>
+							  	value="addToOrder">Add </button>
 							  	
 						  	</div>
 						</div>
@@ -118,10 +118,10 @@
 	</div> 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-light btn-sm Arrows" onclick="incrementModalValue()"><i class="fa fa-chevron-up"></i></button>
+        <button type="button" class="btn btn-light btn-sm Arrows upArrow"><i class="fa fa-chevron-up"></i></button>
 		<input id="modalIntTextBox" size="4" maxlength="2">
-		<button type="button" class="btn btn-light btn-sm Arrows" onclick="decrementModalValue()"><i class="fa fa-chevron-down"></i></button>
-        <button type="button" class="btn btn-primary">Add</button>
+		<button type="button" class="btn btn-light btn-sm Arrows downArrow"><i class="fa fa-chevron-down"></i></button>
+        <button type="button" class="btn btn-primary btn-sm addToOrderBtn" id="addToOrderBtn" name="action" data-itemId="${item.getItemID()}" value="addToOrder">Add </button>
       </div>
     </div>
   </div>
@@ -131,31 +131,6 @@
 		$(document).ready(function(){
 		    $('[data-toggle="popover"]').popover();   
 		});
-	
-	function incrementValue() {
-	    var value = parseInt(document.getElementById('intTextBox').value, 10);
-	    value = isNaN(value) ? 0 : value;
-	    value++;
-	    document.getElementById('intTextBox').value = value;
-	}
-	function decrementValue() {
-	    var value = parseInt(document.getElementById('intTextBox').value, 10);
-	    value = isNaN(value) ? 0 : value;
-	    value--;
-	    document.getElementById('intTextBox').value = value;
-	}
-	function incrementModalValue() {
-		    var value = parseInt(document.getElementById('modalIntTextBox').value, 10);
-		    value = isNaN(value) ? 0 : value;
-		    value++;
-		    document.getElementById('modalIntTextBox').value = value;
-	}
-	function decrementModalValue() {
-		    var value = parseInt(document.getElementById('modalIntTextBox').value, 10);
-		    value = isNaN(value) ? 0 : value;
-		    value--;
-		    document.getElementById('modalIntTextBox').value = value;
-	}
 	
 	// Restricts input for the given textbox to the given inputFilter.
 	function setInputFilter(textbox, inputFilter) {

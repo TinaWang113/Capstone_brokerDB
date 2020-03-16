@@ -32,7 +32,7 @@
                     <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Menu&nbsp;</a>
                         <div class="dropdown-menu" role="menu">                     
 	                       
-	                       <c:forEach var="category" items="${parsedCategoryList}">
+	                       <c:forEach var="category" items="${sessionScope.parsedCategoryList}">
 	                       <!-- ASK JOHN FOR MORE APPROPRIATE SOLUTION -->
 	                       		<form action="submenu" method="GET">
 	                        	<input type="submit" class="dropdown-item" role="presentation"  data-value="${category.getCategoryID()}" value ="${category.getCategoryName()}">
@@ -41,7 +41,7 @@
 	                        </c:forEach>
                         </div>
                     </li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="OrderUI.jsp">Order</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="order">Order</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="BillUI.jsp">View Bill</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="HelpUI.jsp">Request Help</a></li>
                 </ul>
@@ -60,46 +60,36 @@
 	    </tr>
 	  </thead>
 	  <tbody>
+	  
+	  <c:forEach var="order" items="${parsedOrderList}" >
 	    <tr>
-	      <td class="amt">4</td>
-	      <td class="item">Beef </td>
-	      <td class="price">12.00</td>
-	      <td class="status">-</td>
-	    </tr>
-	    <tr>
-	      <td class="amt">1</td>
-	      <td class="item">Pork</td>
-	      <td class="price">25.00</td>
-	      <td class="status">Ordered</td>
-	    </tr>
-	    <tr>
-	      <td class="amt">2</td>
-	      <td class="item">Noodles</td>
-	      <td class="price">50.00</td>
-	      <td class="status">delivered</td>
-	    </tr>
-	    <tr>
-	      <td class="amt">1</td>
-	      <td class="item">Noodles</td>
-	      <td class="price">50.00</td>
-	      <td class="status">delivered</td>
-	    </tr>
-	    <tr>
-	      <td class="amt">1</td>
-	      <td class="item">Deez nuts</td>
-	      <td class="price">69.00</td>
-	      <td class="status">delivered</td>
-	    </tr>
-	    <tr>
-	      <td class="amt">2</td>
-	      <td class="item">Noodles</td>
-	      <td class="price">50.00</td>
-	      <td class="status">delivered</td>
-	    </tr>
+	      <td class="amt">${order.getOrderItemQty()}</td>
+	      <td class="item">${order.getOrderItem().getItemName()}</td>
+	      <td class="price">${order.getOrderItem().getItemPrice()}</td>
+	      
+	      	<c:set var = "orderStatus" scope = "session" value = "${order.getOrderStatus()}"/>
+	      	<c:choose>
+    			<c:when test="${orderStatus == 1}">
+       		 		<td class="status">Ordered</td>
+    			</c:when>
+    			<c:when test="${orderStatus == 2 }">
+    				<td class="status">Delivered</td>
+    			</c:when>    
+    			<c:otherwise>
+       		 		<td class="status">Pending</td>
+    			</c:otherwise>
+			</c:choose>
+			
+    	  </tr>
+	    </c:forEach>
+	    
 	  </tbody>
 	</table>
 	<div class="sumPanel">
-		<input type="button" class="btn btn-primary" value="Submit"/>
+	<form action="order" method="POST">
+		<input type="submit" class="btn btn-primary" value="Submit"/>
+		<input type="hidden" value="submitForOrder" name="action"/>
+	</form>
 		<div class="float-right" id="total"></div>
 	</div>
 	<!-- Script for adding up total bill -->
