@@ -43,7 +43,7 @@ COMMENT = 'Meal category';
 DROP TABLE IF EXISTS `capstone2020`.`table` ;
 
 CREATE TABLE IF NOT EXISTS `capstone2020`.`table` (
-  `tableID` INT(11) NOT NULL AUTO_INCREMENT,
+  `tableID` INT(11) NOT NULL,
   `startTime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `endTime` DATETIME NULL DEFAULT NULL,
   `tableStatus` INT(11) NOT NULL DEFAULT '0',
