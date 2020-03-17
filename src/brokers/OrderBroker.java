@@ -68,7 +68,7 @@ public class OrderBroker {
 					return executedResult;
 				}
 				preparedStmt.setInt(7, table.getTableID());
-				preparedStmt.setDate(8, table.getStartTime());
+				preparedStmt.setString(8, table.getStartTime().toString());
 				if(preparedStmt.executeUpdate() ==1) {
 					executedResult = true;
 				}
@@ -242,7 +242,7 @@ public class OrderBroker {
 					System.out.println("[Order]get Item date fail");
 				}
 				order.setOrderItem(item);
-				Table table = tBroker.findByID(rs.getInt("table_tableID"), rs.getDate("table_startTime"));
+				Table table = tBroker.findByID(rs.getInt("table_tableID"), rs.getTimestamp("table_startTime"));
 				if(table == null) {
 					System.out.println("[Order] Get table data fail.");
 				}
@@ -278,7 +278,7 @@ public class OrderBroker {
 					System.out.println("[Order]get Item date fail");
 				}
 				order.setOrderItem(item);
-				Table table = tBroker.findByID(rs.getInt("table_tableID"), rs.getDate("table_startTime"));
+				Table table = tBroker.findByID(rs.getInt("table_tableID"), rs.getTimestamp("table_startTime"));
 				if(table == null) {
 					System.out.println("[Order] Get table data fail.");
 				}

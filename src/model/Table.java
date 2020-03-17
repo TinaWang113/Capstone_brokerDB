@@ -3,8 +3,7 @@
  */
 package model;
 
-import java.sql.Date;
-import java.util.List;
+import java.sql.Timestamp;
 
 /**
  * @author 730693
@@ -16,8 +15,8 @@ public class Table {
 	//otherwise, following the value that is assigned to tabelID 
 	private int tableID = 0 ;
 	//auto create now() in DB, if timeStamp' value is null
-	private Date startTime = null;
-	private Date endTime = null;
+	private Timestamp startTime = null;
+	private Timestamp endTime = null;
 	private int tableStatus =0;
 	
 	/**
@@ -26,7 +25,7 @@ public class Table {
 	 * @param endTime
 	 * @param tableStatus
 	 */
-	public Table(int tableID, Date startTime, Date endTime, int tableStatus) {
+	public Table(int tableID, Timestamp startTime, Timestamp endTime, int tableStatus) {
 		super();
 		this.tableID = tableID;
 		this.startTime = startTime;
@@ -38,13 +37,13 @@ public class Table {
 	 * @param endTime
 	 * @param tableStatus
 	 */
-	public Table(Date endTime, int tableStatus) {
+	public Table(Timestamp endTime, int tableStatus) {
 		super();
 		this.endTime = endTime;
 		this.tableStatus = tableStatus;
 	}
 	
-	public Table(int tableID, Date sTime) {
+	public Table(int tableID, Timestamp sTime) {
 		setTableID(tableID);
 		setStartTime(sTime);
 	}
@@ -72,25 +71,25 @@ public class Table {
 	/**
 	 * @return the startTime
 	 */
-	public Date getStartTime() {
+	public Timestamp getStartTime() {
 		return startTime;
 	}
 	/**
 	 * @param startTime the startTime to set
 	 */
-	public void setStartTime(Date startTime) {
+	public void setStartTime(Timestamp startTime) {
 		this.startTime = startTime;
 	}
 	/**
 	 * @return the endTime
 	 */
-	public Date getEndTime() {
+	public Timestamp getEndTime() {
 		return endTime;
 	}
 	/**
 	 * @param endTime the endTime to set
 	 */
-	public void setEndTime(Date endTime) {
+	public void setEndTime(Timestamp endTime) {
 		this.endTime = endTime;
 	}
 	/**

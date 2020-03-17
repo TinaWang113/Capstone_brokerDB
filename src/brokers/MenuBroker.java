@@ -182,8 +182,10 @@ public class MenuBroker {
 		//rs = preparedStmt.executeQuery(stmtString);
 		//rs.next();
 		//System.out.println(rs.getInt("count(*)") );
-		if(preparedStmt.execute()) {
-			executedResult = true;
+		rs = preparedStmt.executeQuery(stmtString);
+		rs.next();
+		if(rs.getInt(1)>0) {
+			executedResult =true;
 		}
 		preparedStmt.close();
 		con.close();

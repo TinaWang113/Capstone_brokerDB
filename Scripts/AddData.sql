@@ -133,20 +133,21 @@ insert into item (itemID, itemName, itemPrice, itemDesc,categoryID,photoLocalDir
 Values(null,'Coffee',2.5,'',8,'','');
 
 -- Table Data
-insert into capstone2020.table(tableID, endTime, tableStatus)
-Values(null, now()+2,3);
-insert into capstone2020.table(tableID, endTime, tableStatus)
-Values(null, now()+3,3);
-insert into capstone2020.table(tableID, endTime, tableStatus)
-Values(null, now()+1,3);
-insert into capstone2020.table(tableID, endTime, tableStatus)
-Values(null, null,1);
-insert into capstone2020.table(tableID, endTime, tableStatus)
-Values(null, null,2);
-insert into capstone2020.table(tableID, endTime, tableStatus)
-Values(null, null,1);
-insert into capstone2020.table(tableID, endTime, tableStatus)
-Values(null, null,0);
+insert into capstone2020.table(tableID, startTime, endTime, tableStatus)
+Values(1, now(),now()+2,3);
+insert into capstone2020.table(tableID, startTime, endTime, tableStatus)
+Values(2, now(), now()+3,2);
+insert into capstone2020.table(tableID, startTime, endTime, tableStatus)
+Values(3, now(),now()+2,2);
+insert into capstone2020.table(tableID, startTime, endTime, tableStatus)
+Values(4, now()+1, now()+3,1);
+insert into capstone2020.table(tableID, startTime, endTime, tableStatus)
+Values(5, now(),now()+2,0);
+insert into capstone2020.table(tableID, startTime, endTime, tableStatus)
+Values(6, now(),now()+2,2);
+insert into capstone2020.table(tableID, startTime, endTime, tableStatus)
+Values(7, now(),now()+1,3);
+
 
 -- order Data
 insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
