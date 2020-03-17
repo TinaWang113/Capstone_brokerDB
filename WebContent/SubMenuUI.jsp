@@ -74,6 +74,7 @@
 		   		data-itemDescription="description"
 		   		data-itemPrice="${subMenuItem.getItemPrice()}"
 		   		data-allergyInfo="THESE ARE SOME SERIOUS ALLERGIES TO NUTS"
+		   		id="${subMenuItem.getItemID()}"
 		   >More Info</button>
 		   <div class="float-right">
 		   <p>${subMenuItem.getItemPrice()}</p>
@@ -89,7 +90,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="infoModalLongTitle"></h5>
+        <h5 class="modal-title" id="infoModalLongTitle">Item Name</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -103,8 +104,8 @@
 		  
 		  <div class="card-body">
 		  	
-		  <p class="card-text" id="itemDesc">Some quick example text to build on the item description and make up the bulk of the card's content.</p>
-		 	<button id="" type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" 
+		  <p class="card-text">Some quick example text to build on the item description and make up the bulk of the card's content.</p>
+		 	<button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" 
 		  		data-content="Product contains: Shell fish, peanuts, and deez nuts">
   				Allergy Info
 			</button>
@@ -113,10 +114,10 @@
 	</div> 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-light btn-sm Arrows" onclick="incrementModalValue()"><i class="fa fa-chevron-up"></i></button>
-		<input id="modalIntTextBox" size="4" maxlength="2">
-		<button type="button" class="btn btn-light btn-sm Arrows" onclick="decrementModalValue()"><i class="fa fa-chevron-down"></i></button>
-        <button type="button" class="btn btn-primary">Add</button>
+        <button type="button" class="btn btn-light btn-sm Arrows upArrow"><i class="fa fa-chevron-up"></i></button>
+		<input id="modalInputId" size="4" maxlength="2" value="" placeholder="0">
+		<button type="button" class="btn btn-light btn-sm Arrows downArrow"><i class="fa fa-chevron-down"></i></button>
+        <button type="button" class="btn btn-primary btn-sm addToOrderBtn" id="addToOrderBtnModal" name="action" data-itemId="0" value="addToOrder">Add </button>
       </div>
     </div>
   </div>

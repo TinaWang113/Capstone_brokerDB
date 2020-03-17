@@ -19,12 +19,16 @@ import model.Table;
  */
 public class ChoiceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	int tableId;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//this will grab the tableid from the url
+//		tableId = Integer.parseInt(request.getParameter("tableid"));
+//		System.out.println(tableId + " THIS IS THE TABLE ID");
 		getServletContext().getRequestDispatcher("/ChoiceUI.jsp").forward(request, response);
 		
 		
@@ -36,8 +40,9 @@ public class ChoiceServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
 		Table table = new Table();
-
+//		table.setTableID(tableId);
 		
 		
 		TableBroker tableBroker = new TableBroker();

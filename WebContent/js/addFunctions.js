@@ -3,24 +3,28 @@
 //this will also return the amount of items ordered for the badge 
 $(document).ready(function () {
     $('.addToOrderBtn').click(function () {
-		$.ajax({
-				type: "POST",
-				url: "order",
-				datatype : 'text',
-				data: {
-					itemId : $(this).attr('data-itemId'),
-					itemQuantity : $(this).parent().find("input").val(),
-					action : $("#addToOrderBtn").val()
-					
-			},
-			success: function(responseData){
-				$("#quantityupdate").text(responseData);
-				
+			if (($(this).parent().find("input").val()) < 0) {
+				$(this).parent().find("input").val("");
+				return;
 			}
-			
+			$.ajax({
+					type: "POST",
+					url: "order",
+					datatype : 'text',
+					data: {
+						itemId : $(this).attr('data-itemId'),
+						itemQuantity : $(this).parent().find("input").val(),
+						action : $("#addToOrderBtn").val()
+						
+				},
+				success: function(responseData){
+					$("#quantityupdate").text(responseData);
+					
+				}
+				
 
 
-		});
+			});
 		$(this).parent().find("input").val("")
 		});
 });
@@ -40,9 +44,9 @@ $(document).ready(function () {
 	$('.downArrow').click( function () {
 		
 	    var value = $(this).parent().find("input").val()
-			value = isNaN(value) ? 0 : value;
+			value = isNaN(value) ? 0 : value;			
+			value--;
 			value = value < 1 ? 0 : value
-	    value--;
 	    $(this).parent().find("input").val(value)
 	});
 });

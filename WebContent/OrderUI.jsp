@@ -32,7 +32,7 @@
                     <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Menu&nbsp;</a>
                         <div class="dropdown-menu" role="menu">                     
 	                       
-	                       <c:forEach var="category" items="${sessionScope.parsedCategoryList}">
+	                       <c:forEach var="category" items="${parsedCategoryList}">
 	                       <!-- ASK JOHN FOR MORE APPROPRIATE SOLUTION -->
 	                       		<form action="submenu" method="GET">
 	                        	<input type="submit" class="dropdown-item" role="presentation"  data-value="${category.getCategoryID()}" value ="${category.getCategoryName()}">

@@ -78,6 +78,7 @@
 		   		data-itemDescription="description"
 		   		data-itemPrice="${item.getItemPrice()}"
 		   		data-allergyInfo="THESE ARE SOME SERIOUS ALLERGIES TO NUTS"
+		   		id="${item.getItemID()}"
 		   >More Info</button>
 		   <div class="float-right">
 		   <p>${item.getItemPrice()}</p>
@@ -119,9 +120,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-light btn-sm Arrows upArrow"><i class="fa fa-chevron-up"></i></button>
-		<input id="modalIntTextBox" size="4" maxlength="2">
+		<input id="modalInputId" size="4" maxlength="2" value="" placeholder="0">
 		<button type="button" class="btn btn-light btn-sm Arrows downArrow"><i class="fa fa-chevron-down"></i></button>
-        <button type="button" class="btn btn-primary btn-sm addToOrderBtn" id="addToOrderBtn" name="action" data-itemId="${item.getItemID()}" value="addToOrder">Add </button>
+        <button type="button" class="btn btn-primary btn-sm addToOrderBtn" id="addToOrderBtnModal" name="action" data-itemId="0" value="addToOrder">Add </button>
       </div>
     </div>
   </div>

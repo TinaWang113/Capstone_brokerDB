@@ -50,7 +50,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Choice</servlet-name>
-    <url-pattern>/choice</url-pattern>
+    <url-pattern>/choice/*</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>submenu</servlet-name>

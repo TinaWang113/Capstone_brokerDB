@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import brokers.MenuBroker;
 import brokers.OrderBroker;
 import brokers.TableBroker;
+import model.Category;
 import model.Item;
 import model.Order;
 import model.Table;
@@ -29,7 +30,7 @@ public class OrderServlet extends HttpServlet {
 //	ArrayList<Item> itemList = new ArrayList<>();
 	ArrayList<Order> orderList = new ArrayList<>();
 	int currentSize;
-	int difference;
+	int difference = 0;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -39,8 +40,10 @@ public class OrderServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		ArrayList<Order> parsedOrderList = (ArrayList<Order>)session.getAttribute("orderList");
+		ArrayList<Category> parsedCategoryList = (ArrayList<Category>)session.getAttribute("parsedCategoryList");
 		
 		request.setAttribute("parsedOrderList", parsedOrderList);
+		request.setAttribute("parsedCategoryList", parsedCategoryList);
 		
 		getServletContext().getRequestDispatcher("/OrderUI.jsp").forward(request, response);
 	}
@@ -85,12 +88,7 @@ public class OrderServlet extends HttpServlet {
 						
 						session.setAttribute("orderList", orderList);
 						response.setContentType("text/html;charset=UTF-8");
-						
-						
-							 
-						
-						
-				        response.getWriter().write(Integer.toString(orderList.size()));
+				        response.getWriter().write(Integer.toString(orderList.size() - difference));
 				        
 	
 					} catch (NumberFormatException e) {
@@ -106,6 +104,7 @@ public class OrderServlet extends HttpServlet {
 				
 				
 				OrderBroker orderBroker = new OrderBroker();
+				difference = orderList.size();
 				
 //				for (Order order : orderList) {
 //					orderBroker.insert(order);

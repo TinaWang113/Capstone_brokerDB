@@ -29,6 +29,8 @@ public class SubMenuServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String menuSelection = (String)session.getAttribute("menuSelection");
+		String quantityUpdate = request.getParameter("quantityUpdate");
+		
 		
 		String categorySelection = request.getParameter("categorySelection");
 		

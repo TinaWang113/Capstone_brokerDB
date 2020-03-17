@@ -18,7 +18,6 @@ $(document).ready(function () {
     });
 });
 
-//populates the delete modal confirm button with the id
 //for the staff delete
 $(document).ready(function () {
     $('.deleteStaffBtn').click(function () {
@@ -35,10 +34,13 @@ $(document).ready(function () {
 		var itemName = $(this).attr('data-itemName');
 		var itemDescription = $(this).attr('data-itemDescription');
 		var itemPrice = $(this).attr('data-itemPrice');
+		var id = $(this).attr('id').toString();
 
 		$("#infoModalLongTitle").text(itemName);
 		$("#itemDesc").text(itemDescription);
 		$("#itemPrice").val(itemPrice);
+		$("#addToOrderBtnModal").attr('data-itemId', id);
+		$("#modalInputId").attr('id', id)
 		
     });
 });
