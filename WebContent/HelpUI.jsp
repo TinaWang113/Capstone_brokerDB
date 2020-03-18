@@ -54,12 +54,41 @@
     
     
     <div align="center">
-		<form action="choice" method="POST">
-	  		<input type="submit" class="btn btn-light hell" aria-haspopup="true" aria-expanded="false" style="width:100%" value="Get Help">
-	  		<input type="hidden" value="1" name="action">
+		<form action="help" method="POST">
+			<button type="button" class="btn btn-secondary helpBtn" data-toggle="modal" data-target="#helpModal">Request Help</button>	
   		</form>
 	  		
 	</div>
+	
+	<!-- Help Modal -->
+<div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="infoModalLongTitle">Request Help</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card mx-auto" style="width: 23rem;">
+		  <div class="card-body">
+			  
+		  
+		  <div class="card-body">
+		  	
+		  <p class="card-text">We are on our way to assist you! Please be patient!</p>
+
+		  </div>
+		  </div>
+	</div> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light " data-dismiss="modal">Cancel request</i></button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <!-- Optional JavaScript -->
