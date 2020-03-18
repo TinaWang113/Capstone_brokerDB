@@ -18,6 +18,7 @@
     		crossorigin="anonymous">
 	<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>
 	<link rel="stylesheet" href="css/MenuStyle.css">
+	<link rel="stylesheet" href="css/ChoiceStyle.css">
     
     <title>Help</title>
   
@@ -49,6 +50,16 @@
          </div>
     </nav>
     <h1>Request assistance</h1>
+    
+    
+    
+    <div align="center">
+		<form action="choice" method="POST">
+	  		<input type="submit" class="btn btn-light hell" aria-haspopup="true" aria-expanded="false" style="width:100%" value="Get Help">
+	  		<input type="hidden" value="1" name="action">
+  		</form>
+	  		
+	</div>
 
 
 <!-- Optional JavaScript -->
