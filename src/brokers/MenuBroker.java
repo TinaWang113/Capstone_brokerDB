@@ -41,7 +41,7 @@ public class MenuBroker {
 		connect();	
 		stmtString = "SELECT item.itemID, item.itemName, item.itemPrice, item.itemDesc, item.categoryID, " + 
 					 "item.photoLocalDirectory, item.photoCloudDirectory, categoryName, menuID " + 
-					 "FROM item " + 
+					 "FROM capstone2020.`item` " + 
 					 "JOIN category ON item.categoryID = category.categoryID";				
 		preparedStmt = con.prepareStatement(stmtString);
 		rs = preparedStmt.executeQuery();

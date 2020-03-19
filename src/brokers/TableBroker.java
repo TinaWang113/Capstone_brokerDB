@@ -281,7 +281,7 @@ public class TableBroker {
 		try {
 			connect();
 			stmtString = "select * from capstone2020.`table`";
-			System.out.println("[Table]FinaAll: " + stmtString);
+			//System.out.println("[Table]FinaAll: " + stmtString);
 			preparedStmt = con.prepareStatement(stmtString);
 			rs = preparedStmt.executeQuery();
 			while(rs.next()) {

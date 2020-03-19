@@ -148,7 +148,6 @@ Values(6, now(),now()+2,2);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus)
 Values(7, now(),now()+1,3);
 
-
 -- order Data
 insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
 SELECT 
@@ -158,7 +157,7 @@ SELECT
    2 AS item_itemID,
    2 AS table_tableID,
    startTime
-     FROM capstone2020.table
+     FROM capstone2020.`table`
      Where tableID = 2;
 
 insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
@@ -185,6 +184,17 @@ SELECT
  
 insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
 SELECT 
+   1 AS orderItemQty,
+   2.5 AS orderAmount,
+   1 AS orderStatus,
+   53 AS item_itemID,
+   1 AS table_tableID,
+   startTime
+     FROM capstone2020.table
+     Where tableID = 1; 
+     	
+insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
+SELECT     
    1 AS orderItemQty,
    2.5 AS orderAmount,
    1 AS orderStatus,

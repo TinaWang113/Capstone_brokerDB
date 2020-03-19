@@ -86,13 +86,13 @@ DROP TABLE IF EXISTS `capstone2020`.`order` ;
 
 CREATE TABLE IF NOT EXISTS `capstone2020`.`order` (
   `orderID` INT(11) NOT NULL AUTO_INCREMENT,
-  `timeStamp`  timestamp NOT NULL  default CURRENT_TIMESTAMP,
+  `timeStamp`  datetime NOT NULL  default CURRENT_TIMESTAMP,
   `orderItemQty` INT(11) NOT NULL COMMENT 'order list',
   `orderAmount` DOUBLE NOT NULL,
   `orderStatus` INT(11) NOT NULL DEFAULT '0',
   `item_itemID` INT(11) NOT NULL,
   `table_tableID` INT(11) NOT NULL,
-  `table_startTime`  timestamp NOT NULL  default CURRENT_TIMESTAMP,
+  `table_startTime`  datetime NOT NULL  default CURRENT_TIMESTAMP,
   PRIMARY KEY (`orderID`, `timeStamp`),
   INDEX `fk_order_item1_idx` (`item_itemID` ASC),
   INDEX `fk_order_table1_idx` (`table_tableID` ASC, `table_startTime` ASC),
@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `capstone2020`.`survey` (
   `surveyA7` DECIMAL(2,1) NULL DEFAULT NULL,
   `surveyA8` DECIMAL(2,1) NULL DEFAULT NULL,
   `table_tableID` INT(11) NOT NULL,
-  `table_startTime` timestamp NOT NULL default CURRENT_TIMESTAMP,
+  `table_startTime` datetime NOT NULL default CURRENT_TIMESTAMP,
   PRIMARY KEY (`surveyID`),
   INDEX `fk_survey_table1_idx` (`table_tableID` ASC, `table_startTime` ASC),
   CONSTRAINT `fk_survey_table1`
