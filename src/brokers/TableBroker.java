@@ -4,10 +4,12 @@
 package brokers;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,34 +31,45 @@ public class TableBroker {
 	/*implement Survey later */
 	
 	public boolean insertTable(Table table){
+		executedResult = false;
+		System.out.println("[Table] insertTable");
+		System.out.println("[TB_insert] table = "+ table.toString());
 		try {				
-			if(table.getTableID() == 0 || !isExisting(table)) {
-				connect();	
-				//  `tableID`,  `startTime`, `endTime`, `tableStatus`
-				stmtString = "insert `table` (tableID, startTime, endTime, tableStatus)"
-						+ "values  (?, ?,?,?)";
+			if(table.getTableID() > 0 || table.getStartTime() != null) {
+				if( !isExisting(table)) {
+					connect();	
+					//  `tableID`,  `startTime`, `endTime`, `tableStatus`
+					stmtString = "insert capstone2020.`table` (tableID, startTime, endTime, tableStatus)"
+								+  " values  (?,?,?,?)";		
+				
+					preparedStmt = con.prepareStatement(stmtString);
+	
+					preparedStmt.setInt(1, table.getTableID());
+					preparedStmt.setString(2,table.getStartTime().toString());
+					if(table.getEndTime() == null) {
+						preparedStmt.setObject(3,null);
+					}else {
+						preparedStmt.setString(3,table.getEndTime().toString());
+					}
+					preparedStmt.setInt(4, table.getTableStatus());
+					//System.out.println("[TableBroker]insertTable_stmt = " + preparedStmt.toString());
+					if (preparedStmt.executeUpdate() == 1) {
+						executedResult = true;		
+					}
+					preparedStmt.close();
+					con.close();
+				}else {
+					
+				}				System.out.println("the table, "+ table.getTableID()+" is existing in DB.");
+
 			}else {			
-				System.out.println("the table, "+ table.getTableStatus()+" is existing in DB");
-				close();
-				return false;
+				System.out.println("the startTime or tableID is incorrect.");
 			}
-			
-			preparedStmt = con.prepareStatement(stmtString);
-			if(table.getTableID() == 0) {
-				preparedStmt.setString(1, null);
-			}else {
-				preparedStmt.setInt(1, table.getTableID());
-			}
-			preparedStmt.setDate(2, table.getStartTime());
-			preparedStmt.setDate(3, table.getEndTime());
-			preparedStmt.setInt(4, table.getTableStatus());
-			
-			if (preparedStmt.executeUpdate() == 1) executedResult = true;		
-			close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("[TB] executedResult: " + executedResult);
 		return executedResult;
 		
 	}
@@ -64,26 +77,34 @@ public class TableBroker {
 	
 	public boolean isExisting(Table table) {
 		executedResult = false;
-		if(!(table.getTableID() >0)) {
-			return false;
-		}else {
-			try {
+		try {
+			if(table.getTableID() > 0) {
 				connect();
-				stmtString = "select count(*) from `table` "
-						+ "where tableID = " + table.getTableID()+ " AND startTime = " + table.getStartTime();
+				//System.out.println("[TB_isExisting] table = " + table.toString());
+				stmtString = "SELECT count(*) FROM capstone2020.`table` "
+						+ "where tableID = " + table.getTableID()+ " AND startTime = '" + table.getStartTime()+"'";
+				//System.out.println("[Table_isExisting] stmtString = " + stmtString);
+
 				preparedStmt = con.prepareStatement(stmtString);
-				if(preparedStmt.execute()) {
-					executedResult = true;
+				rs = preparedStmt.executeQuery(stmtString);
+				rs.next();
+				if(rs.getInt(1)==1) {
+					executedResult =true;
 				}
-				close();
-			} catch (SQLException e) {
+				//System.out.println("[Table_isExisting] executedResult= "+executedResult);
+				rs.close();
+				preparedStmt.close();
+				con.close();
+			} 
+		}catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-
-			return executedResult;
 		}
+			return executedResult;
 	}
+	
+	
+	
 	
 	public boolean update(Table table) {
 		executedResult = false;
@@ -99,10 +120,12 @@ public class TableBroker {
 						+ " startTime= " + table.getStartTime() + " endTime ="+ table.getEndTime()
 						+ " tableStatus=" + table.getTableStatus() + " where tableID = "+table.getTableID();
 				*/
-				stmtString = "update `table` SET "
-						+ " endTime ="+ table.getEndTime()
-						+ " tableStatus=" + table.getTableStatus() + " where tableID = "+table.getTableID();
+				stmtString = "update table SET "
+						+ " endTime ="+ table.getEndTime() + " tableStatus=" + table.getTableStatus() 
+						+ " where tableID = "+table.getTableID() +" AND startTime = '"+table.getStartTime().toString()+"'";
+
 				preparedStmt = con.prepareStatement(stmtString);
+				System.out.println("[TB]updateStauts: "+ stmtString);
 				if(preparedStmt.executeUpdate() == 1) {
 					executedResult = true;
 				}
@@ -126,10 +149,13 @@ public class TableBroker {
 		}else {
 			try {
 				connect();
-				stmtString = "update `table` "
-						+ "tableStatus=" + table.getTableStatus() + "where tableID = "+table.getTableID();
+				stmtString = "update capstone2020.`table` set  tableStatus =" + table.getTableStatus() 
+				+ " where tableID = "+table.getTableID() +" AND startTime = '"+table.getStartTime().toString()+"'";
+
 				preparedStmt = con.prepareStatement(stmtString);
+				System.out.println("[TB]updateStauts: "+ stmtString);
 				if(preparedStmt.executeUpdate() == 1) {
+					System.out.println("[TB]updateStatus: success");
 					executedResult = true;
 				}
 				close();
@@ -148,8 +174,9 @@ public class TableBroker {
 		if(table.getTableID() > 0 && table.getStartTime() != null) {
 			try {
 				connect();			
-				stmtString = "delete from `table` "
-						+ "where tableID = " + table.getTableID() +" AND startTime = " + table.getStartTime();
+				stmtString = "delete from capstone2020.`table` "
+						+ "where tableID = " + table.getTableID() +" AND startTime = '" + table.getStartTime().toString() + "'";
+
 				preparedStmt = con.prepareStatement(stmtString);
 				if(preparedStmt.executeUpdate() == 1) {
 					System.out.println("[Table]deleted.");
@@ -171,7 +198,9 @@ public class TableBroker {
 		executedResult = false;
 		try {
 			connect();			
-			stmtString = "delete from `table`";
+
+			stmtString = "delete from capstone2020.`table`";
+
 			preparedStmt = con.prepareStatement(stmtString);
 			if(preparedStmt.executeUpdate() == 1) {
 				System.out.println("[Table] All data is deleted.");
@@ -189,12 +218,15 @@ public class TableBroker {
 	public int qtyData() {
 		int qty = 0;
 		try {
-			stmtString = "select count(*) from `table`";
+
+			connect();
+			stmtString = "SELECT count(*) FROM capstone2020.`table`";
+
 			preparedStmt = con.prepareStatement(stmtString);
 			rs = preparedStmt.executeQuery();
 			rs.next();
-			qty =  rs.getInt(1);
-			System.out.println("[qtyDate]Table #"+qty);
+			qty = rs.getInt("count(*)");
+			//System.out.println("[qtyDate]Table #"+qty);
 			close();
 		} catch (SQLException e) {
 			// TODO: handle exception
@@ -203,23 +235,26 @@ public class TableBroker {
 		return qty;
 	}
 	
-	public Table findByID(int tableID, Date startTime) {
+	public Table findByID(int tableID, Timestamp startTime) {
 		Table table = new Table(tableID, startTime, null,0);
 		if(isExisting(table)) {
 			try {
 				connect();
-				stmtString = "select endTime, tableStatus from `table` "
-						+ "where tableID = "+ tableID + " AND startTime = "+ startTime;
+				stmtString = "select endTime, tableStatus from capstone2020.`table` "
+						+ "where tableID = "+ tableID + " AND startTime = '"+ startTime + "'";
+
 				preparedStmt = con.prepareStatement(stmtString);
+				System.out.println("[TB]findByID: "+stmtString);
 				rs = preparedStmt.executeQuery();
 				rs.next();
-				table.setEndTime(rs.getDate(1));
+				table.setEndTime(rs.getTimestamp(1));
 				table.setTableStatus(rs.getInt(2));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else {
+			table = null;
 			System.out.println("No table matches the TableID and startTime");
 		}
 		
@@ -227,21 +262,25 @@ public class TableBroker {
 	}
 	
 	public Table findByID(Table table) {
+		System.out.println("[TB]findByID:" + table.toString());
 		if(isExisting(table)) {
 			try {
 				connect();
-				stmtString = "select endTime, tableStatus from `table` "
-						+ "where tableID = "+ table.getTableID() + " AND startTime = "+ table.getStartTime();
+				stmtString = "select endTime, tableStatus from capstone2020.`table` "
+						+ "where tableID = "+ table.getTableID() + " AND startTime = '"+ table.getStartTime()+"'";
+
 				preparedStmt = con.prepareStatement(stmtString);
+				System.out.println("[TB]findByID: "+stmtString);
 				rs = preparedStmt.executeQuery();
 				rs.next();
-				table.setEndTime(rs.getDate(1));
+				table.setEndTime(rs.getTimestamp(1));
 				table.setTableStatus(rs.getInt(2));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else {
+			table = null;
 			System.out.println("No table matches the TableID and startTime");
 		}
 		
@@ -252,15 +291,17 @@ public class TableBroker {
 		tables = new ArrayList<Table> ();
 		try {
 			connect();
-			stmtString = "select * from `table`";
+			stmtString = "select * from capstone2020.`table`";
+			//System.out.println("[Table]FinaAll: " + stmtString);
+
 			preparedStmt = con.prepareStatement(stmtString);
 			rs = preparedStmt.executeQuery();
 			while(rs.next()) {
 			//  `tableID`,  `startTime`, `endTime`, `tableStatus`
 				Table table = new Table();
 				table.setTableID(rs.getInt("tableID"));
-				table.setStartTime(rs.getDate("startTime"));
-				table.setEndTime(rs.getDate("endTime"));
+				table.setStartTime(rs.getTimestamp("startTime"));
+				table.setEndTime(rs.getTimestamp("endTime"));
 				table.setTableStatus(rs.getInt("tableStatus"));
 				tables.add(table);
 			}
@@ -274,7 +315,7 @@ public class TableBroker {
 	
 
 	private void close() throws SQLException {
-		if(rs.isClosed()) rs.close();
+		if(!rs.isClosed()) rs.close();
 		if(!preparedStmt.isClosed()) preparedStmt.close();
 		if(!con.isClosed()) con.close();
 	}
@@ -286,5 +327,6 @@ public class TableBroker {
 		con = c2s.connect();
 		return con;
 	}
+	
 	
 }

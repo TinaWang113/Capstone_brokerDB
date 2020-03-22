@@ -4,6 +4,8 @@
 package model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+
 import model.Table;
 
 /**
@@ -16,13 +18,13 @@ public class Order {
 	//otherwise, following the value that is assigned to tabelID 
 	private int orderID;
 	//auto create now() in DB, if timeStamp' value is null
-	private Date timeStamp = null;	
-	private int orderItemQty = 0;
+	private Timestamp timeStamp = null;	
+	private int orderItemQty =0 ;
 	private double orderAmount = 0.0;
 	//orderStatus default is 0
 	private int orderStatus = 0;
-	private Table table = null;
-	private Item orderItem = null;
+	private Table table =null;
+	private Item orderItem =null;
 	
 	
 	/**
@@ -34,16 +36,16 @@ public class Order {
 	 * @param table
 	 * @param orderItem
 	 */
-	public Order(int orderID, Date timeStamp, int orderItemQty, int orderStatus, Table table,
+	public Order(int orderID, Timestamp timeStamp, int orderItemQty, int orderStatus, Table table,
 			Item orderItem) {
 		super();
-		this.orderID = orderID;
-		this.timeStamp = timeStamp;
-		this.orderItemQty = orderItemQty;
+		setOrderID(orderID);
+		setTimeStamp(timeStamp);
+		setOrderItemQty(orderItemQty);		
+		setOrderStatus(orderStatus);
+		setTable(table);
+		setOrderItem(orderItem);
 		setOrderAmount(calOrderAmount());
-		this.orderStatus = orderStatus;
-		this.table = table;
-		this.orderItem = orderItem;
 	}
 	
 	/**
@@ -57,17 +59,27 @@ public class Order {
 	 */
 	public Order(int orderItemQty, Table table, Item orderItem) {
 		super();
-		setOrderItemQty(orderItemQty);
-		setOrderAmount(calOrderAmount());
+		setOrderID(0);
+		setTimeStamp(null);
+		setOrderItemQty(orderItemQty);		
 		setOrderStatus(0);
-		this.table = table;
-		this.orderItem = orderItem;
+		setTable(table);
+		setOrderItem(orderItem);
+		setOrderAmount(calOrderAmount());
+		
 	}
 	
-	public Order(int orderID, Date timeStamp) {
+	public Order(int orderID, Timestamp timeStamp) {
+		
 		setOrderID(orderID);
 		setTimeStamp(timeStamp);
+		setOrderItemQty(0);		
+		setOrderStatus(0);
+		setTable(null);
+		setOrderItem(null);
+		setOrderAmount(calOrderAmount());
 	}
+	
 	
 	public Order() {
 		
@@ -102,13 +114,13 @@ public class Order {
 	/**
 	 * @return the timeStamp
 	 */
-	public Date getTimeStamp() {
+	public Timestamp getTimeStamp() {
 		return timeStamp;
 	}
 	/**
 	 * @param timeStamp the timeStamp to set
 	 */
-	public void setTimeStamp(Date timeStamp) {
+	public void setTimeStamp(Timestamp timeStamp) {
 		this.timeStamp = timeStamp;
 	}
 	/**
@@ -174,12 +186,11 @@ public class Order {
 	@Override
 	public String toString() {
 		return "Order [orderID=" + orderID + ", timeStamp=" + timeStamp + ", orderItemQty=" + orderItemQty
-				+ ", orderAmount=" + orderAmount + ", orderStatus=" + orderStatus + ", table=" + table + ", orderItem="
-				+ orderItem + "]";
+				+ ", orderAmount=" + orderAmount + ", orderStatus=" + orderStatus + ", table=" + table.toString() + ", orderItem="
+				+ orderItem.toString() + "]";
 	}
-	
-	
 
+	
 	
 
 	

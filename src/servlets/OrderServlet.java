@@ -106,9 +106,14 @@ public class OrderServlet extends HttpServlet {
 				OrderBroker orderBroker = new OrderBroker();
 				difference = orderList.size();
 				
-//				for (Order order : orderList) {
-//					orderBroker.insert(order);
-//				}
+				for (Order order : orderList) {
+					try {
+						orderBroker.insert(order);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 				
 				response.sendRedirect("menu");
 			}

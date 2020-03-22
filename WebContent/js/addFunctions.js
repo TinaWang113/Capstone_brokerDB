@@ -19,13 +19,16 @@ $(document).ready(function () {
 				},
 				success: function(responseData){
 					$("#quantityupdate").text(responseData);
-					
+						
+					setTimeout(function() {
+  						$("#infoModal").modal('hide');
+					}, 500);
 				}
 				
 
 
 			});
-		$(this).parent().find("input").val("")
+		$(this).parent().find("input").val("");
 		});
 });
 
