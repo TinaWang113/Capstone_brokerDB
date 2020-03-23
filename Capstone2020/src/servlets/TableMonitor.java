@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
-import brokers.TableBrokder;
+import brokers.TableMgmtBrokder;
 import model.Order;
 import model.Table;
 
@@ -45,7 +45,7 @@ public class TableMonitor extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		List<Table> tables = null;
-		TableBrokder tb = new TableBrokder();
+		TableMgmtBrokder tb = new TableMgmtBrokder();
 
 		try {
 			tables = tb.getTableAll();
@@ -56,7 +56,13 @@ public class TableMonitor extends HttpServlet {
 		for (int i = 0; i < tables.size(); i++) {
 			int value = 0;
 			value = tables.get(i).getTableStatus();
+			
+			String startTime ="";
+			startTime = tables.get(i).getStartTime();
+			
+			request.setAttribute("table_" + (i + 1)+"_startTime", startTime);
 			request.setAttribute("table_" + (i + 1), value);
+			
 		}
 		request.setAttribute("tables", tables);
 		getServletContext().getRequestDispatcher("/TableMonitor.jsp").forward(request, response);

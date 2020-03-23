@@ -32,6 +32,7 @@
 <body>
 	<div>
 		<h2 class="modal-title" id="modal">Table#${tableId} Status</h2>
+		<p>Start Time: ${startTime}
 	</div>
 	<div class="controlBar">
 		<div class="row">
@@ -42,8 +43,8 @@
 			<div class="col-4" style="text-align: right; padding-right: 10%;">
 				<form action="tableDetail" method="POST">
 					<input type="hidden" name="action" value="requestStatus"> <input
-						type="hidden" name="tableId" value="${tableId}">
-
+						type="hidden" name="tableId" value="${tableId}"> <input
+						type="hidden" name="tableStartTime" value="${startTime}">
 					<c:if test="${table.getTableStatus()==1}">
 						<button type="submit" class="btn btn-danger btn-lg">Help</button>
 					</c:if>
@@ -84,10 +85,13 @@
 								<td>
 									<form action="tableDetail" method="POST">
 										<input type="hidden" name="action" value="orderStatus">
-										<input type="hidden" name="orderItem"
-											value="${order.getOrderID()}"> <input type="hidden"
-											name="tableId" value="${tableId}">
-
+										<input type="hidden" name="orderTimeStamp"
+											value="${order.getTimeStamp()}">
+											<input type="hidden" name="tableStartTime"
+											value="${startTime}">
+											 <input type="hidden"
+											name="orderItem" value="${order.getOrderID()}"> <input
+											type="hidden" name="tableId" value="${tableId}">
 										<c:if test="${order.getOrderStatus()==0}">
 											<button type="submit" class="btn btn-light btn-sm mx-1 mt-2"
 												href="#changeStatus">Ordered</button>
@@ -136,6 +140,7 @@
 					<form action="tableDetail" method="POST">
 						<input type="hidden" name="action" value="closeSession"> <input
 							type="hidden" name="tableId" value="${tableId}">
+								<input type="hidden" name="tableStartTime" value="${startTime}">
 						<button type="submit" class="btn btn-danger btn-lg">Close
 							Session</button>
 					</form>

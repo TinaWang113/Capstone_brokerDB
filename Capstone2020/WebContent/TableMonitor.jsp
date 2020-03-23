@@ -74,6 +74,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="1" />
+								<input type="hidden" name="tableStartTime" value="${table_1_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -120,6 +121,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="2" />
+								<input type="hidden" name="tableStartTime" value="${table_2_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -165,6 +167,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="3" />
+								<input type="hidden" name="tableStartTime" value="${table_3_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -210,6 +213,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="4" />
+								<input type="hidden" name="tableStartTime" value="${table_4_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -255,6 +259,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="5" />
+								<input type="hidden" name="tableStartTime" value="${table_5_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -300,6 +305,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="6" />
+								<input type="hidden" name="tableStartTime" value="${table_6_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -347,6 +353,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="7" />
+								<input type="hidden" name="tableStartTime" value="${table_7_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -382,7 +389,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_8==0}">
+						<c:if test="${table_8==0 || table_8 ==null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_08</strong>
@@ -392,6 +399,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="8" />
+								<input type="hidden" name="tableStartTime" value="${table_8_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -427,7 +435,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_9==0}">
+						<c:if test="${table_9==0 || table_9 ==null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_09</strong>
@@ -437,6 +445,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="9" />
+								<input type="hidden" name="tableStartTime" value="${table_9_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -472,7 +481,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_10==0}">
+						<c:if test="${table_10==0 || table_10 ==null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_10</strong>
@@ -482,6 +491,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="10" />
+								<input type="hidden" name="tableStartTime" value="${table_10_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -517,7 +527,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_11==0}">
+						<c:if test="${table_11==0 || table_11 ==null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_11</strong>
@@ -527,6 +537,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="11" />
+								<input type="hidden" name="tableStartTime" value="${table_11_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -562,7 +573,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_12==0}">
+						<c:if test="${table_12==0 || table_12 ==null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_12</strong>
@@ -572,6 +583,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="12" />
+								<input type="hidden" name="tableStartTime" value="${table_12_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -609,7 +621,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_13==0}">
+						<c:if test="${table_13==0 || table_13 ==null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_13</strong>
@@ -619,6 +631,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="13" />
+								<input type="hidden" name="tableStartTime" value="${table_13_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -654,7 +667,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_14==0}">
+						<c:if test="${table_14==0 || table_14 ==null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_14</strong>
@@ -664,6 +677,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="14" />
+								<input type="hidden" name="tableStartTime" value="${table_14_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -699,7 +713,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_15==0}">
+						<c:if test="${table_15==0 || table_15 ==null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_15</strong>
@@ -709,6 +723,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="15" />
+								<input type="hidden" name="tableStartTime" value="${table_15_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -744,7 +759,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_16==0}">
+						<c:if test="${table_16==0 || table_16 ==null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_16</strong>
@@ -754,6 +769,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="16" />
+								<input type="hidden" name="tableStartTime" value="${table_16_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -789,7 +805,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_17==0}">
+						<c:if test="${table_17==0 || table_17 ==null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_17</strong>
@@ -799,6 +815,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="17" />
+								<input type="hidden" name="tableStartTime" value="${table_17_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -834,7 +851,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_18==0}">
+						<c:if test="${table_18==0 || table_18 ==null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_18</strong>
@@ -844,6 +861,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="18" />
+								<input type="hidden" name="tableStartTime" value="${table_18_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -881,7 +899,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_19==0}">
+						<c:if test="${table_19==0 || table_19 ==null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_19</strong>
@@ -891,6 +909,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="19" />
+								<input type="hidden" name="tableStartTime" value="${table_19_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -926,7 +945,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_20==0}">
+						<c:if test="${table_20==0 || table_20 ==null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_20</strong>
@@ -936,6 +955,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="20" />
+								<input type="hidden" name="tableStartTime" value="${table_20_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -971,7 +991,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_21==0}">
+						<c:if test="${table_21==0 || table_21 ==null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_21</strong>
@@ -981,6 +1001,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="21" />
+								<input type="hidden" name="tableStartTime" value="${table_21_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -1016,7 +1037,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_22==0}">
+						<c:if test="${table_22==0 || table_22 ==null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_22</strong>
@@ -1026,6 +1047,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="22" />
+								<input type="hidden" name="tableStartTime" value="${table_22_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -1061,7 +1083,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_23==0}">
+						<c:if test="${table_23==0 || table_23 ==null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_23</strong>
@@ -1071,6 +1093,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="23" />
+								<input type="hidden" name="tableStartTime" value="${table_23_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">
@@ -1106,7 +1129,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_24==0}">
+						<c:if test="${table_24==0 || table_24 ==null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_24</strong>
@@ -1116,6 +1139,7 @@
 						<div class="card-body">
 							<form action="tableDetail" method="GET">
 								<input type="hidden" name="tableId" value="24" />
+								<input type="hidden" name="tableStartTime" value="${table_24_startTime}" />
 								<button
 									class="btn btn-outline-primary btn-lg btn-block mx-1 mt-1"
 									name="check">

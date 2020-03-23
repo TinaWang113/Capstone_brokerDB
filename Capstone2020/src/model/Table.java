@@ -3,7 +3,8 @@ package model;
 public class Table {
 
 	int tableID;
-	String timeStamp;
+	String startTime;
+	String endTime;
 	double totalAmount;
 	int tableStatus;
 
@@ -11,11 +12,29 @@ public class Table {
 		super();
 	}
 
-	public Table(int tableID, String timeStamp, double totalAmount, int tableStatus) {
+	public Table(int tableID, String startTime, String endTime, double totalAmount, int tableStatus) {
 		super();
 		this.tableID = tableID;
-		this.timeStamp = timeStamp;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.totalAmount = totalAmount;
 		this.tableStatus = tableStatus;
+	}
+
+	public double getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(double totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
 	}
 
 	public int getTableID() {
@@ -26,12 +45,12 @@ public class Table {
 		this.tableID = tableID;
 	}
 
-	public String getTimeStamp() {
-		return timeStamp;
+	public String getStartTime() {
+		return startTime;
 	}
 
-	public void setTimeStamp(String timeStamp) {
-		this.timeStamp = timeStamp;
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
 	}
 
 	public int getTableStatus() {
@@ -44,10 +63,7 @@ public class Table {
 
 	@Override
 	public String toString() {
-		return "Table [tableID=" + tableID + ", timeStamp=" + timeStamp + ", tableStatus=" + tableStatus + "]";
+		return "Table [tableID=" + tableID + ", startTime=" + startTime + ", tableStatus=" + tableStatus + "]";
 	}
-
-
-
 
 }

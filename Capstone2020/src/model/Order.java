@@ -7,14 +7,14 @@ public class Order {
 	int orderQty;
 	double orderPrice;
 	int orderStatus;
-	int tableID;
+	String tableID;
 	String timeStamp;
 
 	public Order() {
 		super();
 	}
 
-	public Order(int orderID, String orderItem, int orderQty, double orderPrice, int orderStatus, int tableID,
+	public Order(int orderID, String orderItem, int orderQty, double orderPrice, int orderStatus, String tableID,
 			String timeStamp) {
 		super();
 		this.orderID = orderID;
@@ -34,11 +34,11 @@ public class Order {
 		this.timeStamp = timeStamp;
 	}
 
-	public int getTableID() {
+	public String getTableID() {
 		return tableID;
 	}
 
-	public void setTableID(int tableID) {
+	public void setTableID(String tableID) {
 		this.tableID = tableID;
 	}
 

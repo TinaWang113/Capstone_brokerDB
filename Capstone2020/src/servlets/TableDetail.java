@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import brokers.TableBrokder;
+import brokers.TableMgmtBrokder;
 import model.Order;
 import model.Table;
 
@@ -19,6 +20,9 @@ import model.Table;
  */
 @WebServlet("/TableDetail")
 public class TableDetail extends HttpServlet {
+	private static DecimalFormat df = new DecimalFormat("0.00");
+	
+	
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -36,34 +40,39 @@ public class TableDetail extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String tableId = request.getParameter("tableId");
+		String tableStartTime = request.getParameter("tableStartTime");
+
 		double totalAmount = 0;
 		double subTotal = 0;
 		double tax = 0;
 
 		List<Order> orders = null;
 		Table table = null;
-		TableBrokder tb = new TableBrokder();
+		TableMgmtBrokder tb = new TableMgmtBrokder();
 
 		try {
-			orders = tb.getOrderAll(tableId);
-			table = tb.getTable(tableId);
+			orders = tb.getOrderAll(tableId, tableStartTime);
+			table = tb.getTable(tableId, tableStartTime);
 		} catch (NumberFormatException | SQLException e) {
 			e.printStackTrace();
 		}
 
-		for (int i = 0; i < orders.size(); i++) {
-			subTotal += orders.get(i).getOrderPrice();
+		if (orders != null) {
+
+			for (int i = 0; i < orders.size(); i++) {
+				subTotal += Math.round(orders.get(i).getOrderPrice() * orders.get(i).getOrderQty()*100)/100;
+			}
+
+			tax = Math.round(subTotal * 0.05);
+			totalAmount = tax + subTotal;
+			request.setAttribute("orders", orders);
+			request.setAttribute("tableId", tableId);
+			request.setAttribute("subTotal", subTotal);
+			request.setAttribute("tax", tax);
+			request.setAttribute("totalAmount", totalAmount);
+			request.setAttribute("startTime", table.getStartTime());
 		}
-
-		tax = Math.round(subTotal * 0.05);
-		totalAmount = tax + subTotal;
-
 		request.setAttribute("table", table);
-		request.setAttribute("orders", orders);
-		request.setAttribute("tableId", tableId);
-		request.setAttribute("subTotal", subTotal);
-		request.setAttribute("tax", tax);
-		request.setAttribute("totalAmount", totalAmount);
 		getServletContext().getRequestDispatcher("/TableDetail.jsp").forward(request, response);
 
 	}
@@ -78,6 +87,8 @@ public class TableDetail extends HttpServlet {
 		String tableId = request.getParameter("tableId");
 		String action = request.getParameter("action");
 		String orderItemId = request.getParameter("orderItem");
+		String tableStartTime = request.getParameter("tableStartTime");
+		String orderTimeStamp = request.getParameter("orderTimeStamp");
 
 		double totalAmount = 0;
 		double subTotal = 0;
@@ -85,43 +96,43 @@ public class TableDetail extends HttpServlet {
 
 		List<Order> orders = null;
 		Table table = null;
-		TableBrokder tb = new TableBrokder();
+		TableMgmtBrokder tb = new TableMgmtBrokder();
 		try {
 			if (action.equalsIgnoreCase("requestStatus")) {
-				tb.changeTableStatus(tableId);
+				tb.changeTableStatus(tableId, tableStartTime);
 			} else if (action.equalsIgnoreCase("closeSession")) {
 				tb.closeSession(tableId);
 			} else if (action.equalsIgnoreCase("orderStatus")) {
-				tb.changeOrderStatus(orderItemId);
+				tb.changeOrderStatus(orderItemId, orderTimeStamp, tableStartTime);
 			}
-			orders = tb.getOrderAll(tableId);
-			table = tb.getTable(tableId);
+			orders = tb.getOrderAll(tableId, tableStartTime);
+			table = tb.getTable(tableId, tableStartTime);
 
 		} catch (NumberFormatException | SQLException e) {
 			e.printStackTrace();
 		}
 
-		for (int i = 0; i < orders.size(); i++) {
-			subTotal += orders.get(i).getOrderPrice();
-			System.out.println(orders.get(i).toString());
+		if (orders != null) {
+			for (int i = 0; i < orders.size(); i++) {
+				subTotal +=  Math.round(orders.get(i).getOrderPrice() * orders.get(i).getOrderQty()*100)/100;
+				System.out.println(orders.get(i).toString());
+			}
+
+			tax = (double) Math.round(subTotal * 0.05*100)/100;
+			totalAmount = tax + subTotal;
+
+			request.setAttribute("orders", orders);
+			request.setAttribute("table", table);
+			request.setAttribute("tableId", tableId);
+			request.setAttribute("subTotal", subTotal);
+			request.setAttribute("tax", tax);
+			request.setAttribute("totalAmount", totalAmount);
+
 		}
-
-		tax = Math.round(subTotal * 0.05);
-		totalAmount = tax + subTotal;
-
-		request.setAttribute("orders", orders);
-		request.setAttribute("table", table);
-		request.setAttribute("tableId", tableId);
-		request.setAttribute("subTotal", subTotal);
-		request.setAttribute("tax", tax);
-		request.setAttribute("totalAmount", totalAmount);
-
-		System.out.println("check: " + tableId);
-
 		if (action.equalsIgnoreCase("closeSession") || action.equalsIgnoreCase("requestStatus")) {
 			response.sendRedirect("/Capstone2020/tableMonitor");
 		} else if (action.equalsIgnoreCase("orderStatus")) {
-			response.sendRedirect("/Capstone2020/tableDetail?tableId=" + tableId + "&check=");
+			response.sendRedirect("/Capstone2020/tableDetail?tableId=" + tableId + "&tableStartTime="+tableStartTime);
 		} else {
 			getServletContext().getRequestDispatcher("/TableDetail.jsp").forward(request, response);
 

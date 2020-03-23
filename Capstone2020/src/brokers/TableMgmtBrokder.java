@@ -17,7 +17,7 @@ import model.Table;
 import server.Connect2Server;
 
 /***/
-public class TableBrokder {
+public class TableMgmtBrokder {
 
 	Connect2Server c2s = new Connect2Server();
 	Connection con = null;
@@ -34,19 +34,22 @@ public class TableBrokder {
 	 * @return
 	 * @throws SQLException
 	 */
-	public List<Order> getOrderAll(String tableID) throws SQLException {
+	public List<Order> getOrderAll(String tableID, String startTime) throws SQLException {
 		executedResult = false;
 		connect();
-		stmtString = "select t.tableID, o.timestamp, o.orderID, o.orderItem, orderQty, orderPrice,orderStatus "
-				+ "from capstone2020.table t, capstone2020.order o " + "where t.tableID=o.tableID and o.tableID="
-				+ tableID + " order by o.timestamp desc";
+		stmtString = "select t.tableID, o.timeStamp, o.orderID, i.itemName, o.orderItemQty, i.itemPrice, o.orderStatus \r\n"
+				+ "from capstone2020.table t, capstone2020.order o, capstone2020.item i \r\n"
+				+ "where t.tableID=o.table_tableID \r\n" + "and t.startTime=o.table_startTime \r\n"
+				+ "and o.item_itemID=i.itemID and t.tableID=? and t.startTime=? order by o.timestamp desc";
 		preparedStmt = con.prepareStatement(stmtString);
+		preparedStmt.setString(1, tableID);
+		preparedStmt.setString(2, startTime);
 		rs = preparedStmt.executeQuery();
 		if (rs != null) {
 			orders = new ArrayList<Order>();
 			while (rs.next()) {
 				Order order = new Order();
-				order.setTableID(rs.getInt(1));
+				order.setTableID(rs.getString(1));
 				order.setTimeStamp(rs.getString(2));
 				order.setOrderID(rs.getInt(3));
 				order.setOrderItem(rs.getString(4));
@@ -65,7 +68,7 @@ public class TableBrokder {
 	public List<Table> getTableAll() throws SQLException {
 		executedResult = false;
 		connect();
-		stmtString = "select tableID, timestamp, tableStatus from capstone2020.table";
+		stmtString = "select tableID, startTime, endTime, tableStatus from capstone2020.table";
 		preparedStmt = con.prepareStatement(stmtString);
 		rs = preparedStmt.executeQuery();
 		if (rs != null) {
@@ -73,8 +76,9 @@ public class TableBrokder {
 			while (rs.next()) {
 				Table table = new Table();
 				table.setTableID(rs.getInt(1));
-				table.setTimeStamp(rs.getString(2));
-				table.setTableStatus(rs.getInt(3));
+				table.setStartTime(rs.getString(2));
+				table.setEndTime(rs.getString(3));
+				table.setTableStatus(rs.getInt(4));
 				tables.add(table);
 			}
 		} else {
@@ -84,20 +88,22 @@ public class TableBrokder {
 		return tables;
 	}
 
-	public Table getTable(String tableId) throws SQLException {
+	public Table getTable(String tableId, String startTime) throws SQLException {
 
 		executedResult = false;
 		connect();
-		stmtString = "select tableID, timestamp, tableStatus from capstone2020.table where tableID=?";
+		stmtString = "select tableID, startTime, endTime, tableStatus from capstone2020.table where tableID=? and startTime=?";
 		preparedStmt = con.prepareStatement(stmtString);
 		preparedStmt.setString(1, tableId);
+		preparedStmt.setString(2, startTime);
 		rs = preparedStmt.executeQuery();
 		Table table = new Table();
 		if (rs != null) {
 			while (rs.next()) {
 				table.setTableID(rs.getInt(1));
-				table.setTimeStamp(rs.getString(2));
-				table.setTableStatus(rs.getInt(3));
+				table.setStartTime(rs.getString(2));
+				table.setEndTime(rs.getString(3));
+				table.setTableStatus(rs.getInt(4));
 			}
 		} else {
 			System.out.println("SQL stmt is problem.");
@@ -106,13 +112,14 @@ public class TableBrokder {
 		return table;
 	}
 
-	public Order getOrder(String orderItemId) throws SQLException {
+	public Order getOrder(String orderItemId, String timeStamp) throws SQLException {
 
 		executedResult = false;
 		connect();
-		stmtString = "select * from capstone2020.order where orderID=?";
+		stmtString = "select o.orderID, o.item_itemID, o.orderItemQty, o.orderStatus, o.table_tableID, o.timeStamp  from capstone2020.order o where orderID=? and timeStamp=?";
 		preparedStmt = con.prepareStatement(stmtString);
 		preparedStmt.setString(1, orderItemId);
+		preparedStmt.setString(2, timeStamp);
 		rs = preparedStmt.executeQuery();
 		Order order = new Order();
 		if (rs != null) {
@@ -120,10 +127,9 @@ public class TableBrokder {
 				order.setOrderID(rs.getInt(1));
 				order.setOrderItem(rs.getString(2));
 				order.setOrderQty(rs.getInt(3));
-				order.setOrderPrice(rs.getInt(4));
-				order.setOrderStatus(rs.getInt(5));
-				order.setTableID(rs.getInt(6));
-				order.setTimeStamp(rs.getString(7));
+				order.setOrderStatus(rs.getInt(4));
+				order.setTableID(rs.getString(5));
+				order.setTimeStamp(rs.getString(6));
 			}
 		} else {
 			System.out.println("SQL stmt is problem.");
@@ -132,12 +138,13 @@ public class TableBrokder {
 		return order;
 	}
 
-	public boolean changeTableStatus(String tableId) throws SQLException {
+	public boolean changeTableStatus(String tableId, String startTime) throws SQLException {
 		executedResult = false;
 		connect();
-		stmtString = "update capstone2020.table set tableStatus=0 where tableID=?";
+		stmtString = "update capstone2020.table set tableStatus=0 where tableID=? and startTime=?";
 		preparedStmt = con.prepareStatement(stmtString);
 		preparedStmt.setString(1, tableId);
+		preparedStmt.setString(2, startTime);
 
 		if (preparedStmt.executeUpdate() == 1) {
 			executedResult = true;
@@ -154,12 +161,13 @@ public class TableBrokder {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean changeOrderStatus(String orderItemId) throws SQLException {
+	public boolean changeOrderStatus(String orderItemId, String timeStamp, String startTime) throws SQLException {
 		executedResult = false;
-		Order order = getOrder(orderItemId);
+		Order order = getOrder(orderItemId, timeStamp);
 		connect();
 
-		stmtString = "update capstone2020.order " + "set orderStatus=? where orderID= ?";
+		stmtString = "update capstone2020.order set orderStatus=? where orderID=? and table_tableID=? "
+				+ "and table_startTime=? and timeStamp=?";
 		preparedStmt = con.prepareStatement(stmtString);
 
 		if (order.getOrderStatus() == 1) {
@@ -168,9 +176,12 @@ public class TableBrokder {
 			preparedStmt.setInt(1, 1);
 		}
 		preparedStmt.setInt(2, order.getOrderID());
+		preparedStmt.setString(3, order.getTableID());
+		preparedStmt.setString(4, startTime);
+		preparedStmt.setString(5, timeStamp);
 		if (preparedStmt.executeUpdate() == 1) {
 			executedResult = true;
-			orders = getOrderAll(order.getTableID() + "");
+			orders = getOrderAll(order.getTableID(), startTime);
 		} else {
 			System.out.println("update object is incorrect, ");
 			return false;
@@ -182,7 +193,7 @@ public class TableBrokder {
 	public boolean closeSession(String tableId) throws SQLException {
 		executedResult = false;
 		connect();
-		stmtString = "update capstone2020.table " + "set tableStatus=? where tableID= ?";
+		stmtString = "update capstone2020.table " + "set tableStatus=? and endTime=now() where tableID= ?";
 		preparedStmt = con.prepareStatement(stmtString);
 		preparedStmt.setInt(1, 0);
 		preparedStmt.setString(2, tableId);
