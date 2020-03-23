@@ -13,12 +13,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/Navigation-Clean-1.css">
     <link rel="stylesheet" href="css/Navigation-Clean.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-    		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
-    		crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>
 	<link rel="stylesheet" href="css/MenuStyle.css">
 	<link rel="stylesheet" href="css/ChoiceStyle.css">
+	<script type="text/javascript" src="js/help.js"></script>
     
     <title>Help</title>
   
@@ -33,7 +32,7 @@
                     <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Menu&nbsp;</a>
                         <div class="dropdown-menu" role="menu">                     
 	                       
-	                       <c:forEach var="category" items="${parsedCategoryList}">
+	                       <c:forEach var="category" items="${sessionScope.parsedCategoryList}">
 	                       <!-- ASK JOHN FOR MORE APPROPRIATE SOLUTION -->
 	                       		<form action="submenu" method="GET">
 	                        	<input type="submit" class="dropdown-item" role="presentation"  data-value="${category.getCategoryID()}" value ="${category.getCategoryName()}">
@@ -42,9 +41,9 @@
 	                        </c:forEach>
                         </div>
                     </li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="OrderUI.jsp">Order</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="BillUI.jsp">View Bill</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="HelpUI.jsp">Request Help</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="order">Order</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="bill">View Bill</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="help">Request Help</a></li>
                 </ul>
             </div>
          </div>
@@ -54,10 +53,7 @@
     
     
     <div align="center">
-		<form action="help" method="POST">
-			<button type="button" class="btn btn-secondary helpBtn" data-toggle="modal" data-target="#helpModal">Request Help</button>	
-  		</form>
-	  		
+		<button type="button" class="btn btn-secondary helpBtn" data-toggle="modal" data-target="#helpModal" data-choice="help" id="helpButton">Request Help</button>
 	</div>
 	
 	<!-- Help Modal -->
@@ -77,14 +73,14 @@
 		  
 		  <div class="card-body">
 		  	
-		  <p class="card-text">We are on our way to assist you! Please be patient!</p>
+		  <p class="card-text" id="helpText">We are on our way to assist you! Please be patient!</p>
 
 		  </div>
 		  </div>
 	</div> 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-light " data-dismiss="modal">Cancel request</i></button>
+       	<button type="button" class="btn btn-light helpBtn"  id="cancelHelp" data-choice="cancel" >Cancel request</button>
       </div>
     </div>
   </div>
@@ -93,8 +89,12 @@
 
 <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="js/jquery.min.js"></script>
+	
+	<script src="js/popper.min.js"></script>
+	
+	<script src="js/bootstrap.min.js"></script>
+	
+	<script src="js/mdb.min.js"></script>
 </body>
 </html>

@@ -17,12 +17,12 @@ import model.Item;
 
 /**
  * Servlet implementation class Menu
+ * This is to build the menu
  */
 public class MenuServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	ArrayList<Item> parsedItemList = new ArrayList<>(); 
-	ArrayList<Category> parsedCategoryList = new ArrayList<>();
+	
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -31,7 +31,8 @@ public class MenuServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		
-		
+		ArrayList<Item> parsedItemList = new ArrayList<>(); 
+		ArrayList<Category> parsedCategoryList = new ArrayList<>();
 		String menuSelection = (String)session.getAttribute("menuSelection");
 		
 		MenuBroker menuBroker = new MenuBroker();
@@ -60,8 +61,7 @@ public class MenuServlet extends HttpServlet {
 			request.setAttribute("parsedCategoryList", parsedCategoryList);
 			session.setAttribute("parsedCategoryList", parsedCategoryList);
 			getServletContext().getRequestDispatcher("/MenuUI.jsp").forward(request, response);
-			parsedCategoryList.clear();
-			parsedItemList.clear();
+			
 	}
 
 	/**

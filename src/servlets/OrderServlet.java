@@ -1,10 +1,11 @@
 package servlets;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,10 +41,10 @@ public class OrderServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		ArrayList<Order> parsedOrderList = (ArrayList<Order>)session.getAttribute("orderList");
-		ArrayList<Category> parsedCategoryList = (ArrayList<Category>)session.getAttribute("parsedCategoryList");
+//		ArrayList<Category> parsedCategoryList = (ArrayList<Category>)session.getAttribute("parsedCategoryList");
 		
 		request.setAttribute("parsedOrderList", parsedOrderList);
-		request.setAttribute("parsedCategoryList", parsedCategoryList);
+//		request.setAttribute("parsedCategoryList", parsedCategoryList);
 		
 		getServletContext().getRequestDispatcher("/OrderUI.jsp").forward(request, response);
 	}
@@ -54,7 +55,9 @@ public class OrderServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
-		
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        Timestamp startTime = Timestamp.valueOf(f.format(date));
 		
 		TableBroker tableBroker = new TableBroker();
 		
@@ -79,9 +82,10 @@ public class OrderServlet extends HttpServlet {
 						
 						Order order = new Order();
 						order.setTable(table);
-						order.setOrderID(9);
+						order.setTimeStamp(startTime);
 						order.setOrderItemQty(itemQuantity);
 						order.setOrderItem(item);
+						order.setOrderAmount(item.getItemPrice() * itemQuantity);
 						
 						orderList.add(order);
 						
@@ -104,16 +108,31 @@ public class OrderServlet extends HttpServlet {
 				
 				
 				OrderBroker orderBroker = new OrderBroker();
-				difference = orderList.size();
 				
-				for (Order order : orderList) {
+				for (int i = difference; i < orderList.size(); i++) {
+					
 					try {
-						orderBroker.insert(order);
+						System.out.println(orderList.get(i).toString());
+						orderBroker.insert(orderList.get(i));
+						orderList.get(i).setOrderStatus(1);
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+					
 				}
+//				for (Order order : orderList) {
+//					try {
+//						System.out.println(order.toString());
+//						orderBroker.insert(order);
+//						order.setOrderStatus(1);
+//						
+//					} catch (SQLException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//				}
+				difference = orderList.size();
 				
 				response.sendRedirect("menu");
 			}

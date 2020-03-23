@@ -1,7 +1,10 @@
 package servlets;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,8 +29,10 @@ public class ChoiceServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
 		//this will grab the tableid from the url
 //		tableId = Integer.parseInt(request.getParameter("tableid"));
+
 //		System.out.println(tableId + " THIS IS THE TABLE ID");
 		getServletContext().getRequestDispatcher("/ChoiceUI.jsp").forward(request, response);
 		
@@ -40,9 +45,19 @@ public class ChoiceServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        Timestamp startTime = Timestamp.valueOf(f.format(date));
 		Table table = new Table();
-//		table.setTableID(tableId);
+		//TODO: THIS IS JUST TESTING REMOVE BEFORE FINAL PRSENTATION
+		//THIS SETS THE TABLE ID TO A RANDOM NUMBER BETWEEN 1 AND 25!
+		Random r = new Random();
+		int low = 1;
+		int high = 25;
+		int fakeTableId = r.nextInt(high-low) + low;
+		////////////////////////////////////////////
+		table.setTableID(fakeTableId);
+		table.setStartTime(startTime);
 		
 		
 		TableBroker tableBroker = new TableBroker();

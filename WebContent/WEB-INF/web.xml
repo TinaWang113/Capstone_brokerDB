@@ -32,6 +32,10 @@
     <servlet-name>order</servlet-name>
     <servlet-class>servlets.OrderServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>help</servlet-name>
+    <servlet-class>servlets.HelpServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>staffmanagement</servlet-name>
     <url-pattern>/staffmanagement</url-pattern>
@@ -59,5 +63,9 @@
   <servlet-mapping>
     <servlet-name>order</servlet-name>
     <url-pattern>/order</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>help</servlet-name>
+    <url-pattern>/help</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -41,9 +41,9 @@
 	                        </c:forEach>
                         </div>
                     </li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="OrderUI.jsp">Order</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="BillUI.jsp">View Bill</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="HelpUI.jsp">Request Help</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="order">Order</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="bill">View Bill</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="help">Request Help</a></li>
                 </ul>
             </div>
          </div>

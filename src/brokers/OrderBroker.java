@@ -96,7 +96,7 @@ public class OrderBroker {
 	public boolean isExisting(Order order) throws SQLException {
 		executedResult = false;
 		System.out.println("[order]"+order.getOrderID());
-		if(order.getOrderID() > 0) {
+		if(order.getOrderID() >= 0) {
 			try {
 				connect();
 				stmtString = "select count(*) from capstone2020.`order` "
