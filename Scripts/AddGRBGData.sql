@@ -134,19 +134,19 @@ Values(null,'Coffee',2.5,'',8,'','');
 
 -- Table Data
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus)
-Values(1, now(),now()+2,3);
+Values(1, now(),now()+200,3);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus)
-Values(2, now(), now()+3,2);
+Values(2, now(), now()+300,2);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus)
-Values(3, now(),now()+2,2);
+Values(3, now(),now()+200,2);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus)
-Values(4, now()+1, now()+3,1);
+Values(4, now()+1, now()+300,1);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus)
-Values(5, now(),now()+2,0);
+Values(5, now(),now()+200,0);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus)
-Values(6, now(),now()+2,2);
+Values(6, now(),now()+200,2);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus)
-Values(7, now(),now()+1,3);
+Values(7, now(),now()+1400,3);
 
 -- order Data
 insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
@@ -203,3 +203,73 @@ SELECT
    startTime
      FROM capstone2020.table
      Where tableID = 1;    
+     
+     
+     
+ -- survey data    
+     
+     
+insert into capstone2020.survey (surveyA1, surveyA2, surveyA3,surveyA4, surveyA5, 
+surveyA6, surveyA7, surveyA8, table_tableID, table_startTime)
+SELECT     
+   1 AS surveyA1,
+   2 AS surveyA2,
+   1 AS surveyA3,
+   5 AS surveyA4,
+   1 AS surveyA5,
+   1 AS surveyA5,
+   1 AS surveyA6,
+   1 AS surveyA7,
+   1 AS table_tableID,
+   startTime
+     FROM capstone2020.table
+     Where tableID = 1 ;    
+	
+insert into capstone2020.survey (surveyA1, surveyA2, surveyA3,surveyA4, surveyA5, 
+surveyA6, surveyA7, surveyA8, table_tableID, table_startTime)
+SELECT     
+   1 AS surveyA1,
+   2 AS surveyA2,
+   1 AS surveyA3,
+   5 AS surveyA4,
+   1 AS surveyA5,
+   1 AS surveyA5,
+   1 AS surveyA6,
+   1 AS surveyA7,
+   2 AS table_tableID,
+   startTime
+     FROM capstone2020.table
+     Where tableID = 2 ;  
+     insert into capstone2020.survey (surveyA1, surveyA2, surveyA3,surveyA4, surveyA5, 
+surveyA6, surveyA7, surveyA8, table_tableID, table_startTime)
+SELECT     
+   1 AS surveyA1,
+   2 AS surveyA2,
+   4 AS surveyA3,
+   5 AS surveyA4,
+   1 AS surveyA5,
+   2 AS surveyA5,
+   4 AS surveyA6,
+   2 AS surveyA7,
+   3 AS table_tableID,
+   startTime
+     FROM capstone2020.table
+     Where tableID = 3 ;    
+     
+    -- Survery Question 
+insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
+values(1, "Food quality ") ;   
+insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
+values(2, "Service speed") ;    
+insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
+values(3, "Restaurant Enviornment ") ;    
+insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
+values(4, "Service quality") ;    
+insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
+values(5, "Food speed") ;    
+insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
+values(6, "Will you recommand your friend to visit our restaurant") ;    
+insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
+values(7, "How satisfied your food") ;    
+insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
+values(8, "How enjoy this experiment") ;    
