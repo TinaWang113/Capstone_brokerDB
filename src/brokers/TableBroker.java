@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Survey;
 import model.Table;
 import server.Connect2Server;
 
@@ -28,6 +29,7 @@ public class TableBroker {
 	String stmtString="";
 	boolean executedResult = false;
 	List <Table> tables; 
+
 	/*implement Survey later */
 	
 	public boolean insertTable(Table table){

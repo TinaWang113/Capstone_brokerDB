@@ -45,7 +45,7 @@ DROP TABLE IF EXISTS `capstone2020`.`table` ;
 CREATE TABLE IF NOT EXISTS `capstone2020`.`table` (
   `tableID` INT(11) NOT NULL,
   `startTime` datetime NOT NULL  default CURRENT_TIMESTAMP,
-  `endTime`  datetime ,
+  `endTime`  datetime  default NULL,
   `tableStatus` INT(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`tableID`, `startTime`))
 ENGINE = InnoDB
@@ -137,6 +137,18 @@ CREATE TABLE IF NOT EXISTS `capstone2020`.`survey` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
+
+-- -----------------------------------------------------
+-- Table `capstone2020`.`surveyQuestion`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `capstone2020`.`surveyQuestions` ;
+
+CREATE TABLE IF NOT EXISTS `capstone2020`.`surveyQuestions` (
+  `surveyQuestionID` INT(11) NOT NULL ,
+  `surveysurveyQuestion` VARCHAR(255) NULL DEFAULT NULL
+  )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
