@@ -57,13 +57,12 @@ public class TableBroker {
 					//System.out.println("[TableBroker]insertTable_stmt = " + preparedStmt.toString());
 					if (preparedStmt.executeUpdate() == 1) {
 						executedResult = true;		
-					}
+					} 
 					preparedStmt.close();
 					con.close();
 				}else {
-					
-				}				System.out.println("the table, "+ table.getTableID()+" is existing in DB.");
-
+					System.out.println("the table, "+ table.getTableID()+" is existing in DB.");
+				}				
 			}else {			
 				System.out.println("the startTime or tableID is incorrect.");
 			}

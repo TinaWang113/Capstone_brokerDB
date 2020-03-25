@@ -191,7 +191,7 @@ SELECT
    1 AS table_tableID,
    startTime
      FROM capstone2020.table
-     Where tableID = 1; 
+     Where tableID = 3; 
      	
 insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
 SELECT     
@@ -202,7 +202,7 @@ SELECT
    1 AS table_tableID,
    startTime
      FROM capstone2020.table
-     Where tableID = 1;    
+     Where tableID = 7;    
      
      
      

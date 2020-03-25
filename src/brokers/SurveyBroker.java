@@ -21,7 +21,7 @@ import server.Connect2Server;
  *
  */
 public class SurveyBroker {
-	TableBroker tBroker;
+	TableBroker tBroker = new TableBroker();
 	List<Survey> surveys;
 	Connect2Server c2s = new Connect2Server();
 	Connection con = null;
@@ -63,20 +63,25 @@ public class SurveyBroker {
 		}
 		// verify done
 		Table table = new Table(survey.getTableID(),survey.getTable_startTime());
-		if(!isExisting(survey) && tBroker.isExisting(table)) {							
+		//don't need to check if it is existing.
+		if(tBroker.isExisting(table)) {							
 			connect();
-			stmtString = "insert into capstone2020.survey (surveyA1, surveyA2, surveyA3,surveyA4, surveyA5, " + 
+			stmtString = "insert into capstone2020.survey (surveyA1, surveyA2, surveyA3, surveyA4, surveyA5, " + 
 					"surveyA6, surveyA7, surveyA8, table_tableID, table_startTime) Values(?,?,?,?,?,?,?,?,?,?)";
 			preparedStmt = con.prepareStatement(stmtString);
-			for(int i=0; i< survey.getSurveyAs().size(); i++) {
+			for(double c: survey.getSurveyAs()){
+				System.out.println("[sb_insert] Survey Value: " + c);
+			}
+			for(int i=0; i< survey.getSurveyAs().size(); i++) {				
 				preparedStmt.setDouble((i+1), survey.getSurveyAs().get(i));
 			}
 			preparedStmt.setInt(9, survey.getTableID());
 			preparedStmt.setTimestamp(10, survey.getTable_startTime());
-			if(preparedStmt.executeUpdate() == 1) {
-				executedResult = true;
-			}
-			close();
+			System.out.println("[sb_inset]"+survey.getTable_startTime());
+			System.out.println(preparedStmt.executeUpdate());
+		    executedResult = true;
+			preparedStmt.close();
+			con.close();
 		}else {
 			System.out.println("[SB_insert] the survey is existing or table is not existing.");
 		}			
@@ -86,23 +91,23 @@ public class SurveyBroker {
 		
 	
 	
-	private boolean isExisting(Survey survey) throws SQLException {
+	public boolean isExisting(Survey survey) throws SQLException {
 		executedResult = false;
 		connect();
-		if(survey.getSurveyID() < 1) {
-			System.out.println("[SB_isExisting] SurveyID should not be small than and equal 0.");
-		}else {
+		if(survey.getSurveyID() > 0) {
 			stmtString = "select count(*) from capstone2020.survey"
-					+ " where surveryID = " + survey.getSurveyID();
+					+ " where surveyID = " + survey.getSurveyID();
 			preparedStmt = con.prepareStatement(stmtString);
 			rs = preparedStmt.executeQuery();
 			rs.next();
 			if(rs.getInt("count(*)") == 1) {
 				executedResult = true;
 			}
-			close();
+			close();			
+		}else {
+			System.out.println("[SB_isExisting] SurveyID should not be small than and equal 0.");
 		}
-		
+
 		return executedResult;
 	}
 		
@@ -126,8 +131,8 @@ public class SurveyBroker {
 					surveyAs.add(rs.getDouble(i+2));
 				}
 				getSurvey.setSurveyAs(surveyAs);
-				getSurvey.setTableID(rs.getInt(9));
-				getSurvey.setTable_startTime(rs.getTimestamp(10));
+				getSurvey.setTableID(rs.getInt(10));
+				getSurvey.setTable_startTime(rs.getTimestamp(11));
 			}
 			close();
 		}
@@ -136,39 +141,13 @@ public class SurveyBroker {
 	
 	public Survey getSurvey(Survey survey) throws SQLException {
 		executedResult = false;
+		Survey getSurvey = null;
 		connect();
 		if(survey.getSurveyID() < 1) {
 			System.out.println("[SB_getSurvey] surveyID should be large than 1");
 		}else {
 			stmtString = "select * from capstone2020.survey "
 					+ "where surveyID = " + survey.getSurveyID();
-			preparedStmt = con.prepareStatement(stmtString);
-			rs = preparedStmt.executeQuery();
-			while(rs.next()) {
-				survey = new Survey();
-				survey.setSurveyID(rs.getInt(1));
-				ArrayList<Double> surveyAs = new ArrayList<Double>();
-				for(int i = 0; i< survey.getNUMQUESTIONS(); i++) {
-					surveyAs.add(rs.getDouble(i+2));
-				}
-				survey.setSurveyAs(surveyAs);
-				survey.setTableID(rs.getInt(9));
-				survey.setTable_startTime(rs.getTimestamp(10));
-			}
-			close();
-		}
-		return survey;
-	}
-	
-	public Survey getSurvey(int tableID, Timestamp table_startTime) throws SQLException {
-		executedResult = false;
-		Survey getSurvey = null;
-		connect();
-		if(tableID < 1 || table_startTime == null) {
-			System.out.println("[SB_getSurvey] tableID and table_startTime is incorrect");
-		}else {
-			stmtString = "select * from capstone2020.survey "
-					+ "where tableID = " + tableID + " AND table_startTime = '" + table_startTime+"'";
 			preparedStmt = con.prepareStatement(stmtString);
 			rs = preparedStmt.executeQuery();
 			while(rs.next()) {
@@ -179,10 +158,38 @@ public class SurveyBroker {
 					surveyAs.add(rs.getDouble(i+2));
 				}
 				getSurvey.setSurveyAs(surveyAs);
-				getSurvey.setTableID(rs.getInt(9));
-				getSurvey.setTable_startTime(rs.getTimestamp(10));
+				getSurvey.setTableID(rs.getInt(10));
+				getSurvey.setTable_startTime(rs.getTimestamp(11));
 			}
 			close();
+		}
+		return getSurvey;
+	}
+	
+	public Survey getSurvey(int tableID, Timestamp table_startTime) throws SQLException {
+		executedResult = false;
+		Survey getSurvey = null;
+		Table table = new Table(tableID, table_startTime);
+		connect();
+		if(tBroker.isExisting(table)) {			
+			stmtString = "select * from capstone2020.survey "
+					+ "where table_tableID = " + tableID + " AND table_startTime = '" + table_startTime.toString()+"'";
+			preparedStmt = con.prepareStatement(stmtString);
+			rs = preparedStmt.executeQuery();
+			while(rs.next()) {
+				getSurvey = new Survey();
+				getSurvey.setSurveyID(rs.getInt(1));
+				ArrayList<Double> surveyAs = new ArrayList<Double>();
+				for(int i = 0; i< getSurvey.getNUMQUESTIONS(); i++) {
+					surveyAs.add(rs.getDouble(i+2));
+				}
+				getSurvey.setSurveyAs(surveyAs);
+				getSurvey.setTableID(rs.getInt(10));
+				getSurvey.setTable_startTime(rs.getTimestamp(11));
+			}
+			close();
+		}else {
+			System.out.println("[SB_getSurvey] Survey isn't existing.");
 		}
 		return getSurvey;
 	}
@@ -191,6 +198,10 @@ public class SurveyBroker {
 	public ArrayList<Survey> getAll() throws SQLException{
 		connect();
 		ArrayList<Survey> surveys = new ArrayList<Survey>();
+		/*
+		stmtString = "select surveyID, surveyA1, surveyA2, surveyA3,surveyA4, surveyA5," + 
+				"surveyA6, surveyA7, surveyA8, table_tableID, table_startTime from capstone2020.survey";
+				*/
 		stmtString = "select * from capstone2020.survey";
 		preparedStmt = con.prepareStatement(stmtString);
 		rs = preparedStmt.executeQuery();
@@ -202,8 +213,8 @@ public class SurveyBroker {
 				surveyAs.add(rs.getDouble(i+2));
 			}
 			survey.setSurveyAs(surveyAs);
-			survey.setTableID(rs.getInt(9));
-			survey.setTable_startTime(rs.getTimestamp(10));
+			survey.setTableID(rs.getInt(10));
+			survey.setTable_startTime(rs.getTimestamp(11));
 			
 			surveys.add(survey);
 		}
@@ -280,7 +291,6 @@ public class SurveyBroker {
 		return executedResult;
 		
 	}
-	
 	
 	
 	
