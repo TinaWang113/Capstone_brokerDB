@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `capstone2020`.`survey` (
   `surveyA7` DECIMAL(2,1) NULL DEFAULT NULL,
   `surveyA8` DECIMAL(2,1) NULL DEFAULT NULL,
   `table_tableID` INT(11) NOT NULL,
-  `table_startTime` datetime NOT NULL default CURRENT_TIMESTAMP,
+  `table_startTime` datetime  NOT NULL  default CURRENT_TIMESTAMP,
   PRIMARY KEY (`surveyID`),
   INDEX `fk_survey_table1_idx` (`table_tableID` ASC, `table_startTime` ASC),
   CONSTRAINT `fk_survey_table1`
