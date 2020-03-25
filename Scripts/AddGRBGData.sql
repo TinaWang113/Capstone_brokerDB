@@ -1,3 +1,14 @@
+-- add staff
+insert into staff( fName, lName, contactNum, jobName)
+values ('Tina', 'Wang', '1231234567','PT-Staff');
+insert into staff(pin, isActive, fName, lName, contactNum, jobName)
+values ('1234', 'T', 'Christopher', 'Lumsden', '1231234567','PT-Staff');
+insert into staff(pin, isActive, fName, lName, contactNum, jobName)
+values ('4567', 'T', 'Sungwook', 'Baek', '1231234567','PT-Staff');
+insert into staff(pin, isActive, fName, lName, contactNum, jobName)
+values ('7894', 'T', 'John', 'OLoughlin', '1231234567','Manager');
+
+-- addingcategory
 insert into category (categoryID, categoryName, menuID)
 Values (null,'[Han-Sang] 한상',1);
 insert into category (categoryID, categoryName, menuID)
@@ -133,20 +144,20 @@ insert into item (itemID, itemName, itemPrice, itemDesc,categoryID,photoLocalDir
 Values(null,'Coffee',2.5,'',8,'','');
 
 -- Table Data
-insert into capstone2020.table(tableID, startTime, endTime, tableStatus)
-Values(1, now(),now()+200,3);
-insert into capstone2020.table(tableID, startTime, endTime, tableStatus)
-Values(2, now(), now()+300,2);
-insert into capstone2020.table(tableID, startTime, endTime, tableStatus)
-Values(3, now(),now()+200,2);
-insert into capstone2020.table(tableID, startTime, endTime, tableStatus)
-Values(4, now()+1, now()+300,1);
-insert into capstone2020.table(tableID, startTime, endTime, tableStatus)
-Values(5, now(),now()+200,0);
-insert into capstone2020.table(tableID, startTime, endTime, tableStatus)
-Values(6, now(),now()+200,2);
-insert into capstone2020.table(tableID, startTime, endTime, tableStatus)
-Values(7, now(),now()+1400,3);
+insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
+Values(1, now(),now()+200,3,1);
+insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
+Values(2, now(), now()+300,2,2);
+insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
+Values(3, now(),now()+200,2,3);
+insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
+Values(4, now()+1, now()+300,1,4);
+insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
+Values(5, now(),now()+200,0,1);
+insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
+Values(6, now(),now()+200,2,2);
+insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
+Values(7, now(),now()+1400,3,3);
 
 -- order Data
 insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
