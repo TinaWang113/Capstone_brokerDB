@@ -144,8 +144,8 @@ insert into item (itemID, itemName, itemPrice, itemDesc,categoryID,photoLocalDir
 Values(null,'Coffee',2.5,'',8,'','');
 
 -- Table Data
-insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
-Values(1, now(),now()+200,3,1);
+insert into capstone2020.table(tableID, startTime, tableStatus,staff_sID)
+Values(1, now(),3,1);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
 Values(2, now(), now()+300,2,2);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
@@ -156,8 +156,8 @@ insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sI
 Values(5, now(),now()+200,0,1);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
 Values(6, now(),now()+200,2,2);
-insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
-Values(7, now(),now()+1400,3,3);
+insert into capstone2020.table(tableID, startTime, tableStatus,staff_sID)
+Values(2, now()+2,3,3);
 
 -- order Data
 insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
