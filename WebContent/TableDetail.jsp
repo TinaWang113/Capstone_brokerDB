@@ -30,134 +30,156 @@
 </head>
 
 <body>
-	<div>
-		<h2 class="modal-title" id="modal">Table#${tableId} Status</h2>
-		<p>Start Time: ${startTime}
-	</div>
-	<div class="controlBar">
-		<div class="row">
-			<div class="col-8" style="text-align: left;">
-				<button type="button" class="btn btn-outline-success btn-lg">Add
-					item</button>
-			</div>
-			<div class="col-4" style="text-align: right; padding-right: 10%;">
-				<form action="tableDetail" method="POST">
-					<input type="hidden" name="action" value="requestStatus"> <input
-						type="hidden" name="tableId" value="${tableId}"> <input
-						type="hidden" name="tableStartTime" value="${startTime}">
-					<c:if test="${table.getTableStatus()==1}">
-						<button type="submit" class="btn btn-danger btn-lg">Help</button>
-					</c:if>
-					<c:if test="${table.getTableStatus()!=1}">
-						<button type="submit" class="btn btn-outline-danger btn-lg">Help</button>
-					</c:if>
-					<c:if test="${table.getTableStatus()==2}">
-						<button type="submit" class="btn btn-warning btn-lg">Bill</button>
-					</c:if>
-					<c:if test="${table.getTableStatus()!=2}">
-						<button type="submit" class="btn btn-outline-warning btn-lg">Bill</button>
-					</c:if>
-				</form>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+		<a class="navbar-brand" href="tableMonitor">Migarock Management
+			System</a>
+		<!--Allows NAv bar to adapt to any size screen-->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbar" aria-controls="navbar" aria-expanded="false">
+			<!--Icon for screens too small for full NAV bar-->
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<!--Default NAV Bar-->
+		<div class="collapse navbar-collapse justify-content-between"
+			id="navbar">
+			<div class="navbar-nav">
+				<a class="nav-item nav-link active" href="tableMonitor">Monitor</a>
+				<a class="nav-item nav-link " href="MenuUI.jsp">Menu</a> <a
+					class="nav-item nav-link" href="staffmanagement">Staff</a> <a
+					class="nav-item nav-link" href="Mgmt_Report.jsp">Report</a> <a
+					class="nav-item nav-link " href="DataBaseUI.jsp">Backup/
+					Restore</a>
 			</div>
 		</div>
-	</div>
-	<br>
-	<div>
-		<div class="container">
-			<div class="scrollbar scrollbar-primary">
-				<table class="table">
-					<thead>
-						<tr style="text-align: center;">
-							<th scope="col">Order Time</th>
-							<th scope="col">Order Item</th>
-							<th scope="col">QTY</th>
-							<th scope="col">Price</th>
-							<th scope="col">Status</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${orders}" var="order">
-							<tr style="text-align: center;">
-								<td>${order.getTimeStamp()}</td>
-								<td>${order.getOrderItem()}</td>
-								<td>${order.getOrderQty()}</td>
-								<td>${order.getOrderPrice()}</td>
-								<td>
-									<form action="tableDetail" method="POST">
-										<input type="hidden" name="action" value="orderStatus">
-										<input type="hidden" name="orderTimeStamp"
-											value="${order.getTimeStamp()}">
-											<input type="hidden" name="tableStartTime"
-											value="${startTime}">
-											 <input type="hidden"
-											name="orderItem" value="${order.getOrderID()}"> <input
-											type="hidden" name="tableId" value="${tableId}">
-										<c:if test="${order.getOrderStatus()==0}">
-											<button type="submit" class="btn btn-light btn-sm mx-1 mt-2"
-												href="#changeStatus">Ordered</button>
-										</c:if>
-										<c:if test="${order.getOrderStatus()!=0}">
-											<button type="submit" class="btn btn-dark btn-sm mx-1 mt-2">Delivered</button>
-										</c:if>
-									</form>
-								</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-
-			<table class="table">
-				<tr style="text-align: center;">
-					<td colspan="3">
-						<h5>SubTotal</h5>
-					</td>
-					<td colspan="3">
-						<h5>$ ${subTotal}</h5>
-					</td>
-				</tr>
-				<tr style="text-align: center;">
-					<td colspan="3">
-						<h5>Tax</h5>
-					</td>
-					<td colspan="3">
-						<h5>$ ${tax}</h5>
-					</td>
-				</tr>
-				<tr style="text-align: center;">
-					<td colspan="3">
-						<h5>Total</h5>
-					</td>
-					<td colspan="3">
-						<h5>$ ${totalAmount}</h5>
-					</td>
-				</tr>
-			</table>
+	</nav>
+	<br />
+	<div style="margin-left: 5%">
+		<div>
+			<h2 class="modal-title" id="modal">Table#${tableId} Status</h2>
+			<p>Start Time: ${startTime}
 		</div>
 		<div class="controlBar">
 			<div class="row">
-				<div class="col-6" style="text-align: left;">
-					<form action="tableDetail" method="POST">
-						<input type="hidden" name="action" value="closeSession"> <input
-							type="hidden" name="tableId" value="${tableId}">
-								<input type="hidden" name="tableStartTime" value="${startTime}">
-						<button type="submit" class="btn btn-danger btn-lg">Close
-							Session</button>
-					</form>
+				<div class="col-8" style="text-align: left;">
+					<button type="button" class="btn btn-outline-success btn-lg">Add
+						item</button>
 				</div>
-				<div class="col-6" style="text-align: right; padding-right: 10%;">
-
-					<a class="btn btn-outline-danger btn-lg" href="tableMonitor"
-						name="check">Close Window</a>
-
+				<div class="col-4" style="text-align: right; padding-right: 10%;">
+					<form action="tableDetail" method="POST">
+						<input type="hidden" name="action" value="requestStatus">
+						<input type="hidden" name="tableId" value="${tableId}"> <input
+							type="hidden" name="tableStartTime" value="${startTime}">
+						<c:if test="${table.getTableStatus()==1}">
+							<button type="submit" class="btn btn-danger btn-lg">Help</button>
+						</c:if>
+						<c:if test="${table.getTableStatus()!=1}">
+							<button type="submit" class="btn btn-outline-danger btn-lg">Help</button>
+						</c:if>
+						<c:if test="${table.getTableStatus()==2}">
+							<button type="submit" class="btn btn-warning btn-lg">Bill</button>
+						</c:if>
+						<c:if test="${table.getTableStatus()!=2}">
+							<button type="submit" class="btn btn-outline-warning btn-lg">Bill</button>
+						</c:if>
+					</form>
 				</div>
 			</div>
 		</div>
-		<!-- </div> -->
-		<footer class="pt-4 my-md-5 pt-md-5 border-top"> </footer>
+		<br>
+		<div>
+			<div class="container">
+				<div class="scrollbar scrollbar-primary">
+					<table class="table">
+						<thead>
+							<tr style="text-align: center;">
+								<th scope="col">Order Time</th>
+								<th scope="col">Order Item</th>
+								<th scope="col">QTY</th>
+								<th scope="col">Price</th>
+								<th scope="col">Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${orders}" var="order">
+								<tr style="text-align: center;">
+									<td>${order.getTimeStamp()}</td>
+									<td>${order.getOrderItem()}</td>
+									<td>${order.getOrderQty()}</td>
+									<td>${order.getOrderPrice()}</td>
+									<td>
+										<form action="tableDetail" method="POST">
+											<input type="hidden" name="action" value="orderStatus">
+											<input type="hidden" name="orderTimeStamp"
+												value="${order.getTimeStamp()}"> <input
+												type="hidden" name="tableStartTime" value="${startTime}">
+											<input type="hidden" name="orderItem"
+												value="${order.getOrderID()}"> <input type="hidden"
+												name="tableId" value="${tableId}">
+											<c:if test="${order.getOrderStatus()==0}">
+												<button type="submit" class="btn btn-light btn-sm mx-1 mt-2"
+													href="#changeStatus">Ordered</button>
+											</c:if>
+											<c:if test="${order.getOrderStatus()!=0}">
+												<button type="submit" class="btn btn-dark btn-sm mx-1 mt-2">Delivered</button>
+											</c:if>
+										</form>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+
+				<table class="table">
+					<tr style="text-align: center;">
+						<td colspan="3">
+							<h5>SubTotal</h5>
+						</td>
+						<td colspan="3">
+							<h5>$ ${subTotal}</h5>
+						</td>
+					</tr>
+					<tr style="text-align: center;">
+						<td colspan="3">
+							<h5>Tax</h5>
+						</td>
+						<td colspan="3">
+							<h5>$ ${tax}</h5>
+						</td>
+					</tr>
+					<tr style="text-align: center;">
+						<td colspan="3">
+							<h5>Total</h5>
+						</td>
+						<td colspan="3">
+							<h5>$ ${totalAmount}</h5>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="controlBar">
+				<div class="row">
+					<div class="col-6" style="text-align: left;">
+						<form action="tableDetail" method="POST">
+							<input type="hidden" name="action" value="closeSession">
+							<input type="hidden" name="tableId" value="${tableId}"> <input
+								type="hidden" name="tableStartTime" value="${startTime}">
+							<button type="submit" class="btn btn-danger btn-lg">Close
+								Session</button>
+						</form>
+					</div>
+					<div class="col-6" style="text-align: right; padding-right: 10%;">
+
+						<a class="btn btn-outline-danger btn-lg" href="tableMonitor"
+							name="check">Close Window</a>
+
+					</div>
+				</div>
+			</div>
+			<!-- </div> -->
+			<footer class="pt-4 my-md-5 pt-md-5 border-top"> </footer>
+		</div>
 	</div>
-
-
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
