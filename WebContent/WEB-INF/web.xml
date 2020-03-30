@@ -43,6 +43,22 @@
 		<servlet-name>tableDetail</servlet-name>
 		<servlet-class>servlets.TableDetail</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>reportSaleServlet</servlet-name>
+		<servlet-class>servlets.ReportSaleServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>reportCustomerServlet</servlet-name>
+		<servlet-class>servlets.ReportCustomerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>reportCustomerServlet</servlet-name>
+		<url-pattern>/reportCustomerServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>reportSaleServlet</servlet-name>
+		<url-pattern>/reportSaleServlet</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>tableMonitor</servlet-name>
 		<url-pattern>/tableMonitor</url-pattern>

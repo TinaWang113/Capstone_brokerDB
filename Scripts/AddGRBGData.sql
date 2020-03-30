@@ -221,13 +221,12 @@ SELECT
      
      
 insert into capstone2020.survey (surveyA1, surveyA2, surveyA3,surveyA4, surveyA5, 
-surveyA6, surveyA7, surveyA8, table_tableID, table_startTime)
+surveyA6, surveyA7,table_tableID, table_startTime)
 SELECT     
    1 AS surveyA1,
    2 AS surveyA2,
    1 AS surveyA3,
    5 AS surveyA4,
-   1 AS surveyA5,
    1 AS surveyA5,
    1 AS surveyA6,
    1 AS surveyA7,
@@ -237,13 +236,12 @@ SELECT
      Where tableID = 1 ;    
 	
 insert into capstone2020.survey (surveyA1, surveyA2, surveyA3,surveyA4, surveyA5, 
-surveyA6, surveyA7, surveyA8, table_tableID, table_startTime)
+surveyA6, surveyA7, table_tableID, table_startTime)
 SELECT     
    1 AS surveyA1,
    2 AS surveyA2,
    1 AS surveyA3,
    5 AS surveyA4,
-   1 AS surveyA5,
    1 AS surveyA5,
    1 AS surveyA6,
    1 AS surveyA7,
@@ -252,14 +250,13 @@ SELECT
      FROM capstone2020.table
      Where tableID = 2 ;  
      insert into capstone2020.survey (surveyA1, surveyA2, surveyA3,surveyA4, surveyA5, 
-surveyA6, surveyA7, surveyA8, table_tableID, table_startTime)
+surveyA6, surveyA7, table_tableID, table_startTime)
 SELECT     
    1 AS surveyA1,
    2 AS surveyA2,
    4 AS surveyA3,
    5 AS surveyA4,
    1 AS surveyA5,
-   2 AS surveyA5,
    4 AS surveyA6,
    2 AS surveyA7,
    3 AS table_tableID,
@@ -269,18 +266,17 @@ SELECT
      
     -- Survery Question 
 insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
-values(1, "Food quality ") ;   
+values(1, "How was your food?") ;   
 insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
-values(2, "Service speed") ;    
+values(2, "How was the service?") ;    
 insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
-values(3, "Restaurant Enviornment ") ;    
+values(3, "How was the atmosphere?") ;    
 insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
-values(4, "Service quality") ;    
+values(4, "How was the service speed?") ;    
 insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
-values(5, "Food speed") ;    
+values(5, "Food delivery speed? adequate?") ;    
 insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
-values(6, "Will you recommand your friend to visit our restaurant") ;    
+values(6, "Will you recommend this restaurant?") ;    
 insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
-values(7, "How satisfied your food") ;    
-insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
-values(8, "How enjoy this experiment") ;    
+values(7, "How was your experience with this application?") ;    
+  

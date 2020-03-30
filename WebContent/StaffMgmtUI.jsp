@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +45,7 @@
 				<a class="nav-item nav-link " href="tableMonitor">Monitor</a> <a
 					class="nav-item nav-link " href="MenuUI.jsp">Menu</a> <a
 					class="nav-item nav-link active" href="staffmanagement">Staff</a> <a
-					class="nav-item nav-link" href="Mgmt_Report.jsp">Report</a>
+					class="nav-item nav-link" href="reportCustomerServlet">Report</a>
 				<a class="nav-item nav-link " href="DataBaseUI.jsp">Backup/
 					Restore</a>
 			</div>

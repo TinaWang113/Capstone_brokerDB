@@ -45,7 +45,7 @@
 				<a class="nav-item nav-link " href="tableMonitor">Monitor</a> <a
 					class="nav-item nav-link " href="MenuUI.jsp">Menu</a> <a
 					class="nav-item nav-link" href="staffmanagement">Staff</a> <a
-					class="nav-item nav-link active" href="Mgmt_Report.jsp">Report</a>
+					class="nav-item nav-link active" href="reportCustomerServlet">Report</a>
 				<a class="nav-item nav-link " href="DataBaseUI.jsp">Backup/
 					Restore</a>
 			</div>
@@ -77,8 +77,8 @@
 			<div class="row">
 				<div class="col-md-3">
 					<div class="list-group">
-						<a href="Mgmt_Report.jsp" class="list-group-item active">Customer
-							Report</a> <a href="userReport.jsp" class="list-group-item ">Sales
+						<a href="reportCustomerServlet" class="list-group-item active">Customer
+							Report</a> <a href="reportSaleServlet" class="list-group-item">Sales
 							Report</a>
 					</div>
 				</div>
@@ -88,24 +88,19 @@
 							Customer Report</a>
 						<div class="list-group-item">
 							<div class="row m-1">
-								<div class="col-md-3 text-center bg-light p-5">
+								<div class="col-md-4 text-center bg-light p-5">
 									<img src="img/user.svg">
-									<h3>100</h3>
+									<h3>${report.getTodayCustomer()}</h3>
 									<h5>Visitor</h5>
 								</div>
-								<div class="col-md-3 text-center bg-light p-5">
+								<div class="col-md-4 text-center bg-light p-5">
 									<img src="img/chart.svg">
-									<h3>1213</h3>
+									<h3>${report.getTodayOrder()}</h3>
 									<h5>Order</h5>
 								</div>
-								<div class="col-md-3 text-center bg-light p-5">
-									<img src="img/bell.svg">
-									<h3>205</h3>
-									<h5>Help</h5>
-								</div>
-								<div class="col-md-3 text-center bg-light p-5">
+								<div class="col-md-4 text-center bg-light p-5">
 									<img src="img/edit.svg">
-									<h3>78</h3>
+									<h3>${report.getTodayReview()}</h3>
 									<h5>Review</h5>
 								</div>
 
@@ -113,19 +108,20 @@
 						</div>
 					</div>
 					<div class="list-group mt-3">
-						<a href="#" class="list-group-item active">Average Customer
-							Satisfaction</a>
-						<div class="list-group-item">
-							<canvas id="pieChart"></canvas>
-						</div>
-					</div>
-					<div class="list-group mt-3">
-						<a href="#" class="list-group-item active">Specific Customer
+						<a href="#" class="list-group-item active">Monthly Customer
 							Satisfaction</a>
 						<div class="list-group-item">
 							<canvas id="barChart"></canvas>
 						</div>
 					</div>
+					<div class="list-group mt-3">
+						<a href="#" class="list-group-item active">Monthly Avg. Customer
+							Satisfaction</a>
+						<div class="list-group-item">
+							<canvas id="pieChart"></canvas>
+						</div>
+					</div>
+
 				</div>
 
 			</div>
@@ -151,7 +147,7 @@
 						labels : [ "Very Poor", "Poor", "Average", "Good",
 								"Excellent" ],
 						datasets : [ {
-							data : [ 26, 34, 40, 32, 12 ],
+							data : [ ${report.getQ_avg_1()}, ${report.getQ_avg_2()}, ${report.getQ_avg_3()}, ${report.getQ_avg_4()}, ${report.getQ_avg_5()} ],
 							backgroundColor : [ "#4D5360", , "#46BFBD",
 									"#FDB45C", "#F7464A", "#4D5360" ],
 							hoverBackgroundColor : [ "#FF5A5E", "#5AD3D1",
@@ -169,10 +165,11 @@
 		var myBarChart = new Chart(ctxB, {
 			type : 'bar',
 			data : {
-				labels : [ "Food", "Service", "Atmosphere", "Speed" ],
+				labels : [ "Food", "Service", "Atmosphere", "Speed_svc",
+						"Speed_food", "Recommendation", "rate_App" ],
 				datasets : [ {
 					label : '# of 5 Stars',
-					data : [ 4.5, 4, 3.5, 3 ],
+					data : [ ${report.getQ_food()}, ${report.getQ_service()}, ${report.getQ_atmosphere()}, ${report.getQ_speed_svc()}, ${report.getQ_speec_food()},${report.getQ_recommendation()} ,${report.getQ_rate_app()}],
 					backgroundColor : [ 'rgba(255, 99, 132, 0.2)',
 							'rgba(54, 162, 235, 0.2)',
 							'rgba(255, 206, 86, 0.2)',
@@ -197,8 +194,7 @@
 			}
 		});
 	</script>
-</head>
-
+</body>
 
 
 

@@ -2,11 +2,11 @@ package model;
 
 public class TableMgmt {
 
-	int tableID;
-	String startTime;
-	String endTime;
-	double totalAmount;
-	int tableStatus;
+	private int tableID;
+	private String startTime;
+	private String endTime;
+	private double totalAmount;
+	private int tableStatus;
 
 	public TableMgmt() {
 		super();

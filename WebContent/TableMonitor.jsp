@@ -46,7 +46,7 @@
 				<a class="nav-item nav-link active" href="tableMonitor">Monitor</a> <a
 					class="nav-item nav-link " href="MenuUI.jsp">Menu</a> <a
 					class="nav-item nav-link" href="staffmanagement">Staff</a> <a
-					class="nav-item nav-link" href="Mgmt_Report.jsp">Report</a>
+					class="nav-item nav-link" href="reportCustomerServlet">Report</a>
 				<a class="nav-item nav-link " href="DataBaseUI.jsp">Backup/
 					Restore</a>
 			</div>

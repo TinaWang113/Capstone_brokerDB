@@ -42,10 +42,11 @@
 		<div class="collapse navbar-collapse justify-content-between"
 			id="navbar">
 			<div class="navbar-nav">
-				<a class="nav-item nav-link active" href="Mgmt_Report.jsp">Report</a>
-				<a class="nav-item nav-link " href="MenuUI.jsp">Menu</a> <a
-					class="nav-item nav-link " href="staffmanagement">Staff</a> <a
-					class="nav-item nav-link " href="DataBaseUI.jsp">Backup/
+				<a class="nav-item nav-link " href="tableMonitor">Monitor</a> <a
+					class="nav-item nav-link " href="MenuUI.jsp">Menu</a> <a
+					class="nav-item nav-link" href="staffmanagement">Staff</a> <a
+					class="nav-item nav-link active" href="reportCustomerServlet">Report</a>
+				<a class="nav-item nav-link " href="DataBaseUI.jsp">Backup/
 					Restore</a>
 			</div>
 		</div>
@@ -76,8 +77,8 @@
 			<div class="row">
 				<div class="col-md-3">
 					<div class="list-group">
-						<a href="Mgmt_Report.jsp" class="list-group-item ">Customer
-							Report</a> <a href="userReport.jsp" class="list-group-item active">Sales
+						<a href="reportCustomerServlet" class="list-group-item ">Customer
+							Report</a> <a href="reportSaleServlet" class="list-group-item active">Sales
 							Report</a>
 					</div>
 				</div>

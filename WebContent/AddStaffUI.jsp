@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -31,7 +31,7 @@
 				<a class="nav-item nav-link " href="tableMonitor">Monitor</a> <a
 					class="nav-item nav-link " href="MenuUI.jsp">Menu</a> <a
 					class="nav-item nav-link active" href="staffmanagement">Staff</a> <a
-					class="nav-item nav-link" href="Mgmt_Report.jsp">Report</a> <a
+					class="nav-item nav-link" href="reportCustomerServlet">Report</a> <a
 					class="nav-item nav-link " href="DataBaseUI.jsp">Backup/
 					Restore</a>
 			</div>
