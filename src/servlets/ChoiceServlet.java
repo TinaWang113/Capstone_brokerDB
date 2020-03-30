@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,7 +48,12 @@ public class ChoiceServlet extends HttpServlet {
 		
 		TableBroker tableBroker = new TableBroker();
 		
-		tableBroker.insertTable(table);
+		try {
+			tableBroker.insertTable(table);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		String menuSelection = request.getParameter("action");
