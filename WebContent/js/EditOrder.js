@@ -1,8 +1,7 @@
-//this method is for sending the items to the servlet
-//without reloading the webpage
-//this will also return the amount of items ordered for the badge 
+//This will be for editing the order
+
 $(document).ready(function () {
-    $('.addToOrderBtn').click(function () {
+    $('.editingOrderBtn').click(function () {
 			if (($(this).parent().find("input").val()) < 0) {
 				$(this).parent().find("input").val("");
 				return;
@@ -12,9 +11,9 @@ $(document).ready(function () {
 					url: "order",
 					datatype : 'text',
 					data: {
-						itemId : $(this).attr('data-itemId'),
 						itemQuantity : $(this).parent().find("input").val(),
-						action : $("#addToOrderBtn").val()
+						action : $("#editingOrderBtn").val(),
+						itemIndex : $(this).attr('data-itemIndex')
 						
 				},
 				success: function(responseData){
@@ -31,10 +30,11 @@ $(document).ready(function () {
 
 
 
+
 //Up arrow function
 $(document).ready(function () {
 	$('.upArrow').click( function () {
-		 
+		
 	    var value = $(this).parent().find("input").val()
 			value = isNaN(value) ? 0 : value;
 			value = value <= 0 ? 0 : value
@@ -53,4 +53,3 @@ $(document).ready(function () {
 	    $(this).parent().find("input").val(value)
 	});
 });
-

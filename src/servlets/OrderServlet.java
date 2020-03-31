@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,9 +30,11 @@ import model.Table;
 public class OrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 //	ArrayList<Item> itemList = new ArrayList<>();
-	ArrayList<Order> orderList = new ArrayList<>();
+//	ArrayList<Order> orderList = new ArrayList<>();
+	HashMap<Integer, Order> orderList = new HashMap<>();
 	int currentSize;
 	int difference = 0;
+	int count = 0;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -40,11 +43,12 @@ public class OrderServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		ArrayList<Order> parsedOrderList = (ArrayList<Order>)session.getAttribute("orderList");
-//		ArrayList<Category> parsedCategoryList = (ArrayList<Category>)session.getAttribute("parsedCategoryList");
+
+		HashMap<Integer, Order> parsedOrderList = (HashMap<Integer, Order>)session.getAttribute("orderList");
+
 		
 		request.setAttribute("parsedOrderList", parsedOrderList);
-//		request.setAttribute("parsedCategoryList", parsedCategoryList);
+
 		
 		getServletContext().getRequestDispatcher("/OrderUI.jsp").forward(request, response);
 	}
@@ -59,16 +63,16 @@ public class OrderServlet extends HttpServlet {
         Date date = new Date();
         Timestamp startTime = Timestamp.valueOf(f.format(date));
 		
-		TableBroker tableBroker = new TableBroker();
+//		TableBroker tableBroker = new TableBroker();
 		
 		Table table = (Table)session.getAttribute("table");
 		
 		
 		if (session.isNew() != true) {
 			
-			String addOrSubmitBtn = request.getParameter("action");
+			String modifyOrderBtn = request.getParameter("action");
 			
-			if (addOrSubmitBtn.equals("addToOrder")) {
+			if (modifyOrderBtn.equals("addToOrder")) {
 				
 				String itemId = request.getParameter("itemId");
 				int itemQuantity = Integer.parseInt(request.getParameter("itemQuantity"));
@@ -87,9 +91,9 @@ public class OrderServlet extends HttpServlet {
 						order.setOrderItem(item);
 						order.setOrderAmount(item.getItemPrice() * itemQuantity);
 						
-						orderList.add(order);
+						orderList.put(count, order);
 						
-						
+						count++;
 						session.setAttribute("orderList", orderList);
 						response.setContentType("text/html;charset=UTF-8");
 				        response.getWriter().write(Integer.toString(orderList.size() - difference));
@@ -104,7 +108,7 @@ public class OrderServlet extends HttpServlet {
 					}
 				}
 			
-			else if (addOrSubmitBtn.equals("submitForOrder")) {
+			else if (modifyOrderBtn.equals("submitForOrder")) {
 				
 				
 				OrderBroker orderBroker = new OrderBroker();
@@ -121,20 +125,23 @@ public class OrderServlet extends HttpServlet {
 					}
 					
 				}
-//				for (Order order : orderList) {
-//					try {
-//						System.out.println(order.toString());
-//						orderBroker.insert(order);
-//						order.setOrderStatus(1);
-//						
-//					} catch (SQLException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//				}
 				difference = orderList.size();
 				
 				response.sendRedirect("menu");
+			}
+			else if (modifyOrderBtn.equals("editItem")) {
+				int itemIndex = Integer.parseInt(request.getParameter("itemIndex"));
+				int itemQuantity = Integer.parseInt(request.getParameter("itemQuantity"));
+				
+				Order editOrder = orderList.get(itemIndex);
+				editOrder.setOrderItemQty(itemQuantity);
+				
+				orderList.replace(itemIndex, editOrder);
+			}
+			else if (modifyOrderBtn.equals("deleteItem")) {
+				int itemIndex = Integer.parseInt(request.getParameter("itemIndex"));
+				
+				orderList.remove(itemIndex);
 			}
 		}
 			

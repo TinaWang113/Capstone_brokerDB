@@ -1,19 +1,18 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import brokers.MenuBroker;
 import brokers.TableBroker;
 import model.Table;
 
@@ -31,9 +30,9 @@ public class ChoiceServlet extends HttpServlet {
 		
 		
 		//this will grab the tableid from the url
-//		tableId = Integer.parseInt(request.getParameter("tableid"));
+		tableId = Integer.parseInt(request.getParameter("tableId"));
 
-//		System.out.println(tableId + " THIS IS THE TABLE ID");
+		System.out.println(tableId + " THIS IS THE TABLE ID");
 		getServletContext().getRequestDispatcher("/ChoiceUI.jsp").forward(request, response);
 		
 		
@@ -51,18 +50,23 @@ public class ChoiceServlet extends HttpServlet {
 		Table table = new Table();
 		//TODO: THIS IS JUST TESTING REMOVE BEFORE FINAL PRSENTATION
 		//THIS SETS THE TABLE ID TO A RANDOM NUMBER BETWEEN 1 AND 25!
-		Random r = new Random();
-		int low = 1;
-		int high = 25;
-		int fakeTableId = r.nextInt(high-low) + low;
+//		Random r = new Random();
+//		int low = 1;
+//		int high = 25;
+//		int fakeTableId = r.nextInt(high-low) + low;
 		////////////////////////////////////////////
-		table.setTableID(fakeTableId);
+		table.setTableID(tableId);
 		table.setStartTime(startTime);
 		
 		
 		TableBroker tableBroker = new TableBroker();
 		
-		tableBroker.insertTable(table);
+		try {
+			tableBroker.insertTable(table);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		String menuSelection = request.getParameter("action");
@@ -71,7 +75,7 @@ public class ChoiceServlet extends HttpServlet {
 		session.setAttribute("table", table);
 		
 		
-		response.sendRedirect("menu");
+		response.sendRedirect("menu?tableId=17");
 	}
 
 }

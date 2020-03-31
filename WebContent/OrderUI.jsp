@@ -61,11 +61,12 @@
 	  
 	  <c:forEach var="order" items="${parsedOrderList}" >
 	    <tr>
-	      <td class="amt">${order.getOrderItemQty()}</td>
-	      <td class="item">${order.getOrderItem().getItemName()}</td>
-	      <td class="price">${order.getOrderAmount()}</td>
+	      <td class="amt" >${order.value.getOrderItemQty()}</td>
+	      <td class="item">${order.value.getOrderItem().getItemName()}</td>
+	      <td class="price">${order.value.getOrderAmount()}</td>
+	      <td class="order" data-index="${order.key}">${order.key}</td>
 	      
-	      	<c:set var = "orderStatus" scope = "session" value = "${order.getOrderStatus()}"/>
+	      	<c:set var = "orderStatus" scope = "session" value = "${order.value.getOrderStatus()}"/>
 	      	<c:choose>
     			<c:when test="${orderStatus == 1}">
        		 		<td class="status">Ordered</td>
