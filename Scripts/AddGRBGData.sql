@@ -144,8 +144,13 @@ insert into item (itemID, itemName, itemPrice, itemDesc,categoryID,photoLocalDir
 Values(null,'Coffee',2.5,'',8,'','');
 
 -- Table Data
+<<<<<<< HEAD
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
 Values(1, '2020-03-30 20:30:00',now()+200,3,1);
+=======
+insert into capstone2020.table(tableID, startTime, tableStatus,staff_sID)
+Values(1, now(),3,1);
+>>>>>>> branch 'master' of https://github.com/Capstone-SAITSD-2020/CapstoneMOS.git
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
 Values(2, '2020-03-30 20:30:00', now()+300,2,2);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
@@ -155,9 +160,15 @@ Values(4, '2020-03-30 20:30:00', now()+300,1,4);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
 Values(5, '2020-03-30 20:30:00',now()+200,0,1);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
+<<<<<<< HEAD
 Values(6,'2020-03-30 20:30:00',now()+200,2,2);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
 Values(7, '2020-03-30 20:30:00',now()+1400,3,3);
+=======
+Values(6, now(),now()+200,2,2);
+insert into capstone2020.table(tableID, startTime, tableStatus,staff_sID)
+Values(2, now()+2,3,3);
+>>>>>>> branch 'master' of https://github.com/Capstone-SAITSD-2020/CapstoneMOS.git
 
 -- order Data
 insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)

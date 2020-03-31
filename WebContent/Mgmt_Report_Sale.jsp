@@ -172,7 +172,11 @@
 						"ThisMonth" ],
 				datasets : [ {
 					label : "Last 1 year	",
-					data : [ 212, 222, 235, 241, 256, 267, 290 ],
+					data : [ ${report.getThisMonth_12()}, ${report.getThisMonth_11()}, ${report.getThisMonth_10()}, 
+						${report.getThisMonth_9()}, ${report.getThisMonth_8()}, ${report.getThisMonth_7()}, 
+						${report.getThisMonth_6()},${report.getThisMonth_5()},${report.getThisMonth_4()},
+						${report.getThisMonth_3()},${report.getThisMonth_2()},${report.getThisMonth_1()},
+						${report.getThisMonth_0()}],
 					backgroundColor : [ 'rgba(105, 0, 132, .2)', ],
 					borderColor : [ 'rgba(200, 99, 132, .7)', ],
 					borderWidth : 2

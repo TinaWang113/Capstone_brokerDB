@@ -33,7 +33,11 @@ CREATE TABLE IF NOT EXISTS `capstone2020`.`category` (
   PRIMARY KEY (`categoryID`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 1
+<<<<<<< HEAD
 DEFAULT CHARACTER SET = utf8mb4
+=======
+DEFAULT CHARACTER SET = utf8
+>>>>>>> branch 'master' of https://github.com/Capstone-SAITSD-2020/CapstoneMOS.git
 COMMENT = 'Meal category';
 
 
@@ -59,7 +63,11 @@ CREATE TABLE IF NOT EXISTS `capstone2020`.`item` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 AUTO_INCREMENT = 1
+<<<<<<< HEAD
 DEFAULT CHARACTER SET = utf8mb4
+=======
+DEFAULT CHARACTER SET = utf8
+>>>>>>> branch 'master' of https://github.com/Capstone-SAITSD-2020/CapstoneMOS.git
 COMMENT = 'Meal items';
 
 
@@ -78,6 +86,7 @@ CREATE TABLE IF NOT EXISTS `capstone2020`.`staff` (
   `jobName` VARCHAR(45) NULL,
   PRIMARY KEY (`sID`),
   UNIQUE INDEX `sID_UNIQUE` (`sID` ASC) )
+  AUTO_INCREMENT = 1
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
@@ -88,7 +97,7 @@ DROP TABLE IF EXISTS `capstone2020`.`table` ;
 CREATE TABLE IF NOT EXISTS `capstone2020`.`table` (
   `tableID` INT(11) NOT NULL,
   `startTime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `endTime` DATETIME NULL DEFAULT NULL,
+  `endTime` DATETIME DEFAULT NULL,
   `tableStatus` INT(11) NOT NULL DEFAULT '0',
   `staff_sID` INT(11) NOT NULL,
   PRIMARY KEY (`tableID`, `startTime`),
@@ -99,7 +108,12 @@ CREATE TABLE IF NOT EXISTS `capstone2020`.`table` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+<<<<<<< HEAD
 DEFAULT CHARACTER SET = utf8mb4;
+=======
+AUTO_INCREMENT = 1
+DEFAULT CHARACTER SET = utf8;
+>>>>>>> branch 'master' of https://github.com/Capstone-SAITSD-2020/CapstoneMOS.git
 
 
 -- -----------------------------------------------------
@@ -131,7 +145,11 @@ CREATE TABLE IF NOT EXISTS `capstone2020`.`order` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 AUTO_INCREMENT = 1
+<<<<<<< HEAD
 DEFAULT CHARACTER SET = utf8mb4;
+=======
+DEFAULT CHARACTER SET = utf8;
+>>>>>>> branch 'master' of https://github.com/Capstone-SAITSD-2020/CapstoneMOS.git
 
 
 -- -----------------------------------------------------
@@ -159,7 +177,11 @@ CREATE TABLE IF NOT EXISTS `capstone2020`.`survey` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 AUTO_INCREMENT = 1
+<<<<<<< HEAD
 DEFAULT CHARACTER SET = utf8mb4;
+=======
+DEFAULT CHARACTER SET = utf8;
+>>>>>>> branch 'master' of https://github.com/Capstone-SAITSD-2020/CapstoneMOS.git
 
 
 -- -----------------------------------------------------
