@@ -14,21 +14,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+import brokers.ReportBroker;
 import brokers.TableMgmtBrokder;
 import model.OrderMgmt;
+import model.ReportBest;
+import model.ReportSale;
 import model.TableMgmt;
 
 /**
  * Servlet implementation class TableMonitor
  */
-public class ReportSale extends HttpServlet {
+public class ReportSaleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ReportSale() {
+	public ReportSaleServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -42,27 +44,22 @@ public class ReportSale extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-		List<TableMgmt> tables = null;
-		TableMgmtBrokder tb = new TableMgmtBrokder();
+		ReportSale report = null;
+		ReportBroker rb = new ReportBroker();
+		ArrayList<ReportBest> bestToday = new ArrayList<ReportBest>();
+		ArrayList<ReportBest> bestMonth = new ArrayList<ReportBest>();
 
 		try {
-			tables = tb.getTableAll();
+			report = rb.getSaleTrend();
+			bestToday = rb.getSaleBestToday();
+			bestMonth = rb.getSaleBestMonth();
 		} catch (NumberFormatException | SQLException e) {
 			e.printStackTrace();
 		}
 
-		for (int i = 0; i < tables.size(); i++) {
-			int value = 0;
-			value = tables.get(i).getTableStatus();
-			
-			String startTime ="";
-			startTime = tables.get(i).getStartTime();
-			
-			request.setAttribute("table_" + (i + 1)+"_startTime", startTime);
-			request.setAttribute("table_" + (i + 1), value);
-			
-		}
-		request.setAttribute("tables", tables);
+		request.setAttribute("report", report);
+		request.setAttribute("bestToday", bestToday);
+		request.setAttribute("bestMonth", bestMonth);
 		getServletContext().getRequestDispatcher("/Mgmt_Report_Sale.jsp").forward(request, response);
 	}
 

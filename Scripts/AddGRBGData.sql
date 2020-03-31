@@ -31,7 +31,7 @@ insert into category (categoryID, categoryName, menuID)
 Values (null,'Meat',2);
 insert into category (categoryID, categoryName, menuID)
 Values (null,'Vegetable',2);
-
+-- select * from order; 
 insert into item (itemID, itemName, itemPrice, itemDesc, categoryID,photoLocalDirectory,photoCloudDirectory)
 Values(null,'Beef Short Rib Box | LA갈비',14.99,'',3,'','');
 insert into item (itemID, itemName, itemPrice, itemDesc,categoryID,photoLocalDirectory,photoCloudDirectory)
@@ -145,19 +145,19 @@ Values(null,'Coffee',2.5,'',8,'','');
 
 -- Table Data
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
-Values(1, now(),now()+200,3,1);
+Values(1, '2020-03-30 20:30:00',now()+200,3,1);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
-Values(2, now(), now()+300,2,2);
+Values(2, '2020-03-30 20:30:00', now()+300,2,2);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
-Values(3, now(),now()+200,2,3);
+Values(3, '2020-03-30 20:30:00',now()+200,2,3);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
-Values(4, now()+1, now()+300,1,4);
+Values(4, '2020-03-30 20:30:00', now()+300,1,4);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
-Values(5, now(),now()+200,0,1);
+Values(5, '2020-03-30 20:30:00',now()+200,0,1);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
-Values(6, now(),now()+200,2,2);
+Values(6,'2020-03-30 20:30:00',now()+200,2,2);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
-Values(7, now(),now()+1400,3,3);
+Values(7, '2020-03-30 20:30:00',now()+1400,3,3);
 
 -- order Data
 insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
@@ -167,10 +167,10 @@ SELECT
    1 AS orderStatus,
    2 AS item_itemID,
    2 AS table_tableID,
-   startTime
+   '2020-03-30 20:30:00'
      FROM capstone2020.`table`
      Where tableID = 2;
-
+     
 insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
 SELECT 
    5 AS orderItemQty,
@@ -178,7 +178,7 @@ SELECT
    3 AS orderStatus,
    9 AS item_itemID,
    5 AS table_tableID,
-   startTime
+   '2020-03-30 20:30:00'
      FROM capstone2020.table
      Where tableID = 5;
 
@@ -189,7 +189,7 @@ SELECT
    0 AS orderStatus,
    52 AS item_itemID,
    1 AS table_tableID,
-   startTime
+   '2020-03-30 20:30:00'
      FROM capstone2020.table
      Where tableID = 1;
  
@@ -200,7 +200,7 @@ SELECT
    1 AS orderStatus,
    53 AS item_itemID,
    1 AS table_tableID,
-   startTime
+  '2020-03-30 20:30:00'
      FROM capstone2020.table
      Where tableID = 3; 
      	
@@ -211,7 +211,7 @@ SELECT
    1 AS orderStatus,
    53 AS item_itemID,
    1 AS table_tableID,
-   startTime
+   '2020-03-30 20:30:00'
      FROM capstone2020.table
      Where tableID = 7;    
      
@@ -231,7 +231,7 @@ SELECT
    1 AS surveyA6,
    1 AS surveyA7,
    1 AS table_tableID,
-   startTime
+  '2020-03-30 20:30:00'
      FROM capstone2020.table
      Where tableID = 1 ;    
 	
@@ -246,7 +246,7 @@ SELECT
    1 AS surveyA6,
    1 AS surveyA7,
    2 AS table_tableID,
-   startTime
+   '2020-03-30 20:30:00'
      FROM capstone2020.table
      Where tableID = 2 ;  
      insert into capstone2020.survey (surveyA1, surveyA2, surveyA3,surveyA4, surveyA5, 
@@ -260,7 +260,7 @@ SELECT
    4 AS surveyA6,
    2 AS surveyA7,
    3 AS table_tableID,
-   startTime
+   '2020-03-30 20:30:00'
      FROM capstone2020.table
      Where tableID = 3 ;    
      

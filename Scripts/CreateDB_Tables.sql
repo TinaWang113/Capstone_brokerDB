@@ -18,7 +18,7 @@ DROP SCHEMA IF EXISTS `capstone2020` ;
 -- -----------------------------------------------------
 -- Schema capstone2020
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `capstone2020` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `capstone2020` DEFAULT CHARACTER SET utf8mb4 ;
 USE `capstone2020` ;
 
 -- -----------------------------------------------------
@@ -32,8 +32,8 @@ CREATE TABLE IF NOT EXISTS `capstone2020`.`category` (
   `menuID` INT(11) NOT NULL,
   PRIMARY KEY (`categoryID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 12
-DEFAULT CHARACTER SET = utf8
+AUTO_INCREMENT = 1
+DEFAULT CHARACTER SET = utf8mb4
 COMMENT = 'Meal category';
 
 
@@ -58,8 +58,8 @@ CREATE TABLE IF NOT EXISTS `capstone2020`.`item` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 56
-DEFAULT CHARACTER SET = utf8
+AUTO_INCREMENT = 1
+DEFAULT CHARACTER SET = utf8mb4
 COMMENT = 'Meal items';
 
 
@@ -80,7 +80,6 @@ CREATE TABLE IF NOT EXISTS `capstone2020`.`staff` (
   UNIQUE INDEX `sID_UNIQUE` (`sID` ASC) )
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `capstone2020`.`table`
 -- -----------------------------------------------------
@@ -100,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `capstone2020`.`table` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = utf8mb4;
 
 
 -- -----------------------------------------------------
@@ -131,8 +130,8 @@ CREATE TABLE IF NOT EXISTS `capstone2020`.`order` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
-DEFAULT CHARACTER SET = utf8;
+AUTO_INCREMENT = 1
+DEFAULT CHARACTER SET = utf8mb4;
 
 
 -- -----------------------------------------------------
@@ -159,8 +158,8 @@ CREATE TABLE IF NOT EXISTS `capstone2020`.`survey` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 90
-DEFAULT CHARACTER SET = utf8;
+AUTO_INCREMENT = 1
+DEFAULT CHARACTER SET = utf8mb4;
 
 
 -- -----------------------------------------------------
@@ -172,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `capstone2020`.`surveyquestions` (
   `surveyQuestionID` INT(11) NOT NULL,
   `surveysurveyQuestion` VARCHAR(255) NULL DEFAULT NULL)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = utf8mb4;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

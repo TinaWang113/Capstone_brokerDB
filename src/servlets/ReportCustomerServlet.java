@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import brokers.ReportCustomerBroker;
+import brokers.ReportBroker;
 import brokers.TableMgmtBrokder;
 import model.OrderMgmt;
 import model.ReportCustomer;
@@ -45,7 +45,7 @@ public class ReportCustomerServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		ReportCustomer report = null;
-		ReportCustomerBroker rb = new ReportCustomerBroker();
+		ReportBroker rb = new ReportBroker();
 
 		try {
 			report = rb.getCustomerReport();
