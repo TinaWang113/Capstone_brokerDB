@@ -18,6 +18,7 @@ public class Table {
 	private Timestamp startTime = null;
 	private Timestamp endTime = null;
 	private int tableStatus =0;
+	private int staff_sID ;
 	
 	/**
 	 * @param tableID
@@ -25,12 +26,13 @@ public class Table {
 	 * @param endTime
 	 * @param tableStatus
 	 */
-	public Table(int tableID, Timestamp startTime, Timestamp endTime, int tableStatus) {
+	public Table(int tableID, Timestamp startTime, Timestamp endTime, int tableStatus, int staff_sID ) {
 		super();
 		this.tableID = tableID;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.tableStatus = tableStatus;
+		this.staff_sID = staff_sID;
 	}
 	
 	/**
@@ -104,6 +106,20 @@ public class Table {
 	public void setTableStatus(int tableStatus) {
 		this.tableStatus = tableStatus;
 	}
+	/**
+	 * @return the staff_sID
+	 */
+	public int getStaff_sID() {
+		return staff_sID;
+	}
+
+	/**
+	 * @param staff_sID the staff_sID to set
+	 */
+	public void setStaff_sID(int staff_sID) {
+		this.staff_sID = staff_sID;
+	}
+
 	@Override
 	public String toString() {
 		return "TableBroker [tableID=" + tableID + ", startTime=" + startTime + ", endTime=" + endTime

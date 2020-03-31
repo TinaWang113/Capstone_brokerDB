@@ -13,12 +13,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Survey;
 import model.Table;
 import server.Connect2Server;
 
 /**
  * @author 730693
- *
+ * 
  */
 public class TableBroker {	
 	Connect2Server c2s = new Connect2Server();
@@ -28,46 +29,52 @@ public class TableBroker {
 	String stmtString="";
 	boolean executedResult = false;
 	List <Table> tables; 
+
 	/*implement Survey later */
 	
-	public boolean insertTable(Table table){
+	public boolean insertTable(Table table) throws SQLException{
 		executedResult = false;
 		System.out.println("[Table] insertTable");
 		System.out.println("[TB_insert] table = "+ table.toString());
-		try {				
-			if(table.getTableID() > 0 || table.getStartTime() != null) {
-				if( !isExisting(table)) {
-					connect();	
-					//  `tableID`,  `startTime`, `endTime`, `tableStatus`
-					stmtString = "insert capstone2020.`table` (tableID, startTime, endTime, tableStatus)"
-								+  " values  (?,?,?,?)";		
-				
-					preparedStmt = con.prepareStatement(stmtString);
-	
-					preparedStmt.setInt(1, table.getTableID());
-					preparedStmt.setString(2,table.getStartTime().toString());
-					if(table.getEndTime() == null) {
-						preparedStmt.setObject(3,null);
-					}else {
-						preparedStmt.setString(3,table.getEndTime().toString());
-					}
-					preparedStmt.setInt(4, table.getTableStatus());
-					//System.out.println("[TableBroker]insertTable_stmt = " + preparedStmt.toString());
-					if (preparedStmt.executeUpdate() == 1) {
-						executedResult = true;		
-					}
-					preparedStmt.close();
-					con.close();
-				}else {
+		StaffBroker sBroker = new StaffBroker();
+		if(!sBroker.isExisitng(table.getStaff_sID())) {
+			System.out.println("[TB_insert] the StaffID is incorrect, which not in staff DB.");
+		}else {
+			try {				
+				if(table.getTableID() > 0 || table.getStartTime() != null) {
+					if( !isExisting(table)) {
+						connect();	
+						//  `tableID`,  `startTime`, `endTime`, `tableStatus`, `staff_sID`
+						stmtString = "insert capstone2020.`table` (tableID, startTime, endTime, tableStatus, staff_sID)"
+									+  " values  (?,?,?,?,?)";		
 					
-				}				System.out.println("the table, "+ table.getTableID()+" is existing in DB.");
-
-			}else {			
-				System.out.println("the startTime or tableID is incorrect.");
+						preparedStmt = con.prepareStatement(stmtString);
+		
+						preparedStmt.setInt(1, table.getTableID());
+						preparedStmt.setString(2,table.getStartTime().toString());
+						if(table.getEndTime() == null) {
+							preparedStmt.setObject(3,null);
+						}else {
+							preparedStmt.setString(3,table.getEndTime().toString());
+						}
+						preparedStmt.setInt(4, table.getTableStatus());
+						//System.out.println("[TableBroker]insertTable_stmt = " + preparedStmt.toString());
+						preparedStmt.setInt(5, table.getStaff_sID());
+						if (preparedStmt.executeUpdate() == 1) {
+							executedResult = true;		
+						} 
+						preparedStmt.close();
+						con.close();
+					}else {
+						System.out.println("the table, "+ table.getTableID()+" is existing in DB.");
+					}				
+				}else {			
+					System.out.println("the startTime or tableID is incorrect.");
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		System.out.println("[TB] executedResult: " + executedResult);
 		return executedResult;
@@ -121,7 +128,7 @@ public class TableBroker {
 						+ " tableStatus=" + table.getTableStatus() + " where tableID = "+table.getTableID();
 				*/
 				stmtString = "update table SET "
-						+ " endTime ="+ table.getEndTime() + " tableStatus=" + table.getTableStatus() 
+						+ " endTime ="+ table.getEndTime() + " tableStatus=" + table.getTableStatus() + "staff_sID = " +table.getStaff_sID() 
 						+ " where tableID = "+table.getTableID() +" AND startTime = '"+table.getStartTime().toString()+"'";
 
 				preparedStmt = con.prepareStatement(stmtString);
@@ -236,7 +243,7 @@ public class TableBroker {
 	}
 	
 	public Table findByID(int tableID, Timestamp startTime) {
-		Table table = new Table(tableID, startTime, null,0);
+		Table table = new Table(tableID, startTime);
 		if(isExisting(table)) {
 			try {
 				connect();
@@ -249,6 +256,7 @@ public class TableBroker {
 				rs.next();
 				table.setEndTime(rs.getTimestamp(1));
 				table.setTableStatus(rs.getInt(2));
+				table.setStaff_sID(rs.getInt("staff_sID"));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -275,6 +283,7 @@ public class TableBroker {
 				rs.next();
 				table.setEndTime(rs.getTimestamp(1));
 				table.setTableStatus(rs.getInt(2));
+				table.setStaff_sID(rs.getInt("staff_sID"));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -303,6 +312,7 @@ public class TableBroker {
 				table.setStartTime(rs.getTimestamp("startTime"));
 				table.setEndTime(rs.getTimestamp("endTime"));
 				table.setTableStatus(rs.getInt("tableStatus"));
+				table.setStaff_sID(rs.getInt("staff_sID"));
 				tables.add(table);
 			}
 		} catch (SQLException e) {
