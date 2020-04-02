@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("pin", loginRequest);
-		response.sendRedirect("staffmanagement");
+		response.sendRedirect("tableMonitor");
 	}
 
 }

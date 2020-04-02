@@ -31,7 +31,7 @@ insert into category (categoryID, categoryName, menuID)
 Values (null,'Meat',2);
 insert into category (categoryID, categoryName, menuID)
 Values (null,'Vegetable',2);
-
+-- select * from order; 
 insert into item (itemID, itemName, itemPrice, itemDesc, categoryID,photoLocalDirectory,photoCloudDirectory)
 Values(null,'Beef Short Rib Box | LA갈비',14.99,'',3,'','');
 insert into item (itemID, itemName, itemPrice, itemDesc,categoryID,photoLocalDirectory,photoCloudDirectory)
@@ -144,20 +144,31 @@ insert into item (itemID, itemName, itemPrice, itemDesc,categoryID,photoLocalDir
 Values(null,'Coffee',2.5,'',8,'','');
 
 -- Table Data
+<<<<<<< HEAD
+insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
+Values(1, '2020-03-30 20:30:00',now()+200,3,1);
+=======
 insert into capstone2020.table(tableID, startTime, tableStatus,staff_sID)
 Values(1, now(),3,1);
+>>>>>>> branch 'master' of https://github.com/Capstone-SAITSD-2020/CapstoneMOS.git
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
-Values(2, now(), now()+300,2,2);
+Values(2, '2020-03-30 20:30:00', now()+300,2,2);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
-Values(3, now(),now()+200,2,3);
+Values(3, '2020-03-30 20:30:00',now()+200,2,3);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
-Values(4, now()+1, now()+300,1,4);
+Values(4, '2020-03-30 20:30:00', now()+300,1,4);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
-Values(5, now(),now()+200,0,1);
+Values(5, '2020-03-30 20:30:00',now()+200,0,1);
 insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
+<<<<<<< HEAD
+Values(6,'2020-03-30 20:30:00',now()+200,2,2);
+insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
+Values(7, '2020-03-30 20:30:00',now()+1400,3,3);
+=======
 Values(6, now(),now()+200,2,2);
 insert into capstone2020.table(tableID, startTime, tableStatus,staff_sID)
 Values(2, now()+2,3,3);
+>>>>>>> branch 'master' of https://github.com/Capstone-SAITSD-2020/CapstoneMOS.git
 
 -- order Data
 insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
@@ -167,10 +178,10 @@ SELECT
    1 AS orderStatus,
    2 AS item_itemID,
    2 AS table_tableID,
-   startTime
+   '2020-03-30 20:30:00'
      FROM capstone2020.`table`
      Where tableID = 2;
-
+     
 insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
 SELECT 
    5 AS orderItemQty,
@@ -178,7 +189,7 @@ SELECT
    3 AS orderStatus,
    9 AS item_itemID,
    5 AS table_tableID,
-   startTime
+   '2020-03-30 20:30:00'
      FROM capstone2020.table
      Where tableID = 5;
 
@@ -189,7 +200,7 @@ SELECT
    0 AS orderStatus,
    52 AS item_itemID,
    1 AS table_tableID,
-   startTime
+   '2020-03-30 20:30:00'
      FROM capstone2020.table
      Where tableID = 1;
  
@@ -200,7 +211,7 @@ SELECT
    1 AS orderStatus,
    53 AS item_itemID,
    1 AS table_tableID,
-   startTime
+  '2020-03-30 20:30:00'
      FROM capstone2020.table
      Where tableID = 3; 
      	
@@ -211,7 +222,7 @@ SELECT
    1 AS orderStatus,
    53 AS item_itemID,
    1 AS table_tableID,
-   startTime
+   '2020-03-30 20:30:00'
      FROM capstone2020.table
      Where tableID = 7;    
      
@@ -221,66 +232,62 @@ SELECT
      
      
 insert into capstone2020.survey (surveyA1, surveyA2, surveyA3,surveyA4, surveyA5, 
-surveyA6, surveyA7, surveyA8, table_tableID, table_startTime)
+surveyA6, surveyA7,table_tableID, table_startTime)
 SELECT     
    1 AS surveyA1,
    2 AS surveyA2,
    1 AS surveyA3,
    5 AS surveyA4,
-   1 AS surveyA5,
    1 AS surveyA5,
    1 AS surveyA6,
    1 AS surveyA7,
    1 AS table_tableID,
-   startTime
+  '2020-03-30 20:30:00'
      FROM capstone2020.table
      Where tableID = 1 ;    
 	
 insert into capstone2020.survey (surveyA1, surveyA2, surveyA3,surveyA4, surveyA5, 
-surveyA6, surveyA7, surveyA8, table_tableID, table_startTime)
+surveyA6, surveyA7, table_tableID, table_startTime)
 SELECT     
    1 AS surveyA1,
    2 AS surveyA2,
    1 AS surveyA3,
    5 AS surveyA4,
    1 AS surveyA5,
-   1 AS surveyA5,
    1 AS surveyA6,
    1 AS surveyA7,
    2 AS table_tableID,
-   startTime
+   '2020-03-30 20:30:00'
      FROM capstone2020.table
      Where tableID = 2 ;  
      insert into capstone2020.survey (surveyA1, surveyA2, surveyA3,surveyA4, surveyA5, 
-surveyA6, surveyA7, surveyA8, table_tableID, table_startTime)
+surveyA6, surveyA7, table_tableID, table_startTime)
 SELECT     
    1 AS surveyA1,
    2 AS surveyA2,
    4 AS surveyA3,
    5 AS surveyA4,
    1 AS surveyA5,
-   2 AS surveyA5,
    4 AS surveyA6,
    2 AS surveyA7,
    3 AS table_tableID,
-   startTime
+   '2020-03-30 20:30:00'
      FROM capstone2020.table
      Where tableID = 3 ;    
      
     -- Survery Question 
 insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
-values(1, "Food quality ") ;   
+values(1, "How was your food?") ;   
 insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
-values(2, "Service speed") ;    
+values(2, "How was the service?") ;    
 insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
-values(3, "Restaurant Enviornment ") ;    
+values(3, "How was the atmosphere?") ;    
 insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
-values(4, "Service quality") ;    
+values(4, "How was the service speed?") ;    
 insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
-values(5, "Food speed") ;    
+values(5, "Food delivery speed? adequate?") ;    
 insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
-values(6, "Will you recommand your friend to visit our restaurant") ;    
+values(6, "Will you recommend this restaurant?") ;    
 insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
-values(7, "How satisfied your food") ;    
-insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
-values(8, "How enjoy this experiment") ;    
+values(7, "How was your experience with this application?") ;    
+  
