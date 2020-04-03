@@ -45,9 +45,9 @@ public class ReportBroker {
 	ArrayList<ReportBest> Best_Month = new ArrayList<ReportBest>();
 
 	/**
-	 * 
-	 * @return
-	 * @throws SQLException
+	 * Get the table information for thr report
+	 * @return ReportCustomer ReportCustomer object
+	 * @throws SQLException SQLException
 	 */
 	public ReportCustomer getCustomerReport() throws SQLException {
 		executedResult = false;
@@ -129,6 +129,11 @@ public class ReportBroker {
 		return rc;
 	}
 
+	/**
+	 * Get the trend of order count within 1 year.
+	 * @return ReportSale object
+	 * @throws SQLException SQLException
+	 */
 	public ReportSale getSaleTrend() throws SQLException {
 		executedResult = false;
 		connect();
@@ -235,6 +240,11 @@ public class ReportBroker {
 
 	}
 
+	/**
+	 * Get today's sale information
+	 * @return ArrayList<ReportBest>
+	 * @throws SQLException SQLException
+	 */
 	public ArrayList<ReportBest> getSaleBestToday() throws SQLException {
 		executedResult = false;
 		connect();
@@ -256,6 +266,11 @@ public class ReportBroker {
 		return Best_Today;
 	}
 
+	/**
+	 * Get the best month for the sale
+	 * @return ArrayList<ReportBest>
+	 * @throws SQLException SQLException
+	 */
 	public ArrayList<ReportBest> getSaleBestMonth() throws SQLException {
 
 		executedResult = false;
@@ -278,6 +293,11 @@ public class ReportBroker {
 		return Best_Month;
 	}
 
+	/**
+	 * Establish database connection
+	 * @return Connection
+	 * @throws SQLException SQLException
+	 */
 	public Connection connect() throws SQLException {
 		if (con != null) {
 			con.close();

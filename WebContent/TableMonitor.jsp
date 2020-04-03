@@ -80,7 +80,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_1==0}">
+						<c:if test="${table_1==0 || table_1== null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_01</strong>
@@ -129,7 +129,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_2==0}">
+						<c:if test="${table_2==0 || table_2== null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_02</strong>
@@ -177,7 +177,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_3==0}">
+						<c:if test="${table_3==0 || table_3== null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_03</strong>
@@ -225,7 +225,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_4==0}">
+						<c:if test="${table_4==0 || table_4== null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_04</strong>
@@ -273,7 +273,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_5==0}">
+						<c:if test="${table_5==0 || table_5== null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_05</strong>
@@ -321,7 +321,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_6==0}">
+						<c:if test="${table_6==0 || table_6== null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_06</strong>
@@ -371,7 +371,7 @@
 								</h3>
 							</div>
 						</c:if>
-						<c:if test="${table_7==0}">
+						<c:if test="${table_7==0 || table_7== null}">
 							<div class="card-header">
 								<h3 class="my-0 font-weight-normal ">
 									<strong>Table_07</strong>
