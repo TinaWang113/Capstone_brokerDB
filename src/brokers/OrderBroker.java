@@ -140,13 +140,21 @@ public class OrderBroker {
 			try {
 				// orderID, timeStamp, orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime
 				connect();
+				/* 2020.04.2 [Modify]	
 				stmtString = "update capstone2020.`order` SET "
 						+ " orderItemQty = " + order.getOrderItemQty()
 						+ ", orderAmount = " + order.getOrderAmount()
 						+ ", orderStatus = " + order.getOrderStatus()
 						+ " Where orderID = " + order.getOrderID() + " AND timeStamp = '"+ order.getTimeStamp()+"'";
-				
-				preparedStmt = con.prepareStatement(stmtString);
+				*/
+				stmtString = "update capstone2020.`order` SET (orderItemQty, orderAmount, orderStatus)"
+						+ " values(?,?,?) Where orderID = ? AND timeStamp = ?";				
+				preparedStmt = con.prepareStatement(stmtString);				
+				preparedStmt.setInt(1, order.getOrderItemQty());
+				preparedStmt.setDouble(2, order.getOrderAmount());
+				preparedStmt.setInt(3, order.getOrderStatus());
+				preparedStmt.setInt(4, order.getOrderID());
+				preparedStmt.setTimestamp(5, order.getTimeStamp());
 				if(preparedStmt.executeUpdate() == 1) {
 					executedResult = true;
 				}

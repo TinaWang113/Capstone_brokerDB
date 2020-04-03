@@ -5,6 +5,7 @@ package unitTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -51,10 +52,11 @@ class TableBrokerTest {
 
 	/**
 	 * Test method for {@link brokers.TableBroker#insertTable(model.Table)}.
+	 * @throws SQLException 
 	 * @throws ParseException 
 	 */
 	@Test
-	void testInsertTable() {
+	void testInsertTable() throws SQLException {
 		/*
 		date = LocalDateTime.now();
 		endTime = java.sql.Timestamp.valueOf(date);
@@ -74,10 +76,11 @@ class TableBrokerTest {
 
 	/**
 	 * Test method for {@link brokers.TableBroker#isExisting(model.Table)}.
+	 * @throws SQLException 
 	 * @throws ParseException 
 	 */
 	@Test
-	void testIsExisting(){
+	void testIsExisting() throws SQLException{
 		assertFalse(tBroker.isExisting(table_2));
 		tBroker.insertTable(table_2);
 		assertTrue(tBroker.isExisting(table_2));
@@ -85,9 +88,10 @@ class TableBrokerTest {
 
 	/**
 	 * Test method for {@link brokers.TableBroker#update(model.Table)}.
+	 * @throws SQLException 
 	 */
 	@Test
-	void testUpdate() {
+	void testUpdate() throws SQLException {
 		//table_3 = new Table(6,startTime);
 				tBroker.insertTable(table_2);
 				Table table = tBroker.findByID(table_2);
@@ -102,9 +106,10 @@ class TableBrokerTest {
 
 	/**
 	 * Test method for {@link brokers.TableBroker#updateStatus(model.Table)}.
+	 * @throws SQLException 
 	 */
 	@Test
-	void testUpdateStatus() {
+	void testUpdateStatus() throws SQLException {
 		//table_3 = new Table(6,startTime);
 		tBroker.insertTable(table_2);
 		Table table = tBroker.findByID(table_2);
@@ -120,9 +125,10 @@ class TableBrokerTest {
 
 	/**
 	 * Test method for {@link brokers.TableBroker#delete(model.Table)}.
+	 * @throws SQLException 
 	 */
 	@Test
-	void testDelete() {
+	void testDelete() throws SQLException {
 		System.out.println("[testDelete] insert result: "+tBroker.insertTable(table_3));
 		
 		assertTrue(tBroker.delete(table_3));
@@ -131,9 +137,10 @@ class TableBrokerTest {
 
 	/**
 	 * Test method for {@link brokers.TableBroker#qtyData()}.
+	 * @throws SQLException 
 	 */
 	@Test
-	void testQtyData() {
+	void testQtyData() throws SQLException {
 		int qty = tBroker.qtyData();
 		System.out.println("[uniTest]qty:" + qty);
 		tBroker.insertTable(table_1);
@@ -149,9 +156,10 @@ class TableBrokerTest {
 
 	/**
 	 * Test method for {@link brokers.TableBroker#findByID(int, java.sql.Date)}.
+	 * @throws SQLException 
 	 */
 	@Test
-	void testFindByIDIntDate() {
+	void testFindByIDIntDate() throws SQLException {
 		Table foundTable = tBroker.findByID(table_1.getTableID(), table_1.getStartTime());
 		assertEquals(foundTable, null);
 		tBroker.insertTable(table_1);
@@ -162,9 +170,10 @@ class TableBrokerTest {
 
 	/**
 	 * Test method for {@link brokers.TableBroker#findByID(model.Table)}.
+	 * @throws SQLException 
 	 */
 	@Test
-	void testFindByIDTable() {
+	void testFindByIDTable() throws SQLException {
 		//System.out.println("[uniTest]findByTable: "+ foundTable.toString());
 		assertEquals(tBroker.findByID(table_2), null);
 		assertTrue(tBroker.insertTable(table_2));
