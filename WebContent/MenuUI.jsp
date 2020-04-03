@@ -54,7 +54,7 @@
 		  <div class="card-body">
 		    <h5 class="card-title">${item.getItemName()}</h5>
 			  <div id="itemBox">
-				    	<img id="itemPic" src="img/migarock logo.png" class="rounded float-left, itemPic"> 
+				    	<img id="itemPic" src="${item.getPhotoLocalDirectory()}" class="rounded float-left, itemPic"> 
 				  	<div class="float-right">
 					  	<div id="qnty">
 					  		<div class="col text-center">
@@ -75,8 +75,9 @@
 		  <div class="card-body">		  
 		   <button type="button" class="btn btn-secondary float-left moreInforBtn" data-toggle="modal" data-target="#infoModal"
 		   		data-itemName="${item.getItemName()}"
-		   		data-itemDescription="description"
+		   		data-itemDescription="${item.getItemDesc()}"
 		   		data-itemPrice="${item.getItemPrice()}"
+		   		data-photoLoc = "${item.getPhotoLocalDirectory()}"
 		   		data-allergyInfo="THESE ARE SOME SERIOUS ALLERGIES TO NUTS"
 		   		id="${item.getItemID()}"
 		   >More Info</button>
@@ -104,12 +105,12 @@
         <div class="card mx-auto" style="width: 23rem;">
 		  <div class="card-body">
 			  <div id="itemBox">
-				    	<img id="itemPicInfo" src="img/migarock logo.png" class="rounded"> 
+				    	<img id="photoLoc" src="" class="rounded float-left, itemPic"> 
 			  </div>
 		  
 		  <div class="card-body">
 		  	
-		  <p class="card-text">Some quick example text to build on the item description and make up the bulk of the card's content.</p>
+		  <p class="card-text" id="itemDescription"></p>
 		 	<button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" 
 		  		data-content="Product contains: Shell fish, peanuts, and deez nuts">
   				Allergy Info

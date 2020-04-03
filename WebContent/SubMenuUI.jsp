@@ -50,7 +50,7 @@
 		  <div class="card-body">
 		    <h5 class="card-title">${subMenuItem.getItemName()}</h5>
 			  <div id="itemBox">
-				    	<img id="itemPic" src="img/migarock logo.png" class="rounded float-left, itemPic"> 
+				    	<img id="itemPic" src="${subMenuItem.getPhotoLocalDirectory()}" class="rounded float-left, itemPic"> 
 				  	<div class="float-right">
 					  	<div id="qnty">
 					  		<div class="col text-center">
@@ -66,14 +66,14 @@
 			  </div>
 		  
 		  <div class="card-body">
-		  <!-- LEAVING IT HERE -->
 		   <button type="button" class="btn btn-secondary float-left moreInforBtn" 
 		   		data-toggle="modal" 
 		   		data-target="#infoModal"
 		   		data-itemName="${subMenuItem.getItemName()}"
-		   		data-itemDescription="description"
+		   		data-itemDescription="${subMenuItem.getItemDesc()}"
 		   		data-itemPrice="${subMenuItem.getItemPrice()}"
 		   		data-allergyInfo="THESE ARE SOME SERIOUS ALLERGIES TO NUTS"
+		   		data-photoLoc = "${subMenuItem.getPhotoLocalDirectory()}"
 		   		id="${subMenuItem.getItemID()}"
 		   >More Info</button>
 		   <div class="float-right">
@@ -99,12 +99,12 @@
         <div class="card mx-auto" style="width: 23rem;">
 		  <div class="card-body">
 			  <div id="itemBox">
-				    	<img id="itemPicInfo" src="img/migarock logo.png" class="rounded"> 
+				    	<img id="photoLoc" src="" class="rounded float-left, itemPic">  
 			  </div>
 		  
 		  <div class="card-body">
 		  	
-		  <p class="card-text">Some quick example text to build on the item description and make up the bulk of the card's content.</p>
+		  <p class="card-text"  id="itemDescription"></p>
 		 	<button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" 
 		  		data-content="Product contains: Shell fish, peanuts, and deez nuts">
   				Allergy Info
@@ -128,18 +128,7 @@
 		    $('[data-toggle="popover"]').popover();   
 		});
 	}
-	function incrementModalValue() {
-		    var value = parseInt(document.getElementById('modalIntTextBox').value, 10);
-		    value = isNaN(value) ? 0 : value;
-		    value++;
-		    document.getElementById('modalIntTextBox').value = value;
-	}
-	function decrementModalValue() {
-		    var value = parseInt(document.getElementById('modalIntTextBox').value, 10);
-		    value = isNaN(value) ? 0 : value;
-		    value--;
-		    document.getElementById('modalIntTextBox').value = value;
-	}
+	
 	
 	// Restricts input for the given textbox to the given inputFilter.
 	function setInputFilter(textbox, inputFilter) {

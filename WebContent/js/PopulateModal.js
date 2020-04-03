@@ -7,6 +7,7 @@ $(document).ready(function () {
 		var pin = $(this).attr('data-pin');
 		var contactNum = $(this).attr('data-contactNum');
 		var id = $(this).attr('id').toString();
+		
 
 		$("#jobName").val(jobName);
 		$("#fName").val(fName);
@@ -32,15 +33,19 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('.moreInforBtn').click(function () {
 		var itemName = $(this).attr('data-itemName');
-		var itemDescription = $(this).attr('data-itemDescription');
+		var itemDesc = $(this).attr('data-itemDescription');
 		var itemPrice = $(this).attr('data-itemPrice');
 		var id = $(this).attr('id').toString();
+		var photoLoc = $(this).attr('data-photoLoc');
 
 		$("#infoModalLongTitle").text(itemName);
 		$("#itemDesc").text(itemDescription);
 		$("#itemPrice").val(itemPrice);
 		$("#addToOrderBtnModal").attr('data-itemId', id);
 		$("#modalInputId").attr('id', id)
+		$("#itemDescription").text(itemDesc);
+		$("#photoLoc").attr('src', photoLoc);
+		
 		
     });
 });
