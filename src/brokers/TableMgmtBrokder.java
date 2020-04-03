@@ -31,15 +31,18 @@ public class TableMgmtBrokder {
 
 	/**
 	 * 
-	 * @return
-	 * @throws SQLException
+	 * Get all of order info.
+	 * 
+	 * @return List<OrderMgmt>
+	 * @throws SQLException SQLException
 	 */
 	public List<OrderMgmt> getOrderAll(String tableID, String startTime) throws SQLException {
 		executedResult = false;
 		connect();
 		stmtString = "select t.tableID, o.timeStamp, o.orderID, i.itemName, o.orderItemQty, i.itemPrice, o.orderStatus \r\n"
 				+ "from capstone2020.table t, capstone2020.order o, capstone2020.item i \r\n"
-				+ "where t.tableID=o.table_tableID \r\n" + "and t.startTime=o.table_startTime \r\n"
+				+ "where t.tableID=o.table_tableID \r\n"
+				+ "and t.startTime=o.table_startTime and t.endTime is null \r\n"
 				+ "and o.item_itemID=i.itemID and t.tableID=? and t.startTime=? order by o.timestamp desc";
 		preparedStmt = con.prepareStatement(stmtString);
 		preparedStmt.setString(1, tableID);
@@ -65,10 +68,16 @@ public class TableMgmtBrokder {
 		return orders;
 	}
 
+	/**
+	 * Get all of table information
+	 * 
+	 * @return List<TableMgmt>
+	 * @throws SQLException SQLException
+	 */
 	public List<TableMgmt> getTableAll() throws SQLException {
 		executedResult = false;
 		connect();
-		stmtString = "select tableID, startTime, endTime, tableStatus from capstone2020.table";
+		stmtString = "select tableID, startTime, endTime, tableStatus from capstone2020.table where endTime is null ;";
 		preparedStmt = con.prepareStatement(stmtString);
 		rs = preparedStmt.executeQuery();
 		if (rs != null) {
@@ -85,14 +94,23 @@ public class TableMgmtBrokder {
 			System.out.println("SQL stmt is problem.");
 		}
 		close();
+
 		return tables;
 	}
 
+	/**
+	 * Get the specific table info.
+	 * 
+	 * @param tableId   tableId
+	 * @param startTime startTime
+	 * @return TableMgmt TableMgmt object
+	 * @throws SQLException SQLException
+	 */
 	public TableMgmt getTable(String tableId, String startTime) throws SQLException {
 
 		executedResult = false;
 		connect();
-		stmtString = "select tableID, startTime, endTime, tableStatus from capstone2020.table where tableID=? and startTime=?";
+		stmtString = "select tableID, startTime, endTime, tableStatus from capstone2020.table where tableID=? and startTime=? and endTime is null ";
 		preparedStmt = con.prepareStatement(stmtString);
 		preparedStmt.setString(1, tableId);
 		preparedStmt.setString(2, startTime);
@@ -112,6 +130,14 @@ public class TableMgmtBrokder {
 		return table;
 	}
 
+	/**
+	 * Get the order info based on the orderItemdId and timestamp
+	 * 
+	 * @param orderItemId orderItemId
+	 * @param timeStamp   timeStamp
+	 * @return OrderMgmt OrderMgmt object
+	 * @throws SQLException SQLException
+	 */
 	public OrderMgmt getOrder(String orderItemId, String timeStamp) throws SQLException {
 
 		executedResult = false;
@@ -138,10 +164,18 @@ public class TableMgmtBrokder {
 		return order;
 	}
 
+	/**
+	 * Change the status of table
+	 * 
+	 * @param tableId   tableId
+	 * @param startTime startTime
+	 * @return boolean
+	 * @throws SQLException SQLException
+	 */
 	public boolean changeTableStatus(String tableId, String startTime) throws SQLException {
 		executedResult = false;
 		connect();
-		stmtString = "update capstone2020.table set tableStatus=0 where tableID=? and startTime=?";
+		stmtString = "update capstone2020.table set tableStatus=0 where tableID=? and startTime=? and endTime is null ";
 		preparedStmt = con.prepareStatement(stmtString);
 		preparedStmt.setString(1, tableId);
 		preparedStmt.setString(2, startTime);
@@ -157,9 +191,10 @@ public class TableMgmtBrokder {
 	}
 
 	/**
+	 * Change the status of order
 	 * 
-	 * @return
-	 * @throws SQLException
+	 * @return boolean boolean
+	 * @throws SQLException SQLException
 	 */
 	public boolean changeOrderStatus(String orderItemId, String timeStamp, String startTime) throws SQLException {
 		executedResult = false;
@@ -190,10 +225,18 @@ public class TableMgmtBrokder {
 		return true;
 	}
 
+	/**
+	 * Close the session of the table
+	 * 
+	 * @param tableId tableId
+	 * @return boolean boolean
+	 * @throws SQLException SQLException
+	 */
 	public boolean closeSession(String tableId) throws SQLException {
 		executedResult = false;
 		connect();
-		stmtString = "update capstone2020.table " + "set tableStatus=? and endTime=now() where tableID= ?";
+		stmtString = "update capstone2020.table "
+				+ "set tableStatus=? and endTime=now() where tableID= ? and endTime is not null ";
 		preparedStmt = con.prepareStatement(stmtString);
 		preparedStmt.setInt(1, 0);
 		preparedStmt.setString(2, tableId);
@@ -205,6 +248,11 @@ public class TableMgmtBrokder {
 		return executedResult;
 	}
 
+	/**
+	 * Close the database connection
+	 * 
+	 * @throws SQLException SQLException
+	 */
 	public void close() throws SQLException {
 		if (rs.isClosed())
 			rs.close();
@@ -214,39 +262,17 @@ public class TableMgmtBrokder {
 			con.close();
 	}
 
+	/**
+	 * Establish the database connection
+	 * 
+	 * @return connection
+	 * @throws SQLException SQLException
+	 */
 	public Connection connect() throws SQLException {
 		if (con != null) {
 			con.close();
 		}
 		con = c2s.connect();
 		return con;
-	}
-
-	public boolean isExisting(String table, int id) throws SQLException {
-		connect();
-		executedResult = false;
-		switch (table.toLowerCase()) {
-		case "item":
-			stmtString = "select count(*) from item where itemID = " + id;
-			break;
-		case "category":
-			stmtString = "select count(*) from category where categoryID = " + id;
-			break;
-		case "order":
-			stmtString = "select count(*) from capstone2020.order where orderID = " + id;
-			break;
-		default:
-			break;
-		}
-		preparedStmt = con.prepareStatement(stmtString);
-		// rs = preparedStmt.executeQuery(stmtString);
-		// rs.next();
-		// System.out.println(rs.getInt("count(*)") );
-		if (preparedStmt.execute()) {
-			executedResult = true;
-		}
-		preparedStmt.close();
-		con.close();
-		return executedResult;
 	}
 }

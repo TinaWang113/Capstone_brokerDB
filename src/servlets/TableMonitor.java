@@ -62,6 +62,8 @@ public class TableMonitor extends HttpServlet {
 			request.setAttribute("table_" + (i + 1)+"_startTime", startTime);
 			request.setAttribute("table_" + (i + 1), value);
 			
+			System.out.println(tables.get(i).toString());
+			
 		}
 		request.setAttribute("tables", tables);
 		getServletContext().getRequestDispatcher("/TableMonitor.jsp").forward(request, response);
