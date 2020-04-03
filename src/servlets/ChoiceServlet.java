@@ -21,17 +21,19 @@ import model.Table;
  */
 public class ChoiceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	int tableId;
+	
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		HttpSession session = request.getSession(true);
 		
 		//this will grab the tableid from the url
-		tableId = Integer.parseInt(request.getParameter("tableId"));
-
+		int tableId = Integer.parseInt(request.getParameter("tableId"));
+		
+		session.setAttribute("tableId", tableId);
+		
 		System.out.println(tableId + " THIS IS THE TABLE ID");
 		getServletContext().getRequestDispatcher("/ChoiceUI.jsp").forward(request, response);
 		
@@ -44,19 +46,16 @@ public class ChoiceServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession(false);
+		int itemCount = 0;
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         Timestamp startTime = Timestamp.valueOf(f.format(date));
-		Table table = new Table();
-		//TODO: THIS IS JUST TESTING REMOVE BEFORE FINAL PRSENTATION
-		//THIS SETS THE TABLE ID TO A RANDOM NUMBER BETWEEN 1 AND 25!
-//		Random r = new Random();
-//		int low = 1;
-//		int high = 25;
-//		int fakeTableId = r.nextInt(high-low) + low;
-		////////////////////////////////////////////
-		table.setTableID(tableId);
+		
+        Table table = new Table();
+		table.setTableID((int)session.getAttribute("tableId"));
 		table.setStartTime(startTime);
+		table.setStaff_sID(4);
 		
 		
 		TableBroker tableBroker = new TableBroker();
@@ -70,12 +69,20 @@ public class ChoiceServlet extends HttpServlet {
 		
 		
 		String menuSelection = request.getParameter("action");
-		HttpSession session = request.getSession();
+
 		session.setAttribute("menuSelection", menuSelection);
 		session.setAttribute("table", table);
+		session.setAttribute("itemCount", itemCount);
 		
-		
-		response.sendRedirect("menu?tableId=17");
+		response.sendRedirect("menu");
 	}
+	
+	//TODO: THIS IS JUST TESTING REMOVE BEFORE FINAL PRSENTATION
+			//THIS SETS THE TABLE ID TO A RANDOM NUMBER BETWEEN 1 AND 25!
+//			Random r = new Random();
+//			int low = 1;
+//			int high = 25;
+//			int fakeTableId = r.nextInt(high-low) + low;
+			////////////////////////////////////////////
 
 }

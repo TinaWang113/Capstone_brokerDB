@@ -28,7 +28,6 @@
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">Menu&nbsp;</a>
                         <div class="dropdown-menu" role="menu">                     
-	                       
 	                       <c:forEach var="category" items="${parsedCategoryList}">
 	                       
 	                       		<form action="submenu" method="GET">
@@ -38,7 +37,8 @@
 	                        </c:forEach>
                         </div>
                     </li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="order">Order<span class="badge badge-light" id="quantityupdate"></span></a></li>
+                    <c:set var = "itemCount" scope = "session" value = "${sessionScope.itemCount}"/>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="order">Order<span class="badge badge-light" id="quantityupdate">${itemCount}</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="bill" >View Bill</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="help">Request Help</a></li>
                 </ul>

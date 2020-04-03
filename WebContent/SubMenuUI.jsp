@@ -38,7 +38,7 @@
 	                        </c:forEach>
                         </div>
                     </li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="order">Order<span class="badge badge-light" id="quantityupdate"></span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="order">Order<span class="badge badge-light" id="quantityupdate" >${itemCount}</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="bill">View Bill</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="help">Request Help</a></li>
                 </ul>

@@ -64,7 +64,7 @@
 	      <td class="amt" >${order.value.getOrderItemQty()}</td>
 	      <td class="item">${order.value.getOrderItem().getItemName()}</td>
 	      <td class="price">${order.value.getOrderAmount()}</td>
-	      <td class="order" data-index="${order.key}">${order.key}</td>
+	      <td class="order" data-index="${order.key}">${order.value.getTable().getTableID()}</td>
 	      
 	      	<c:set var = "orderStatus" scope = "session" value = "${order.value.getOrderStatus()}"/>
 	      	<c:choose>

@@ -1,6 +1,9 @@
 //this method is for sending the items to the servlet
+
 //without reloading the webpage
 //this will also return the amount of items ordered for the badge 
+
+var count = 0;
 $(document).ready(function () {
     $('.addToOrderBtn').click(function () {
 			if (($(this).parent().find("input").val()) < 0) {
@@ -14,12 +17,11 @@ $(document).ready(function () {
 					data: {
 						itemId : $(this).attr('data-itemId'),
 						itemQuantity : $(this).parent().find("input").val(),
-						action : $("#addToOrderBtn").val()
+						action : $("#addToOrderBtn").val(),
+						
 						
 				},
 				success: function(responseData){
-					$("#quantityupdate").text(responseData);
-						
 					setTimeout(function() {
   						$("#infoModal").modal('hide');
 					}, 500);

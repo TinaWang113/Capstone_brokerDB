@@ -21,13 +21,16 @@ import model.Item;
 
 public class SubMenuServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	ArrayList<Item> subMenuItemList = new ArrayList<>();
-	ArrayList<Category> parsedCategoryList = new ArrayList<>();
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		
+		ArrayList<Item> subMenuItemList = new ArrayList<>();
+		ArrayList<Category> parsedCategoryList = new ArrayList<>();
+		
 		String menuSelection = (String)session.getAttribute("menuSelection");
 		String quantityUpdate = request.getParameter("quantityUpdate");
 		

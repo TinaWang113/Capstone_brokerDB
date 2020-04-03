@@ -85,6 +85,7 @@ public class OrderBroker {
 				System.out.println("the data of order is incorrect or the order is exisitng in DB.");
 			}
 		}else {
+			
 			System.out.println("[OrderBroker] table or item is incorrect.");
 		}
 		
@@ -143,9 +144,6 @@ public class OrderBroker {
 						+ " orderItemQty = " + order.getOrderItemQty()
 						+ ", orderAmount = " + order.getOrderAmount()
 						+ ", orderStatus = " + order.getOrderStatus()
-						+ ", item_itemID = " + order.getOrderItem().getItemID()
-						+ ", table_tableID = " +order.getTable().getTableID()
-						+ ", table_startTime = " +order.getTable().getStartTime()
 						+ " Where orderID = " + order.getOrderID() + " AND timeStamp = '"+ order.getTimeStamp()+"'";
 				
 				preparedStmt = con.prepareStatement(stmtString);
@@ -323,19 +321,22 @@ public class OrderBroker {
 			connect();
 			stmtString = "select * from capstone2020.`order`";
 			//System.out.println("[oB]getOrders: "+ stmtString);
-			Item item = new Item();
-			Table table = new Table();
+			
+			
+			MenuBroker menubroker = new MenuBroker();
 			preparedStmt = con.prepareStatement(stmtString);
 			rs = preparedStmt.executeQuery();
 			// orderID, timeStamp, orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime
 			while(rs.next()) {
 				Order order = new Order();
+				Table table = new Table();
+				Item item = new Item();
 				order.setOrderID(rs.getInt("orderID"));
 				order.setOrderItemQty(rs.getInt("orderItemQty"));
 				order.setTimeStamp(rs.getTimestamp("timestamp"));
 				order.setOrderAmount(rs.getDouble("orderAmount"));
 				order.setOrderStatus(rs.getInt("orderStatus"));
-				item.setItemID(rs.getInt("item_itemID"));
+				item = menubroker.findbyID((rs.getInt("item_itemID")));
 				order.setOrderItem(item);
 				table.setTableID(rs.getInt("table_tableID"));
 				table.setStartTime(rs.getTimestamp("table_startTime"));
