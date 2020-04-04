@@ -146,127 +146,55 @@ insert into item (itemID, itemName, itemPrice, itemDesc, categoryID,photoLocalDi
 insert into item (itemID, itemName, itemPrice, itemDesc, categoryID,photoLocalDirectory,photoCloudDirectory) Values (null, 'House salad|하우스샐러드|house salad', 0, 'House Salad is a recipe cooked on the intermediate Salad Station', 12, 'item/h_salad.jpeg', null);
 insert into item (itemID, itemName, itemPrice, itemDesc, categoryID,photoLocalDirectory,photoCloudDirectory) Values (null, 'Soft tofu salad|연두부샐러드', 0, 'Salad with Tofu, sweet and sour dressing', 12, 'item/t_salad.jpg', null);
 
--- Table Data
 
-insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
-Values(1, '2020-03-30 20:30:00',now()+200,3,1);
-insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
-Values(2, '2020-03-30 20:30:00', now()+300,2,2);
-insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
-Values(3, '2020-03-30 20:30:00',now()+200,2,3);
-insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
-Values(4, '2020-03-30 20:30:00', now()+300,1,4);
-insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
-Values(5, '2020-03-30 20:30:00',now()+200,0,1);
-insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
-Values(6,'2020-03-30 20:30:00',now()+200,2,2);
-insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
-Values(7, '2020-03-30 20:30:00',now()+1400,3,3);
+-- creating procedure for records
+DROP PROCEDURE IF EXISTS `creatingRecord`;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `creatingRecord`()
+BEGIN 
+declare pivot_ts datetime default '2019-01-01 08:00:00';
+declare max_span int default 31536000;
+declare bias int default sign(1+RAND());
+declare starttime datetime ;
+declare endtime datetime;
+declare records int default 0;
+declare randItemID, tableID int;
+declare orderLoop int default 0;
+declare countItem int default (select count(*) from capstone2020.`item`);
+declare qty int default 0;
+declare orderAmount double default 0.0;
+-- add table record
+	while records < 100 DO
+		set starttime  = (SELECT FROM_UNIXTIME(
+			UNIX_TIMESTAMP(pivot_ts) + 
+            ( bias * (FLOOR(RAND()*max_span)) )));
+		set endtime = DATE_ADD(startTime, INTERVAL 3 MINUTE);
+        set tableID = FLOOR(1 + RAND()*10);
+        insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
+			Values(tableID, starttime, endtime, 0 ,(FLOOR( 1 + RAND() *4 )) );
+		-- add order
+		set orderLoop = 0;
+		while orderLoop < 10 DO
+			set qty = FLOOR(1+RAND()*10);
+			set randItemID = FLOOR(1+RAND()*countItem);	
+			select itemPrice INTO orderAmount from capstone2020.`item` where itemID = randItemID ;
+            set orderAmount  = orderAmount*qty;
+		-- select qty, orderAmount, 3, itemID , tableID, starttime;
+			insert into capstone2020.`order` (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
+			Values (qty, orderAmount, 3, randItemID , tableID, starttime);
+            set orderLoop = orderLoop + 1;
+		END while;
+         -- for survery
+         insert into capstone2020.`survey` (surveyA1, surveyA2, surveyA3,surveyA4, surveyA5, surveyA6, surveyA7,table_tableID, table_startTime)
+				Values (round(rand()*5,1), round(rand()*5,1), round(rand()*5,1),round(rand()*5,1), round(rand()*5,1), round(rand()*5,1), round(rand()*5,1),tableID, starttime);
+		set records =  records +1;
+    END while;
 
--- order Data
-insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
-SELECT 
-   2 AS orderItemQty,
-   12.99*2 AS orderAmount,
-   1 AS orderStatus,
-   2 AS item_itemID,
-   2 AS table_tableID,
-   '2020-03-30 20:30:00'
-     FROM capstone2020.`table`
-     Where tableID = 2;
-     
-insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
-SELECT 
-   5 AS orderItemQty,
-   5*18.99 AS orderAmount,
-   3 AS orderStatus,
-   9 AS item_itemID,
-   5 AS table_tableID,
-   '2020-03-30 20:30:00'
-     FROM capstone2020.table
-     Where tableID = 5;
+    
+END$$
+DELIMITER //
+call creatingRecord();call creatingRecord();
 
-insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
-SELECT 
-   1 AS orderItemQty,
-   2.5 AS orderAmount,
-   0 AS orderStatus,
-   52 AS item_itemID,
-   1 AS table_tableID,
-   '2020-03-30 20:30:00'
-     FROM capstone2020.table
-     Where tableID = 1;
- 
-insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
-SELECT 
-   1 AS orderItemQty,
-   2.5 AS orderAmount,
-   1 AS orderStatus,
-   53 AS item_itemID,
-   1 AS table_tableID,
-  '2020-03-30 20:30:00'
-     FROM capstone2020.table
-     Where tableID = 3; 
-     	
-insert into capstone2020.order (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
-SELECT     
-   1 AS orderItemQty,
-   2.5 AS orderAmount,
-   1 AS orderStatus,
-   53 AS item_itemID,
-   1 AS table_tableID,
-   '2020-03-30 20:30:00'
-     FROM capstone2020.table
-     Where tableID = 7;    
-     
-     
-     
- -- survey data    
-     
-     
-insert into capstone2020.survey (surveyA1, surveyA2, surveyA3,surveyA4, surveyA5, 
-surveyA6, surveyA7,table_tableID, table_startTime)
-SELECT     
-   1 AS surveyA1,
-   2 AS surveyA2,
-   1 AS surveyA3,
-   5 AS surveyA4,
-   1 AS surveyA5,
-   1 AS surveyA6,
-   1 AS surveyA7,
-   1 AS table_tableID,
-  '2020-03-30 20:30:00'
-     FROM capstone2020.table
-     Where tableID = 1 ;    
-	
-insert into capstone2020.survey (surveyA1, surveyA2, surveyA3,surveyA4, surveyA5, 
-surveyA6, surveyA7, table_tableID, table_startTime)
-SELECT     
-   1 AS surveyA1,
-   2 AS surveyA2,
-   1 AS surveyA3,
-   5 AS surveyA4,
-   1 AS surveyA5,
-   1 AS surveyA6,
-   1 AS surveyA7,
-   2 AS table_tableID,
-   '2020-03-30 20:30:00'
-     FROM capstone2020.table
-     Where tableID = 2 ;  
-     insert into capstone2020.survey (surveyA1, surveyA2, surveyA3,surveyA4, surveyA5, 
-surveyA6, surveyA7, table_tableID, table_startTime)
-SELECT     
-   1 AS surveyA1,
-   2 AS surveyA2,
-   4 AS surveyA3,
-   5 AS surveyA4,
-   1 AS surveyA5,
-   4 AS surveyA6,
-   2 AS surveyA7,
-   3 AS table_tableID,
-   '2020-03-30 20:30:00'
-     FROM capstone2020.table
-     Where tableID = 3 ;    
      
     -- Survery Question 
 insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
