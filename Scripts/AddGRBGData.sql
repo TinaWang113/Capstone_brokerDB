@@ -164,7 +164,7 @@ declare countItem int default (select count(*) from capstone2020.`item`);
 declare qty int default 0;
 declare orderAmount double default 0.0;
 -- add table record
-	while records < 100 DO
+	while records < 500 DO
 		set starttime  = (SELECT FROM_UNIXTIME(
 			UNIX_TIMESTAMP(pivot_ts) + 
             ( bias * (FLOOR(RAND()*max_span)) )));
@@ -188,15 +188,58 @@ declare orderAmount double default 0.0;
          insert into capstone2020.`survey` (surveyA1, surveyA2, surveyA3,surveyA4, surveyA5, surveyA6, surveyA7,table_tableID, table_startTime)
 				Values (round(rand()*5,1), round(rand()*5,1), round(rand()*5,1),round(rand()*5,1), round(rand()*5,1), round(rand()*5,1), round(rand()*5,1),tableID, starttime);
 		set records =  records +1;
+    END while;	
+ END$$
+
+DELIMITER ;
+-- for runTime
+DROP PROCEDURE IF EXISTS `runtimeRecord`;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `runtimeRecord`()
+BEGIN 
+declare pivot_ts datetime default '2019-01-01 08:00:00';
+declare max_span int default 31536000;
+declare bias int default sign(1+RAND());
+declare starttime datetime ;
+declare endtime datetime;
+declare records int default 0;
+declare randItemID, tableID int;
+declare orderLoop int default 0;
+declare countItem int default (select count(*) from capstone2020.`item`);
+declare qty int default 0;
+declare orderAmount double default 0.0;
+-- add table record
+	while records < 10 DO
+		set starttime  = (SELECT FROM_UNIXTIME(
+			UNIX_TIMESTAMP(pivot_ts) + 
+            ( bias * (FLOOR(RAND()*max_span)) )));
+		set endtime = DATE_ADD(startTime, INTERVAL 3 MINUTE);
+        set tableID = FLOOR(1 + RAND()*10);
+        insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
+			Values(tableID, starttime, endtime,  FLOOR(1+rand()*3) ,(FLOOR( 1 + RAND() *4 )) );
+		-- add order
+		set orderLoop = 0;
+		while orderLoop < 10 DO
+			set qty = FLOOR(1+RAND()*10);
+			set randItemID = FLOOR(1+RAND()*countItem);	
+			select itemPrice INTO orderAmount from capstone2020.`item` where itemID = randItemID ;
+            set orderAmount  = orderAmount*qty;
+		-- select qty, orderAmount, 3, itemID , tableID, starttime;
+			insert into capstone2020.`order` (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
+			Values (qty, orderAmount, FLOOR(rand()*3), randItemID , tableID, starttime);
+            set orderLoop = orderLoop + 1;
+		END while; 
+		set records =  records +1;
     END while;
 
     
 END$$
-DELIMITER //
-call creatingRecord();call creatingRecord();
+DELIMITER ;
 
+call creatingRecord();
+call runtimeRecord();
      
-    -- Survery Question 
+-- Survery Question 
 insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
 values(1, "How was your food?") ;   
 insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
