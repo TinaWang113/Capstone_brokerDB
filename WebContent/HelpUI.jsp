@@ -25,11 +25,11 @@
   
   <body>
   	<img id="logo-1" src="img/migarock logo.png">
-    <nav class="navbar navbar-light navbar-expand-md navigation-clean">
-        <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Menu&nbsp;</a>
+    <nav class="navbar navbar-expand navbar-light">
+    
+    <div class="navbar">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">Menu&nbsp;</a>
                         <div class="dropdown-menu" role="menu">                     
 	                       
 	                       <c:forEach var="category" items="${sessionScope.parsedCategoryList}">
@@ -40,13 +40,15 @@
 	                        	</form>
 	                        </c:forEach>
                         </div>
-                    </li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="order">Order</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="bill">View Bill</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="help">Request Help</a></li>
-                </ul>
-            </div>
-         </div>
+            </li>
+            <li class="nav-item" role="presentation">
+            <a class="nav-link" href="order">Order<span class="badge badge-light" id="quantityupdate"></span></a>
+            </li>
+
+            <li class="nav-item" role="presentation"><a class="nav-link" href="bill" >Bill</a></li>
+            <li class="nav-item" role="presentation"><a class="nav-link" href="help">Help</a></li>
+        </ul>
+    </div>
     </nav>
     <h1>Request assistance</h1>
     

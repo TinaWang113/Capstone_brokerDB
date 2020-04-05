@@ -55,4 +55,3 @@ $(document).ready(function () {
 	    $(this).parent().find("input").val(value)
 	});
 });
-
