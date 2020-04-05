@@ -22,21 +22,16 @@ public class Connect2Server{
 //	private final static String PW = "password1234";
 	private final static String PW = "password";
 	private final static String DBNAME = "capstone2020";
-	private final static String timeZone ="?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	//for mysql 6.0up 
 	private static String driver = "com.mysql.cj.jdbc.Driver";
-	
 	//for mysql 5.0
 	//com.mysql.jdbc.Driver
-	
 	public  Connect2Server(){
-		
 	}
-	
 	public Connection connect() {
 		try {
 			Class.forName(driver);
-			con = DriverManager.getConnection(URL + DBNAME+timeZone, USERNAME, PW);
+			con = DriverManager.getConnection(URL + DBNAME, USERNAME, PW);
 			//[Test] listing all tables in database
 			/*
 			if( con != null){
@@ -53,14 +48,11 @@ public class Connect2Server{
 		         count++;
 		      }
 		      System.out.println(count + " Rows in set ");
-		      
 			}
-			
 			*/
 		}catch(Exception e) {
 			System.out.println(e);			
 		}
-	
 		return con;
 	}
 

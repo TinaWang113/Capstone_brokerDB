@@ -105,7 +105,7 @@
         <div class="card mx-auto" style="width: 23rem;">
 		  <div class="card-body">
 			  <div id="itemBox">
-				    	<img id="photoLoc" src="" class="rounded float-left, itemPic"> 
+				    	<img id="photoLoc" src="" class="rounded float-left"> 
 			  </div>
 		  
 		  <div class="card-body">

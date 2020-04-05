@@ -127,7 +127,7 @@
 		$(document).ready(function(){
 		    $('[data-toggle="popover"]').popover();   
 		});
-	}
+	
 	
 	
 	// Restricts input for the given textbox to the given inputFilter.

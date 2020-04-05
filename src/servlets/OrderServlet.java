@@ -5,12 +5,10 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,8 +16,6 @@ import javax.servlet.http.HttpSession;
 
 import brokers.MenuBroker;
 import brokers.OrderBroker;
-import brokers.TableBroker;
-import model.Category;
 import model.Item;
 import model.Order;
 import model.Table;
@@ -31,10 +27,6 @@ import model.Table;
 public class OrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	int currentSize;
-	int difference = 0;
-	
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -43,13 +35,12 @@ public class OrderServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		int count = 0;
 		OrderBroker orderBroker  = new OrderBroker();
-		MenuBroker menuBroker = new MenuBroker();
 		
 		HashMap<Integer, Order> parsedOrderList = new HashMap<>();
 		Table table = (Table)session.getAttribute("table");
 		ArrayList<Order> tempList = (ArrayList<Order>)orderBroker.getOrders();
 		for (Order order : tempList) {			
-			System.out.println(order + " THIS IS THE ORDER");
+			
 			if (order.getTable().getTableID() == table.getTableID() ) {
 				parsedOrderList.put(count, order);
 				count++;
@@ -78,7 +69,7 @@ public class OrderServlet extends HttpServlet {
         Date date = new Date();
         Timestamp startTime = Timestamp.valueOf(f.format(date));
 		
-//		TableBroker tableBroker = new TableBroker();
+
 		
 		Table table = (Table)session.getAttribute("table");
 		
@@ -107,23 +98,17 @@ public class OrderServlet extends HttpServlet {
 						order.setOrderItem(item);
 						order.setOrderAmount(item.getItemPrice() * itemQuantity);
 						
+						
 						//Everytime a user hits add, it inserts it into the database
 						orderBroker.insert(order);
-//						orderList.put(count, order);
 						
-//						count++;
-//						session.setAttribute("orderList", orderList);
-//						response.setContentType("text/html;charset=UTF-8");
-//				        response.getWriter().write(Integer.toString(orderList.size() - difference));
 						itemCount++;
 						System.out.println(itemCount + " THIS IS THE ITEM COUNT");
-//				        session.setAttribute("itemCount", itemCount);
+
 	
 					} catch (NumberFormatException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -143,25 +128,11 @@ public class OrderServlet extends HttpServlet {
 						try {
 							orderBroker.updateStatus(order);
 						} catch (SQLException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					}
 					
 				}
-//				for (int i = difference; i < orderList.size(); i++) {
-//					
-//					try {
-//						System.out.println(orderList.get(i).toString());
-//						orderBroker.insert(orderList.get(i));
-//						orderList.get(i).setOrderStatus(1);
-//					} catch (SQLException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//					
-//				}
-//				difference = orderList.size();
 				itemCount = 0;
 				session.setAttribute("itemCount", itemCount);
 				

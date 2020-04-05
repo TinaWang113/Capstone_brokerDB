@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,7 +31,6 @@ public class SubMenuServlet extends HttpServlet {
 		ArrayList<Category> parsedCategoryList = new ArrayList<>();
 		
 		String menuSelection = (String)session.getAttribute("menuSelection");
-		String quantityUpdate = request.getParameter("quantityUpdate");
 		
 		
 		String categorySelection = request.getParameter("categorySelection");
@@ -65,7 +63,6 @@ public class SubMenuServlet extends HttpServlet {
 			request.setAttribute("subMenuItemList", subMenuItemList);
 			request.setAttribute("parsedCategoryList", parsedCategoryList);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -81,7 +78,6 @@ public class SubMenuServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

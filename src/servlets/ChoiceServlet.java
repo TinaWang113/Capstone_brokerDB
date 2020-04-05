@@ -5,9 +5,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
-
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -64,7 +61,6 @@ public class ChoiceServlet extends HttpServlet {
 		try {
 			tableBroker.insertTable(table);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -77,13 +73,5 @@ public class ChoiceServlet extends HttpServlet {
 		
 		response.sendRedirect("menu");
 	}
-	
-	//TODO: THIS IS JUST TESTING REMOVE BEFORE FINAL PRSENTATION
-			//THIS SETS THE TABLE ID TO A RANDOM NUMBER BETWEEN 1 AND 25!
-//			Random r = new Random();
-//			int low = 1;
-//			int high = 25;
-//			int fakeTableId = r.nextInt(high-low) + low;
-			////////////////////////////////////////////
 
 }

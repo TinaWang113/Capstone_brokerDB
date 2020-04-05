@@ -335,10 +335,12 @@ public class OrderBroker {
 			preparedStmt = con.prepareStatement(stmtString);
 			rs = preparedStmt.executeQuery();
 			// orderID, timeStamp, orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime
+			
+			
 			while(rs.next()) {
 				Order order = new Order();
-				Table table = new Table();
 				Item item = new Item();
+				Table table = new Table();
 				order.setOrderID(rs.getInt("orderID"));
 				order.setOrderItemQty(rs.getInt("orderItemQty"));
 				order.setTimeStamp(rs.getTimestamp("timestamp"));
