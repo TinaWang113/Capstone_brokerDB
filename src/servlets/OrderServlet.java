@@ -34,6 +34,7 @@ public class OrderServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession(false);
 		int count = 0;
+		double total=0;
 		OrderBroker orderBroker  = new OrderBroker();
 		
 		HashMap<Integer, Order> parsedOrderList = new HashMap<>();
@@ -44,11 +45,12 @@ public class OrderServlet extends HttpServlet {
 			if (order.getTable().getTableID() == table.getTableID() ) {
 				parsedOrderList.put(count, order);
 				count++;
+				total += order.getOrderAmount();
 			}
 		}
 		
 
-		
+		request.setAttribute("total", total);
 		request.setAttribute("parsedOrderList", parsedOrderList);
 
 		
@@ -62,7 +64,8 @@ public class OrderServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		
 		//HashMap to hold the orders and the amount of orders
-		HashMap<Integer, Order> orderList = new HashMap<>();
+		
+		
 		int itemCount = (int)session.getAttribute("itemCount");
 		
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -139,18 +142,63 @@ public class OrderServlet extends HttpServlet {
 				response.sendRedirect("menu");
 			}
 			else if (modifyOrderBtn.equals("editItem")) {
+				
+				int count = 0;
+				OrderBroker orderBroker = new OrderBroker();
+				HashMap<Integer, Order> orderList = new HashMap<>();
+				ArrayList<Order> tempList = (ArrayList<Order>)orderBroker.getOrders();
+				
+				for (Order order : tempList) {			
+					
+					if (order.getTable().getTableID() == table.getTableID() ) {
+						orderList.put(count, order);
+						count++;
+					}
+				}
+				
 				int itemIndex = Integer.parseInt(request.getParameter("itemIndex"));
 				int itemQuantity = Integer.parseInt(request.getParameter("itemQuantity"));
 				
-				Order editOrder = orderList.get(itemIndex);
-				editOrder.setOrderItemQty(itemQuantity);
 				
-				orderList.replace(itemIndex, editOrder);
+				Order editOrder = orderList.get(itemIndex);
+				
+				if (itemQuantity == 0) {
+					orderBroker.delete(editOrder);
+				}
+				else {
+					
+					editOrder.setOrderItemQty(itemQuantity);
+					editOrder.setOrderAmount(itemQuantity * editOrder.getOrderItem().getItemPrice());
+					
+					try {
+						orderBroker.update(editOrder);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
 			}
 			else if (modifyOrderBtn.equals("deleteItem")) {
+				
+				int count = 0;
+				OrderBroker orderBroker = new OrderBroker();
+				HashMap<Integer, Order> orderList = new HashMap<>();
+				ArrayList<Order> tempList = (ArrayList<Order>)orderBroker.getOrders();
+				
+				for (Order order : tempList) {			
+					
+					if (order.getTable().getTableID() == table.getTableID() ) {
+						orderList.put(count, order);
+						count++;
+					}
+				}
+				
 				int itemIndex = Integer.parseInt(request.getParameter("itemIndex"));
 				
-				orderList.remove(itemIndex);
+				Order order = orderList.get(itemIndex);
+				System.out.println(order + " THIS IS DELETE ORDER ITEM");
+				orderBroker.delete(order);
 			}
 		}
 			

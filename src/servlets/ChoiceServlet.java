@@ -28,12 +28,18 @@ public class ChoiceServlet extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		
 		//this will grab the tableid from the url
-		int tableId = Integer.parseInt(request.getParameter("tableId"));
+		if (session.isNew() == false) {
+			response.sendRedirect("menu");
+		}
+		else {
+			int tableId = Integer.parseInt(request.getParameter("tableId"));
+			
+			session.setAttribute("tableId", tableId);
+			
+			System.out.println(tableId + " THIS IS THE TABLE ID");
+			getServletContext().getRequestDispatcher("/ChoiceUI.jsp").forward(request, response);
+		}
 		
-		session.setAttribute("tableId", tableId);
-		
-		System.out.println(tableId + " THIS IS THE TABLE ID");
-		getServletContext().getRequestDispatcher("/ChoiceUI.jsp").forward(request, response);
 		
 		
 

@@ -147,8 +147,8 @@ public class OrderBroker {
 						+ ", orderStatus = " + order.getOrderStatus()
 						+ " Where orderID = " + order.getOrderID() + " AND timeStamp = '"+ order.getTimeStamp()+"'";
 				*/
-				stmtString = "update capstone2020.`order` SET (orderItemQty, orderAmount, orderStatus)"
-						+ " values(?,?,?) Where orderID = ? AND timeStamp = ?";				
+				stmtString = "update capstone2020.`order` SET orderItemQty = ?, orderAmount = ?, orderStatus = ?"
+						+ " Where orderID = ? AND timeStamp = ?";				
 				preparedStmt = con.prepareStatement(stmtString);				
 				preparedStmt.setInt(1, order.getOrderItemQty());
 				preparedStmt.setDouble(2, order.getOrderAmount());

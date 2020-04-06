@@ -55,6 +55,10 @@
 		<servlet-name>reportCustomerServlet</servlet-name>
 		<servlet-class>servlets.ReportCustomerServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>bill</servlet-name>
+		<servlet-class>servlets.ReviewBillServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>reportCustomerServlet</servlet-name>
 		<url-pattern>/reportCustomerServlet</url-pattern>
@@ -102,5 +106,9 @@
 	<servlet-mapping>
     	<servlet-name>help</servlet-name>
     	<url-pattern>/help</url-pattern>
+  	</servlet-mapping>
+  	<servlet-mapping>
+    	<servlet-name>bill</servlet-name>
+    	<url-pattern>/bill</url-pattern>
   	</servlet-mapping>
 </web-app>

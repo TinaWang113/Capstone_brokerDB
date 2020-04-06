@@ -47,6 +47,7 @@
 
             <li class="nav-item" role="presentation"><a class="nav-link" href="bill" >Bill</a></li>
             <li class="nav-item" role="presentation"><a class="nav-link" href="help">Help</a></li>
+            <li class="nav-item" role="presentation"><a class="nav-link" href="menu">Main Menu</a></li>
         </ul>
     </div>
     </nav>
@@ -69,7 +70,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="card mx-auto" style="width: 23rem;">
+        <div class="card mx-auto" style="width: 19rem;">
 		  <div class="card-body">
 			  
 		  

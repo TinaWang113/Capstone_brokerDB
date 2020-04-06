@@ -40,7 +40,7 @@ public class MenuServlet extends HttpServlet {
 				ArrayList<Category> categoryList = (ArrayList<Category>) menuBroker.findCategoryAll();
 					
 				for (Category category : categoryList) {
-					if (category.getMenuID() == Integer.parseInt(menuSelection)) {
+					if (category.getMenuID() == Integer.parseInt(menuSelection) || category.getMenuID() == 3) {
 						parsedCategoryList.add(category);
 						
 					}

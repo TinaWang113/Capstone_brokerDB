@@ -1,4 +1,19 @@
 //This will be for editing the order
+$(document).ready(function () {
+    $('.editItemBtn').click(function () {
+    	
+		var quantity = $(this).attr('data-qty');
+		var itemName = $(this).attr('data-itemName');
+		var itemIndex = $(this).attr('data-itemIndex');
+		
+
+		$("#quantity").val(quantity);
+		$("#itemName").text(itemName);
+		$("#editingOrderBtn").attr('data-itemIndex', itemIndex);
+		$("#deleteOrderBtn").attr('data-itemIndex', itemIndex);
+		
+    });
+});
 
 $(document).ready(function () {
     $('.editingOrderBtn').click(function () {
@@ -17,23 +32,46 @@ $(document).ready(function () {
 						
 				},
 				success: function(responseData){
-					$("#quantityupdate").text(responseData);
-						
 					setTimeout(function() {
-  						$("#infoModal").modal('hide');
+  						$("#editItemModal").modal('hide');
+  						$("#order").load(location.href + " #order>*");
 					}, 500);
 				}
 			});
-		$(this).parent().find("input").val("");
+		});
+});
+
+$(document).ready(function () {
+    $('.deleteOrderBtn').click(function () {
+			if (($(this).parent().find("input").val()) < 0) {
+				$(this).parent().find("input").val("");
+				return;
+			}
+			$.ajax({
+					type: "POST",
+					url: "order",
+					datatype : 'text',
+					data: {
+						action : $("#deleteOrderBtn").val(),
+						itemIndex : $(this).attr('data-itemIndex')
+						
+				},
+				success: function(responseData){
+					setTimeout(function() {
+  						$("#editItemModal").modal('hide');
+  						$("#order").load(location.href + " #order>*");
+					}, 500);
+					
+				}
+			});
 		});
 });
 
 
 
-
 //Up arrow function
 $(document).ready(function () {
-	$('.upArrow').click( function () {
+	$('.editOrderupArrow').click( function () {
 		
 	    var value = $(this).parent().find("input").val()
 			value = isNaN(value) ? 0 : value;
@@ -44,7 +82,7 @@ $(document).ready(function () {
 });
 //Down arrow function
 $(document).ready(function () {
-	$('.downArrow').click( function () {
+	$('.editOrderdownArrow').click( function () {
 		
 	    var value = $(this).parent().find("input").val()
 			value = isNaN(value) ? 0 : value;			
