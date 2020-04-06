@@ -149,10 +149,13 @@ insert into item (itemID, itemName, itemPrice, itemDesc, categoryID,photoLocalDi
 -- creating procedure for records
 DROP PROCEDURE IF EXISTS `creatingRecord`;
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `creatingRecord`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `creatingRecord`(
+	pivot_ts datetime,
+	max_span int
+)
 BEGIN 
-declare pivot_ts datetime default '2019-01-01 08:00:00';
-declare max_span int default 31536000;
+-- declare pivot_ts datetime default '2019-06-01 08:00:00';
+-- declare max_span int default 16293600;
 declare bias int default sign(1+RAND());
 declare starttime datetime ;
 declare endtime datetime;
@@ -163,7 +166,7 @@ declare countItem int default (select count(*) from capstone2020.`item`);
 declare qty int default 0;
 declare orderAmount double default 0.0;
 -- add table record
-	while records < 500 DO
+	while records < 200 DO
 		set starttime  = (SELECT FROM_UNIXTIME(
 			UNIX_TIMESTAMP(pivot_ts) + 
             ( bias * (FLOOR(RAND()*max_span)) )));
@@ -196,8 +199,8 @@ DROP PROCEDURE IF EXISTS `runtimeRecord`;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `runtimeRecord`()
 BEGIN 
-declare pivot_ts datetime default '2019-01-01 08:00:00';
-declare max_span int default 31536000;
+declare pivot_ts datetime default now() ;
+declare max_span int default 10521000;
 declare bias int default sign(1+RAND());
 declare starttime datetime ;
 declare endtime datetime;
@@ -234,8 +237,10 @@ declare orderAmount double default 0.0;
     
 END$$
 DELIMITER ;
-
-call creatingRecord();
+-- for 6 months
+call creatingRecord('2019-06-01 08:00:00',16293600);
+-- for recently month
+call creatingRecord('2020-03-6 08:00:00',2678400);
 call runtimeRecord();
      
 -- Survery Question 
