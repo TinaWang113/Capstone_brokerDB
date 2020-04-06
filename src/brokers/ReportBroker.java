@@ -35,6 +35,7 @@ public class ReportBroker {
 
 	SimpleDateFormat t_format = new SimpleDateFormat("yyyy-MM-dd");
 	SimpleDateFormat m_format = new SimpleDateFormat("yyyy-MM");
+	SimpleDateFormat month = new SimpleDateFormat("MM");
 	String today = t_format.format(new Date());
 	String thisMonth = m_format.format(new Date()).concat("-01");
 	LocalDate today1 = LocalDate.now();
@@ -45,7 +46,8 @@ public class ReportBroker {
 	ArrayList<ReportBest> Best_Month = new ArrayList<ReportBest>();
 
 	/**
-	 * Get the table information for thr report
+	 * Get the table information for the report
+	 * 
 	 * @return ReportCustomer ReportCustomer object
 	 * @throws SQLException SQLException
 	 */
@@ -131,26 +133,38 @@ public class ReportBroker {
 
 	/**
 	 * Get the trend of order count within 1 year.
+	 * 
 	 * @return ReportSale object
 	 * @throws SQLException SQLException
 	 */
 	public ReportSale getSaleTrend() throws SQLException {
 		executedResult = false;
 		connect();
-		thisMonth = m_format.format(new Date()).concat("-31");
 
-		String stmtString1 = "select count(*) from capstone2020.order where timeStamp between  DATE_FORMAT(? ,'%Y-%m-01') AND ?;";
-		String stmtString2 = "select count(*) from capstone2020.order where timeStamp between  DATE_FORMAT(? ,'%Y-%m-02') AND DATE_FORMAT(? ,'%Y-%m-01');";
-		String stmtString3 = "select count(*) from capstone2020.order where timeStamp between  DATE_FORMAT(? ,'%Y-%m-03') AND DATE_FORMAT(? ,'%Y-%m-02');";
-		String stmtString4 = "select count(*) from capstone2020.order where timeStamp between  DATE_FORMAT(? ,'%Y-%m-04') AND DATE_FORMAT(? ,'%Y-%m-03')";
-		String stmtString5 = "select count(*) from capstone2020.order where timeStamp between  DATE_FORMAT(? ,'%Y-%m-05') AND DATE_FORMAT(? ,'%Y-%m-04')";
-		String stmtString6 = "select count(*) from capstone2020.order where timeStamp between  DATE_FORMAT(? ,'%Y-%m-06') AND DATE_FORMAT(? ,'%Y-%m-05');";
-		String stmtString7 = "select count(*) from capstone2020.order where timeStamp between  DATE_FORMAT(? ,'%Y-%m-07') AND DATE_FORMAT(? ,'%Y-%m-06');";
-		String stmtString8 = "select count(*) from capstone2020.order where timeStamp between  DATE_FORMAT(? ,'%Y-%m-08') AND DATE_FORMAT(? ,'%Y-%m-07');";
-		String stmtString9 = "select count(*) from capstone2020.order where timeStamp between  DATE_FORMAT(? ,'%Y-%m-09') AND DATE_FORMAT(? ,'%Y-%m-08');";
-		String stmtString10 = "select count(*) from capstone2020.order where timeStamp between  DATE_FORMAT(? ,'%Y-%m-10') AND DATE_FORMAT(? ,'%Y-%m-09');";
-		String stmtString11 = "select count(*) from capstone2020.order where timeStamp between  DATE_FORMAT(? ,'%Y-%m-11') AND DATE_FORMAT(? ,'%Y-%m-10');";
-		String stmtString12 = "select count(*) from capstone2020.order where timeStamp between  DATE_FORMAT(? ,'%Y-%m-12') AND DATE_FORMAT(? ,'%Y-%m-11');";
+		String checkMonth = month.format(new Date());
+		if (checkMonth.equals("02")) {
+			thisMonth = m_format.format(new Date()).concat("-28");
+		} else if (checkMonth.equals("04") || checkMonth.equals("06") || checkMonth.equals("09")
+				|| checkMonth.equals("11")) {
+			thisMonth = m_format.format(new Date()).concat("-30");
+		} else {
+			thisMonth = m_format.format(new Date()).concat("-31");
+		}
+
+		System.out.println("check: " + today + " , " + m_format + ", " + thisMonth);
+
+		String stmtString1 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-01') AND timeStamp <= ?;";
+		String stmtString2 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-02') AND timeStamp <= DATE_FORMAT(? ,'%Y-%m-01');";
+		String stmtString3 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-03') AND timeStamp <= DATE_FORMAT(? ,'%Y-%m-02');";
+		String stmtString4 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-04') AND timeStamp <= DATE_FORMAT(? ,'%Y-%m-03')";
+		String stmtString5 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-05') AND DATE_FORMAT(? ,'%Y-%m-04')";
+		String stmtString6 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-06') AND timeStamp <= DATE_FORMAT(? ,'%Y-%m-05');";
+		String stmtString7 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-07') AND timeStamp <= DATE_FORMAT(? ,'%Y-%m-06');";
+		String stmtString8 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-08') AND timeStamp <= DATE_FORMAT(? ,'%Y-%m-07');";
+		String stmtString9 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-09') AND timeStamp <= DATE_FORMAT(? ,'%Y-%m-08');";
+		String stmtString10 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-10') AND timeStamp <= DATE_FORMAT(? ,'%Y-%m-09');";
+		String stmtString11 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-11') AND timeStamp <= DATE_FORMAT(? ,'%Y-%m-10');";
+		String stmtString12 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-12') AND timeStamp <= DATE_FORMAT(? ,'%Y-%m-11');";
 
 		PreparedStatement preparedStmt1 = con.prepareStatement(stmtString1);
 		preparedStmt1.setString(1, today);
@@ -242,6 +256,7 @@ public class ReportBroker {
 
 	/**
 	 * Get today's sale information
+	 * 
 	 * @return ArrayList<ReportBest>
 	 * @throws SQLException SQLException
 	 */
@@ -268,6 +283,7 @@ public class ReportBroker {
 
 	/**
 	 * Get the best month for the sale
+	 * 
 	 * @return ArrayList<ReportBest>
 	 * @throws SQLException SQLException
 	 */
@@ -295,6 +311,7 @@ public class ReportBroker {
 
 	/**
 	 * Establish database connection
+	 * 
 	 * @return Connection
 	 * @throws SQLException SQLException
 	 */

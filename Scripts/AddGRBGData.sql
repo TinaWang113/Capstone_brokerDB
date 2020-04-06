@@ -10,11 +10,11 @@ values ('7894', 'T', 'John', 'OLoughlin', '1231234567','Manager');
 
 -- addingcategory
 insert into category (categoryID, categoryName, menuID)
-Values (null,'[Han-Sang] 한상',1); -- 1
+Values (null,"[Han-Sang] 한상",1); -- 1
 insert into category (categoryID, categoryName, menuID)
-Values (null,'[Han-Ggi] 한끼',1); -- 2
+Values (null,"[Han-Ggi] 한끼",1); -- 2
 insert into category (categoryID, categoryName, menuID)
-Values (null,'[Lunch Box]',1); -- 3
+Values (null,"[Lunch Box]",1); -- 3
 insert into category (categoryID, categoryName, menuID)
 Values (null,'Noodles',1); -- 4 
 insert into category (categoryID, categoryName, menuID)
@@ -53,7 +53,6 @@ insert into item (itemID, itemName, itemPrice, itemDesc, categoryID,photoLocalDi
 insert into item (itemID, itemName, itemPrice, itemDesc, categoryID,photoLocalDirectory,photoCloudDirectory) Values (null, 'Cold Noodle with Sliced Raw Skate | 회냉면', 14.99, 'a Korean noodle spice dish of long and thin handmade noodles made from the flour and starch of various ingredients, including buckwheat, potatoes, sweet potatoes, arrowroot starch', 4, 'item/bigogi.jpg', null);
 insert into item (itemID, itemName, itemPrice, itemDesc, categoryID,photoLocalDirectory,photoCloudDirectory) Values (null, 'Cold Noodle with Broth + Spicy Cold Noodles | 물*비냉면', 14.99, 'a Korean noodle spice dish of long and thin handmade noodles made from the flour and starch of various ingredients, including buckwheat, potatoes, sweet potatoes, arrowroot starch', 4, 'item/bigogi.jpg', null);
 insert into item (itemID, itemName, itemPrice, itemDesc, categoryID,photoLocalDirectory,photoCloudDirectory) Values (null, 'Udon (Fishball, Chicken, Beef) | 우동', 13.99, 'a noodle soup derived from the Japanese udon', 4, 'item/udon.jpg', null);
-insert into item (itemID, itemName, itemPrice, itemDesc, categoryID,photoLocalDirectory,photoCloudDirectory) Values (null, 'Stir-fried glass noodles with vegetables|야채잡채', 16.99, 'a sweet and savory dish of stir-fried glass noodles and vegetables that is popular in Korean cuisine.', 4, 'item/jamchae.jpeg', null);
 insert into item (itemID, itemName, itemPrice, itemDesc, categoryID,photoLocalDirectory,photoCloudDirectory) Values (null, 'Stir-fried glass noodles with beef bulgogi|고기잡채', 19.99, 'a sweet and savory dish of stir-fried glass noodles and vegetables that is popular in Korean cuisine.', 4, 'item/jamchae.jpeg', null);
 insert into item (itemID, itemName, itemPrice, itemDesc, categoryID,photoLocalDirectory,photoCloudDirectory) Values (null, 'House salad|하우스샐러드|house salad', 6.99, 'House Salad is a recipe cooked on the intermediate Salad Station', 11, 'item/h_salad.jpeg', null);
 insert into item (itemID, itemName, itemPrice, itemDesc, categoryID,photoLocalDirectory,photoCloudDirectory) Values (null, 'Soft tofu salad|연두부샐러드', 8.99, 'Salad with Tofu, sweet and sour dressing', 11, 'item/t_salad.jpg', null);

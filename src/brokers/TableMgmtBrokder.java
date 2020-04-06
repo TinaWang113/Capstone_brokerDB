@@ -236,7 +236,7 @@ public class TableMgmtBrokder {
 		executedResult = false;
 		connect();
 		stmtString = "update capstone2020.table "
-				+ "set tableStatus=? and endTime=now() where tableID= ? and endTime is not null ";
+				+ "set tableStatus=?, endTime=now() where tableID= ? and endTime is null ";
 		preparedStmt = con.prepareStatement(stmtString);
 		preparedStmt.setInt(1, 0);
 		preparedStmt.setString(2, tableId);
