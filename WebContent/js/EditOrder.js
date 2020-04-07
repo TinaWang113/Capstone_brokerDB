@@ -57,6 +57,7 @@ $(document).ready(function () {
 						
 				},
 				success: function(responseData){
+					$('#quantityupdate').text(responseData);
 					setTimeout(function() {
   						$("#editItemModal").modal('hide');
   						$("#order").load(location.href + " #order>*");

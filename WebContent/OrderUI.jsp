@@ -43,7 +43,7 @@
                         </div>
             </li>
             <li class="nav-item" role="presentation">
-            <a class="nav-link" href="order">Order<span class="badge badge-light" id="quantityupdate"></span></a>
+            <a class="nav-link" href="order">Order<span class="badge badge-light" id="quantityupdate">${sessionScope.updateQuantity}</span></a>
             </li>
 
             <li class="nav-item" role="presentation"><a class="nav-link" href="bill" >Bill</a></li>

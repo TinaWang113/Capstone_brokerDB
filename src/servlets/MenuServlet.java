@@ -11,8 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import brokers.MenuBroker;
+import brokers.OrderBroker;
+import brokers.TableBroker;
 import model.Category;
 import model.Item;
+import model.Order;
+import model.Table;
 
 /**
  * Servlet implementation class Menu
@@ -54,6 +58,19 @@ public class MenuServlet extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			
+			int itemCount = 0;
+			OrderBroker orderBroker = new OrderBroker();
+
+			Table table = (Table)session.getAttribute("table");
+			ArrayList<Order> countList = (ArrayList<Order>) orderBroker.getOrders();
+			for (int i = 0; i < countList.size(); i++ ) {
+				if (countList.get(i).getOrderStatus() == 0 && countList.get(i).getTable().getTableID() == table.getTableID()) {
+					itemCount++;
+				}
+			}
+			
+			session.setAttribute("updateQuantity", itemCount);
 				
 			request.setAttribute("parsedItemList", parsedItemList);
 			request.setAttribute("parsedCategoryList", parsedCategoryList);

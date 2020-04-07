@@ -32,7 +32,7 @@
             <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">Menu&nbsp;</a>
                         <div class="dropdown-menu" role="menu">                     
 	                       
-	                       <c:forEach var="category" items="${parsedCategoryList}">
+	                       <c:forEach var="category" items="${sessionScope.parsedCategoryList}">
 	                       
 	                       		<form action="submenu" method="GET">
 	                        	<input type="submit" class="dropdown-item" role="presentation"  data-value="${category.getCategoryID()}" value ="${category.getCategoryName()}">
@@ -43,7 +43,7 @@
                         </div>
             </li>
             <li class="nav-item" role="presentation">
-            <a class="nav-link" href="order">Order<span class="badge badge-light" id="quantityupdate"></span></a>
+            <a class="nav-link" href="order">Order<span class="badge badge-light" id="quantityupdate">${sessionScope.updateQuantity}</span></a>
             </li>
 
             <li class="nav-item" role="presentation"><a class="nav-link" href="bill" >Bill</a></li>

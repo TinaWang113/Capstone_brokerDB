@@ -52,7 +52,6 @@ public class OrderServlet extends HttpServlet {
 
 		request.setAttribute("total", total);
 		request.setAttribute("parsedOrderList", parsedOrderList);
-
 		
 		getServletContext().getRequestDispatcher("/OrderUI.jsp").forward(request, response);
 	}
@@ -63,10 +62,8 @@ public class OrderServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		
-		//HashMap to hold the orders and the amount of orders
 		
-		
-		int itemCount = (int)session.getAttribute("itemCount");
+		int itemCount = 0;
 		
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
@@ -92,6 +89,7 @@ public class OrderServlet extends HttpServlet {
 					
 					try {
 						
+						
 						Item item = menuBroker.findbyID(Integer.parseInt(itemId));
 						
 						Order order = new Order();
@@ -105,7 +103,16 @@ public class OrderServlet extends HttpServlet {
 						//Everytime a user hits add, it inserts it into the database
 						orderBroker.insert(order);
 						
-						itemCount++;
+						ArrayList<Order> countList = (ArrayList<Order>) orderBroker.getOrders();
+						for (int i = 0; i < countList.size(); i++ ) {
+							if (countList.get(i).getOrderStatus() == 0 && countList.get(i).getTable().getTableID() == table.getTableID()) {
+								itemCount++;
+							}
+						}
+						session.setAttribute("updateQuantity", itemCount);
+						response.setContentType("text/html");
+						response.getWriter().write(Integer.toString(itemCount));
+						response.getWriter().close();
 						System.out.println(itemCount + " THIS IS THE ITEM COUNT");
 
 	
@@ -199,6 +206,14 @@ public class OrderServlet extends HttpServlet {
 				Order order = orderList.get(itemIndex);
 				System.out.println(order + " THIS IS DELETE ORDER ITEM");
 				orderBroker.delete(order);
+				
+				int something = (int)session.getAttribute("updateQuantity");
+				something--;
+				session.setAttribute("updateQuantity", something);
+				response.setContentType("text/html");
+				response.getWriter().write(Integer.toString(something));
+				response.getWriter().close();
+				
 			}
 		}
 			
