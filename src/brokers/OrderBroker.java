@@ -242,7 +242,10 @@ public class OrderBroker {
 					System.out.println("[Order]deleted.");
 					executedResult = true;
 				}
-				close();
+				//close();
+				if(!preparedStmt.isClosed()) preparedStmt.close();
+				if(!con.isClosed()) con.close();
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -431,7 +434,7 @@ public class OrderBroker {
 	 * @throws SQLException if any exception during running query
 	 */
 	private void close() throws SQLException {
-		if(rs.isClosed()) rs.close();
+		if(!rs.isClosed()) rs.close();
 		if(!preparedStmt.isClosed()) preparedStmt.close();
 		if(!con.isClosed()) con.close();
 	}
