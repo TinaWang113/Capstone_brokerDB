@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import brokers.TableMgmtBrokder;
 import model.OrderMgmt;
 import model.TableMgmt;
@@ -55,15 +54,16 @@ public class TableMonitor extends HttpServlet {
 		for (int i = 0; i < tables.size(); i++) {
 			int value = 0;
 			value = tables.get(i).getTableStatus();
-			
-			String startTime ="";
+
+			String startTime = "";
 			startTime = tables.get(i).getStartTime();
-			
-			request.setAttribute("table_" + (i + 1)+"_startTime", startTime);
-			request.setAttribute("table_" + (i + 1), value);
-			
-			System.out.println(tables.get(i).toString());
-			
+
+			if (tables.get(i).getStartTime() != null) {
+				request.setAttribute("table_" + tables.get(i).getTableID() + "_startTime", startTime);
+				request.setAttribute("table_" + tables.get(i).getTableID(), value);
+//				System.out.println(tables.get(i).toString());
+			}
+
 		}
 		request.setAttribute("tables", tables);
 		getServletContext().getRequestDispatcher("/TableMonitor.jsp").forward(request, response);

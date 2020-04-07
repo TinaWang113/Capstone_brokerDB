@@ -30,7 +30,7 @@
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-success">
-		<a class="navbar-brand" href="DashboardUI.jsp">Migarock Management
+		<a class="navbar-brand" href="tableMonitor">Migarock Management
 			System</a>
 		<!--Allows NAv bar to adapt to any size screen-->
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
