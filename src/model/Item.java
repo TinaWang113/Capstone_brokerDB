@@ -4,6 +4,8 @@
 package model;
 
 /**
+ * Item
+ * 	containing all information for Item object
  * @author 730693
  *
  */
@@ -19,12 +21,12 @@ public class Item {
 	
 	
 	/**
-	 * @param itemID
-	 * @param itemName
-	 * @param itemPrice
-	 * @param itemDesc
-	 * @param photoLocalDirectory
-	 * @param photoCloudDirectory
+	 * @param itemName item name, String
+	 * @param category Category object
+	 * @param itemPrice item price, double
+	 * @param itemDesc item description, String
+	 * @param photoLocalDirectory photo local Directory, String
+	 * @param photoCloudDirectory photo cloud Directory, String
 	 */
 	public Item(String itemName,  Category category, double itemPrice, String itemDesc, String photoLocalDirectory,
 			String photoCloudDirectory) {

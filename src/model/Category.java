@@ -1,13 +1,20 @@
 package model;
 
+/**
+ *  Category model
+ *  	containing all information for category
+ * @author 730693
+ *
+ */
 public class Category {
 	private int categoryID;
 	private String categoryName;
 	private int menuID;
 	
 	/**
-	 * @param categoryID
-	 * @param categoryName
+	 * 
+	 * @param categoryName category name, String
+	 * @param menuID menu ID, int
 	 */
 	public Category(String categoryName, int menuID) {
 		super();
@@ -34,7 +41,7 @@ public class Category {
 	}
 	
 	/**
-	 * @return the categoryID
+	 * @return the categoryID 
 	 */
 	public int getCategoryID() {
 		return categoryID;

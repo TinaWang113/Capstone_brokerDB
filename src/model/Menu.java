@@ -4,6 +4,9 @@
 package model;
 
 /**
+ * Menu
+ * 	containing all information for menu object.
+ * 
  * @author 730693
  *
  */
@@ -14,8 +17,8 @@ public class Menu {
 	private Category category;
 	
 	/**
-	 * @param menuID
-	 * @param menuName
+	 * @param menuID menu ID, int
+	 * @param menuName menu name, String
 	 */
 	public Menu(int menuID, String menuName) {
 		super();

@@ -6,6 +6,8 @@ package model;
 import java.sql.Timestamp;
 
 /**
+ * Table Object contain all information which table needs
+ * 
  * @author 730693
  *
  */
@@ -21,10 +23,11 @@ public class Table {
 	private int staff_sID ;
 	
 	/**
-	 * @param tableID
-	 * @param startTime
-	 * @param endTime
-	 * @param tableStatus
+	 * @param tableID int 
+	 * @param startTime Timestamp 
+	 * @param endTime Timestamp
+	 * @param tableStatus int default is 0
+	 * @param staff_sID staff ID, int
 	 */
 	public Table(int tableID, Timestamp startTime, Timestamp endTime, int tableStatus, int staff_sID ) {
 		super();
@@ -36,8 +39,8 @@ public class Table {
 	}
 	
 	/**
-	 * @param endTime
-	 * @param tableStatus
+	 * @param endTime Timestamp
+	 * @param tableStatus int default is 0
 	 */
 	public Table(Timestamp endTime, int tableStatus) {
 		super();
@@ -45,6 +48,11 @@ public class Table {
 		this.tableStatus = tableStatus;
 	}
 	
+	/**
+	 * 
+	 * @param tableID int 
+	 * @param sTime Timestamp 
+	 */
 	public Table(int tableID, Timestamp sTime) {
 		setTableID(tableID);
 		setStartTime(sTime);

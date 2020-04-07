@@ -16,6 +16,7 @@ import model.Item;
 import server.Connect2Server;
 
 /**
+ * The class is for menu object using
  * @author 730693
  *
  */
@@ -31,9 +32,10 @@ public class MenuBroker {
 	
 	
 	/**
-	 * 
-	 * @return
-	 * @throws SQLException
+	 * findItemAll:
+	 * 	Obtaining all items from database
+	 * @return items  List with Item datatype
+	 * @throws SQLException  if any exception during running query
 	 */
 	public List<Item> findItemAll() throws SQLException {
 		//connect;
@@ -71,6 +73,12 @@ public class MenuBroker {
 		return items;	
 	}
 	
+	/**
+	 * findCategoryAll
+	 * 		Obtaining all category from category table
+	 * @return categories List with Category datatype
+	 * @throws SQLException if any exception during running query
+	 */
 	public List<Category> findCategoryAll() throws SQLException{
 	//connect;
 		executedResult = false;
@@ -96,13 +104,25 @@ public class MenuBroker {
 		return categories;
 	}
 	
-	public void close() throws SQLException {
+	
+	/**
+	 * close
+	 * 	close all connection between database.
+	 * @throws SQLException if any exception during running query
+	 */
+	private void close() throws SQLException {
 		if(rs.isClosed()) rs.close();
 		if(!preparedStmt.isClosed()) preparedStmt.close();
 		if(!con.isClosed()) con.close();
 	}
 	
-	public Connection connect() throws SQLException {
+	/**
+	 * connect
+	 * 	Establishing the connection to server.
+	 * @return con Connection
+	 * @throws SQLException if any exception during running query
+	 */
+	private Connection connect() throws SQLException {
 		if(con != null) {
 			con.close();
 		}
@@ -110,6 +130,14 @@ public class MenuBroker {
 		return con;
 	}
 	
+	
+	/**
+	 * findbyID
+	 * 	Seeking an item by using the item ID 
+	 * @param id Int, it's the item ID. It's should be integer and cannot be negative 
+	 * @return  item Item object, if the Item ID can be found in Item table, otherwise it's will return null.
+	 * @throws SQLException if any exception during running query
+	 */
 	public Item findbyID(int id)throws SQLException{
 		Item item = null;
 		Category category =null;
@@ -143,6 +171,13 @@ public class MenuBroker {
 	}
 	
 	
+	/**
+	 * findByID
+	 * 	seeking a category by categoryID in category table
+	 * @param id int It must to be integer and large than 0
+	 * @return category Category object if the id can be found in category table, otherwise it returns null
+	 * @throws SQLException if any exception during running query
+	 */
 	public Category findByID(int id) throws SQLException {
 		Category category = null;
 		executedResult = false;
@@ -164,6 +199,15 @@ public class MenuBroker {
 		return category;
 	}
 	
+	
+	/**
+	 * isExisting
+	 * 	seeking an object if it is in table.
+	 * @param table  String it indicates neither category or item table.  Only accessible the two String.
+	 * @param id int It must to be integer and large than 0
+	 * @return boolean either true or false which represents the id if it's in the table. 
+	 * @throws SQLException if any exception during running query
+	 */
 	public boolean isExisting(String table, int id) throws SQLException {
 		connect();
 		//System.out.println("table: "+table+ ", id= "+ id);
@@ -192,6 +236,13 @@ public class MenuBroker {
 		return executedResult ;		
 	}
 	
+	/**
+	 * qtyData
+	 * 	calculating the number of data in table
+	 * @param table String it is either "category" or "item"
+	 * @return qty int the number of data in the table. 
+	 * @throws SQLException if any exception during running query 
+	 */
 	
 	public int qtyData(String table) throws SQLException {
 		connect();
@@ -205,7 +256,13 @@ public class MenuBroker {
 		return qty;
 	}
 	
-	
+	/**
+	 * insertItem
+	 * 	inserting Item object into item table.
+	 * @param item Item object ItemName and price categoryID cannot be null 
+	 * @return boolean  true is inserting success, otherwise false
+	 * @throws SQLException if any exception during running query
+	 */
 	public boolean insertItem(Item item) throws SQLException {
 		executedResult = false;		
 		if(item == null && isExisting("item", item.getItemID()) ) {
@@ -237,6 +294,14 @@ public class MenuBroker {
 		
 	}
 	
+	/**
+	 * insertCategory
+	 * 		insert new Category object into category table
+	 * @param category Category Object. menuID and categoryName cannot be null 
+	 * @return boolean  true is inserting success, otherwise false
+	 * @throws SQLException if any exception during running query
+	 */
+	
 	public boolean insertCategory(Category category) throws SQLException {
 		connect();
 		executedResult = false;
@@ -255,6 +320,13 @@ public class MenuBroker {
 		return executedResult;
 	}
 	
+	/**
+	 * update
+	 * 	Update Item item which is existing in item table
+	 * @param item Item object. ItemID cannot be null and doesn't existing in database
+	 * @return boolean true if update successes, otherwise return false. 
+	 * @throws SQLException if any exception during running query
+	 */
 	public boolean update(Item item) throws SQLException {
 		executedResult = false;
 		if(item != null && isExisting("item", item.getItemID())) {
@@ -279,6 +351,14 @@ public class MenuBroker {
 		
 	}
 	
+	
+	/**
+	 *  update
+	 *  	update Category data
+	 * @param category Category the categoryID cannot be null and cannot existing in database
+	 * @return boolean returning true if update successes, otherwise false.
+	 * @throws SQLException if any exception during running query
+	 */
 	public boolean update(Category category) throws SQLException {
 		executedResult = false;
 		if(category != null && isExisting("category", category.getCategoryID())) {
@@ -295,6 +375,15 @@ public class MenuBroker {
 		close();
 		return executedResult;
 	}
+	
+	/**
+	 * deleteByID
+	 * 	delete data by the tableName and id
+	 * @param table String it would be either "item" or "category"
+	 * @param id int it must be Integer and large than 0
+	 * @return boolean true, if delete success; otherwise false
+	 * @throws SQLException if any exception during running query
+	 */
 	
 	public boolean deleteByID(String table, int id) throws SQLException {
 		executedResult = false;
@@ -323,11 +412,14 @@ public class MenuBroker {
 		close();
 		return executedResult;
 	}
+	
+	
 	/**
-	 * 
-	 * @param table
-	 * @return
-	 * @throws SQLException
+	 * deleteAll
+	 * 	delete All data by the table Name
+	 * @param table String  either "category" or "item".
+	 * @return boolean true if delete all data success; otherwise false.
+	 * @throws SQLException if any exception during running query
 	 */
 	private boolean deleteAll(String table) throws SQLException {
 		stmtString = "delete from "+ table ;

@@ -17,6 +17,8 @@ import model.Table;
 import server.Connect2Server;
 
 /**
+ * OrderBroker 
+ * 	communicating data with server
  * @author 730693
  *
  */
@@ -32,7 +34,13 @@ public class OrderBroker {
 	MenuBroker mBroker = new MenuBroker();
 	TableBroker tBroker = new TableBroker();
 	
-	
+	/**
+	 * insert
+	 * 	insert data into database
+	 * @param order Order object 
+	 * @return boolean true if insert is success, otherwise the return is false
+	 * @throws SQLException Exception if SQL has any problem.
+	 */
 	public boolean insert(Order order) throws SQLException {
 		executedResult = false;
 		//check item and table first!!!!!!
@@ -91,7 +99,13 @@ public class OrderBroker {
 		return executedResult;
 	}
 	
-	
+	/**
+	 * isExisitng
+	 * 	check id is existing or not.
+	 * @param order Order object, the orderID cannot be null or small then 0
+	 * @return boolean indicating the ID is existing in DB, or not
+	 * @throws SQLException Exception if SQL has any problem.
+	 */
 	
 	public boolean isExisting(Order order) throws SQLException {
 		executedResult = false;
@@ -121,6 +135,13 @@ public class OrderBroker {
 			return executedResult;
 	}
 
+	/**
+	 * update
+	 * 	update order which is existing in order database
+	 * @param order Order object orderID cannot be null and large than 0
+	 * @return boolean true, the data updates success. False, deleting fail. 
+	 * @throws SQLException Exception if SQL has any problem.
+	 */
 	
 	public boolean update(Order order) throws SQLException {
 		executedResult = false;
@@ -169,6 +190,13 @@ public class OrderBroker {
 		return executedResult;
 	}
 	
+	/**
+	 * updateStatus
+	 * 	only update Status of order
+	 * @param order Order object orderID cannot be null or small then 0
+	 * @return boolean true if updated success; otherwise false.
+	 * @throws SQLException Exception if SQL has any problem.
+	 */
 	public boolean updateStatus(Order order) throws SQLException {
 		executedResult = false;
 		if(isExisting(order)) {		
@@ -195,6 +223,13 @@ public class OrderBroker {
 		return executedResult;
 	}
 
+ 	/*
+ * delete
+ * 	delete data by Order object.
+ * @param order Order object, the orderID cannot be null(mandatory).
+ * @return boolean true, the data has been deleted. False, deleting fail.
+ * @throws SQLException Exception if SQL has any problem.
+*/
 	public boolean delete(Order order) {
 		executedResult = false;
 		if(order.getOrderID() > 0 && order.getTimeStamp() != null) {
@@ -218,7 +253,12 @@ public class OrderBroker {
 		return executedResult;	
 	}
 	
-	
+	 /**
+	 * deleteAll
+	 * 	delete all data in the order database
+	 * @return boolean true if all data has been deleted; otherwise false  
+	 * @throws SQLException Exception if SQL has any problem.
+	 */
 	private boolean deleteAll() {
 		executedResult = false;
 		try {
@@ -238,6 +278,11 @@ public class OrderBroker {
 		
 	}
 	
+	/**
+	 * dataQty 
+	 * 	total number of database
+	 * @return int the qty of data
+	 */
 	public int qtyData() {
 		int qty = 0;
 		try {
@@ -256,6 +301,14 @@ public class OrderBroker {
 		return qty;
 	}
 	
+	/**
+	 * getOrderByID
+	 * 	get order data by orderID and timestamp 
+	 * @param orderID int it should be integer and large than 0
+	 * @param timeStamp Timestamp cannot be null
+	 * @return order Order object if it is existing in order database; otherwise false
+	 * @throws SQLException Exception if SQL has any problem.
+	 */
 	public Order getOrderByID(int orderID, Timestamp timeStamp) throws SQLException {
 		Order order = new Order(orderID, timeStamp);
 		Item item = new Item();
@@ -291,6 +344,13 @@ public class OrderBroker {
 	}
 	
 	
+	/**
+	 * getOrderByID
+	 * 		get order data by order object 
+	 * @param order Order object orderID and timeStamp cannot be null
+	 * @return order Order object if it is existing in order database; otherwise false
+	 * @throws SQLException Exception if SQL has any problem.
+	 */
 	public Order getOrderByID(Order order) throws SQLException {
 		Item item = new Item();
 		Table table = new Table();
@@ -325,6 +385,12 @@ public class OrderBroker {
 		return order;
 	}
 	
+	/**
+	 * getOrders
+	 * 	get all data from the order database 
+	 * @return List containing the object
+	 */
+	 
 	public List<Order> getOrders(){
 		orders = new ArrayList<Order>();
 		try {
@@ -359,13 +425,23 @@ public class OrderBroker {
 
 	}
 	
-	
+	/**
+	 * close
+	 * 	close all connection between database.
+	 * @throws SQLException if any exception during running query
+	 */
 	private void close() throws SQLException {
 		if(rs.isClosed()) rs.close();
 		if(!preparedStmt.isClosed()) preparedStmt.close();
 		if(!con.isClosed()) con.close();
 	}
 	
+	 /**
+		 * connect
+		 * 	Establishing the connection to server.
+		 * @return con Connection
+		 * @throws SQLException if any exception during running query
+		 */
 	private Connection connect() throws SQLException {
 		if(con != null) {
 			con.close();
