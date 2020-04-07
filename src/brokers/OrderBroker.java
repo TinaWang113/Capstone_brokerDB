@@ -205,7 +205,10 @@ public class OrderBroker {
 					System.out.println("[Order]deleted.");
 					executedResult = true;
 				}
-				close();
+				//close();
+				if(!preparedStmt.isClosed()) preparedStmt.close();
+				if(!con.isClosed()) con.close();
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -364,10 +367,12 @@ public class OrderBroker {
 	
 	
 	private void close() throws SQLException {
-		if(rs.isClosed()) rs.close();
+		if(rs != null || !rs.isClosed()) {
+			rs.close();
+		}
 		if(!preparedStmt.isClosed()) preparedStmt.close();
 		if(!con.isClosed()) con.close();
-	}
+		}
 	
 	private Connection connect() throws SQLException {
 		if(con != null) {

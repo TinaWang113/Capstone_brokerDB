@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import brokers.MenuBroker;
 import brokers.OrderBroker;
+import brokers.TableBroker;
 import model.Item;
 import model.Order;
 import model.Table;
@@ -53,6 +54,7 @@ public class OrderServlet extends HttpServlet {
 		request.setAttribute("total", total);
 		request.setAttribute("parsedOrderList", parsedOrderList);
 		
+		
 		getServletContext().getRequestDispatcher("/OrderUI.jsp").forward(request, response);
 	}
 
@@ -82,8 +84,10 @@ public class OrderServlet extends HttpServlet {
 				
 				String itemId = request.getParameter("itemId");
 				int itemQuantity = Integer.parseInt(request.getParameter("itemQuantity"));
+				
 				OrderBroker orderBroker = new OrderBroker();
 				MenuBroker menuBroker = new MenuBroker();
+				
 				
 					
 					
@@ -98,6 +102,7 @@ public class OrderServlet extends HttpServlet {
 						order.setOrderItemQty(itemQuantity);
 						order.setOrderItem(item);
 						order.setOrderAmount(item.getItemPrice() * itemQuantity);
+						order.setOrderStatus(3);
 						
 						
 						//Everytime a user hits add, it inserts it into the database
@@ -105,10 +110,12 @@ public class OrderServlet extends HttpServlet {
 						
 						ArrayList<Order> countList = (ArrayList<Order>) orderBroker.getOrders();
 						for (int i = 0; i < countList.size(); i++ ) {
-							if (countList.get(i).getOrderStatus() == 0 && countList.get(i).getTable().getTableID() == table.getTableID()) {
+							if (countList.get(i).getOrderStatus() == 3 && countList.get(i).getTable().getTableID() == table.getTableID()) {
 								itemCount++;
 							}
 						}
+						
+						
 						session.setAttribute("updateQuantity", itemCount);
 						response.setContentType("text/html");
 						response.getWriter().write(Integer.toString(itemCount));
@@ -127,13 +134,14 @@ public class OrderServlet extends HttpServlet {
 				
 				
 				OrderBroker orderBroker = new OrderBroker();
+				TableBroker tableBroker = new TableBroker();
 				ArrayList<Order> testList = (ArrayList<Order>)orderBroker.getOrders();
 				
 				//Set the order status to ordered when they hit submit button
 				for (Order order : testList) {
 					
-					if (order.getOrderStatus() != 1) {
-						order.setOrderStatus(1);
+					if (order.getOrderStatus() != 0) {
+						order.setOrderStatus(0);
 						
 						try {
 							orderBroker.updateStatus(order);
@@ -143,6 +151,12 @@ public class OrderServlet extends HttpServlet {
 					}
 					
 				}
+				
+				table.setTableStatus(3);
+				tableBroker.updateStatus(table);
+				
+				session.setAttribute("table", table);
+				
 				itemCount = 0;
 				session.setAttribute("itemCount", itemCount);
 				

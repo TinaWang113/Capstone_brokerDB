@@ -74,12 +74,12 @@
 	      <td class="price">$${order.value.getOrderAmount()}</td>	      
 	      	<c:set var = "orderStatus" scope = "session" value = "${order.value.getOrderStatus()}"/>
 	      	<c:choose>
-    			<c:when test="${orderStatus == 1}">
+    			<c:when test="${orderStatus == 0}">
        		 		<td class="status">Ordered</td>
        		 		<td class="edit"><button type="button" class="btn btn-secondary" disabled>Edit</button>
 			  		</td>
     			</c:when>
-    			<c:when test="${orderStatus == 2}">
+    			<c:when test="${orderStatus == 1}">
     				<td class="status">Delivered</td>
     			</c:when>    
     			<c:otherwise>

@@ -31,7 +31,7 @@ public class MenuServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
 		
 		
 		ArrayList<Item> parsedItemList = new ArrayList<>(); 
@@ -65,7 +65,7 @@ public class MenuServlet extends HttpServlet {
 			Table table = (Table)session.getAttribute("table");
 			ArrayList<Order> countList = (ArrayList<Order>) orderBroker.getOrders();
 			for (int i = 0; i < countList.size(); i++ ) {
-				if (countList.get(i).getOrderStatus() == 0 && countList.get(i).getTable().getTableID() == table.getTableID()) {
+				if (countList.get(i).getOrderStatus() == 3 && countList.get(i).getTable().getTableID() == table.getTableID()) {
 					itemCount++;
 				}
 			}

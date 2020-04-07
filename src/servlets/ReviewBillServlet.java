@@ -75,8 +75,10 @@ public class ReviewBillServlet extends HttpServlet {
 		
 		TableBroker tableBroker = new TableBroker();
 		
-		tableBroker.delete(table);
-		session.invalidate();
+		getServletContext().getRequestDispatcher("/ChoiceUI.jsp").forward(request, response);
+		
+//		tableBroker.delete(table);
+		
 		
 	}
 

@@ -35,6 +35,7 @@ $(document).ready(function () {
 					setTimeout(function() {
   						$("#editItemModal").modal('hide');
   						$("#order").load(location.href + " #order>*");
+  						location.reload();
 					}, 500);
 				}
 			});
@@ -61,6 +62,7 @@ $(document).ready(function () {
 					setTimeout(function() {
   						$("#editItemModal").modal('hide');
   						$("#order").load(location.href + " #order>*");
+  						location.reload();
 					}, 500);
 					
 				}

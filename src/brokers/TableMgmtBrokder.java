@@ -175,7 +175,7 @@ public class TableMgmtBrokder {
 	public boolean changeTableStatus(String tableId, String startTime) throws SQLException {
 		executedResult = false;
 		connect();
-		stmtString = "update capstone2020.table set tableStatus=0 where tableID=? and startTime=? and endTime is null ";
+		stmtString = "update capstone2020.table set tableStatus=3 where tableID=? and startTime=? and endTime is null ";
 		preparedStmt = con.prepareStatement(stmtString);
 		preparedStmt.setString(1, tableId);
 		preparedStmt.setString(2, startTime);
