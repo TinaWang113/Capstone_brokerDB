@@ -151,107 +151,151 @@ public class ReportBroker {
 			thisMonth = m_format.format(new Date()).concat("-31");
 		}
 
-		System.out.println("check: " + today + " , " + m_format + ", " + thisMonth);
+		String month_0 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-01');";
+		String month_1 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-02');";
+		String month_2 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-03');";
+		String month_3 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-04');";
+		String month_4 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-05');";
+		String month_5 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-06');";
+		String month_6 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-07');";
+		String month_7 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-08');";
+		String month_8 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-09');";
+		String month_9 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-10');";
+		String month_10 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-11');";
+		String month_11 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-12');";
 
-		String stmtString1 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-01') AND timeStamp <= ?;";
-		String stmtString2 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-02') AND timeStamp <= DATE_FORMAT(? ,'%Y-%m-01');";
-		String stmtString3 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-03') AND timeStamp <= DATE_FORMAT(? ,'%Y-%m-02');";
-		String stmtString4 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-04') AND timeStamp <= DATE_FORMAT(? ,'%Y-%m-03')";
-		String stmtString5 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-05') AND DATE_FORMAT(? ,'%Y-%m-04')";
-		String stmtString6 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-06') AND timeStamp <= DATE_FORMAT(? ,'%Y-%m-05');";
-		String stmtString7 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-07') AND timeStamp <= DATE_FORMAT(? ,'%Y-%m-06');";
-		String stmtString8 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-08') AND timeStamp <= DATE_FORMAT(? ,'%Y-%m-07');";
-		String stmtString9 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-09') AND timeStamp <= DATE_FORMAT(? ,'%Y-%m-08');";
-		String stmtString10 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-10') AND timeStamp <= DATE_FORMAT(? ,'%Y-%m-09');";
-		String stmtString11 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-11') AND timeStamp <= DATE_FORMAT(? ,'%Y-%m-10');";
-		String stmtString12 = "select count(*) from capstone2020.order where timeStamp >=  DATE_FORMAT(? ,'%Y-%m-12') AND timeStamp <= DATE_FORMAT(? ,'%Y-%m-11');";
+		int gap_0 = 0;
+		int gap_1 = 0;
+		int gap_2 = 0;
+		int gap_3 = 0;
+		int gap_4 = 0;
+		int gap_5 = 0;
+		int gap_6 = 0;
+		int gap_7 = 0;
+		int gap_8 = 0;
+		int gap_9 = 0;
+		int gap_10 = 0;
+		int gap_11 = 0;
 
-		PreparedStatement preparedStmt1 = con.prepareStatement(stmtString1);
-		preparedStmt1.setString(1, today);
-		preparedStmt1.setString(2, thisMonth);
+		PreparedStatement preparedStmt1 = con.prepareStatement(month_0);
+		preparedStmt1.setString(1, thisMonth);
 		ResultSet rs1 = preparedStmt1.executeQuery();
 		rs1.next();
-		rs.setThisMonth_0(rs1.getInt(1));
+		gap_0 = rs1.getInt(1);
 
-		PreparedStatement preparedStmt2 = con.prepareStatement(stmtString2);
+		PreparedStatement preparedStmt2 = con.prepareStatement(month_1);
 		preparedStmt2.setString(1, thisMonth);
-		preparedStmt2.setString(2, thisMonth);
 		ResultSet rs2 = preparedStmt2.executeQuery();
 		rs2.next();
-		rs.setThisMonth_1(rs2.getInt(1));
+		gap_1 = rs2.getInt(1) - gap_0;
+		if (gap_1 < 0) {
+			gap_1 = gap_1 * -1;
+		}
 
-		PreparedStatement preparedStmt3 = con.prepareStatement(stmtString3);
+		PreparedStatement preparedStmt3 = con.prepareStatement(month_2);
 		preparedStmt3.setString(1, thisMonth);
-		preparedStmt3.setString(2, thisMonth);
 		ResultSet rs3 = preparedStmt3.executeQuery();
 		rs3.next();
-		rs.setThisMonth_2(rs3.getInt(1));
+		gap_2 = rs3.getInt(1) - gap_1;
+		if (gap_2 < 0) {
+			gap_2 = gap_2 * -1;
+		}
 
-		PreparedStatement preparedStmt4 = con.prepareStatement(stmtString4);
+		PreparedStatement preparedStmt4 = con.prepareStatement(month_3);
 		preparedStmt4.setString(1, thisMonth);
-		preparedStmt4.setString(2, thisMonth);
 		ResultSet rs4 = preparedStmt4.executeQuery();
 		rs4.next();
-		rs.setThisMonth_3(rs4.getInt(1));
+		gap_3 = rs4.getInt(1) - gap_2;
+		if (gap_3 < 0) {
+			gap_3 = gap_3 * -1;
+		}
 
-		PreparedStatement preparedStmt5 = con.prepareStatement(stmtString5);
+		PreparedStatement preparedStmt5 = con.prepareStatement(month_4);
 		preparedStmt5.setString(1, thisMonth);
-		preparedStmt5.setString(2, thisMonth);
 		ResultSet rs5 = preparedStmt5.executeQuery();
 		rs5.next();
-		rs.setThisMonth_4(rs5.getInt(1));
+		gap_4 = rs5.getInt(1) - gap_3;
+		if (gap_4 < 0) {
+			gap_4 = gap_4 * -1;
+		}
 
-		PreparedStatement preparedStmt6 = con.prepareStatement(stmtString6);
+		PreparedStatement preparedStmt6 = con.prepareStatement(month_5);
 		preparedStmt6.setString(1, thisMonth);
-		preparedStmt6.setString(2, thisMonth);
 		ResultSet rs6 = preparedStmt6.executeQuery();
 		rs6.next();
-		rs.setThisMonth_5(rs6.getInt(1));
+		gap_5 = rs6.getInt(1) - gap_4;
+		if (gap_5 < 0) {
+			gap_5 = gap_5 * -1;
+		}
 
-		PreparedStatement preparedStmt7 = con.prepareStatement(stmtString7);
+		PreparedStatement preparedStmt7 = con.prepareStatement(month_6);
 		preparedStmt7.setString(1, thisMonth);
-		preparedStmt7.setString(2, thisMonth);
 		ResultSet rs7 = preparedStmt7.executeQuery();
 		rs7.next();
-		rs.setThisMonth_6(rs7.getInt(1));
+		gap_6 = rs7.getInt(1) - gap_5;
+		if (gap_6 < 0) {
+			gap_6 = gap_6 * -1;
+		}
 
-		PreparedStatement preparedStmt8 = con.prepareStatement(stmtString8);
+		PreparedStatement preparedStmt8 = con.prepareStatement(month_7);
 		preparedStmt8.setString(1, thisMonth);
-		preparedStmt8.setString(2, thisMonth);
 		ResultSet rs8 = preparedStmt8.executeQuery();
 		rs8.next();
-		rs.setThisMonth_7(rs8.getInt(1));
+		gap_7 = rs8.getInt(1) - gap_6;
+		if (gap_7 < 0) {
+			gap_7 = gap_7 * -1;
+		}
 
-		PreparedStatement preparedStmt9 = con.prepareStatement(stmtString9);
+		PreparedStatement preparedStmt9 = con.prepareStatement(month_8);
 		preparedStmt9.setString(1, thisMonth);
-		preparedStmt9.setString(2, thisMonth);
 		ResultSet rs9 = preparedStmt9.executeQuery();
 		rs9.next();
-		rs.setThisMonth_8(rs9.getInt(1));
+		gap_8 = rs9.getInt(1) - gap_7;
+		if (gap_8 < 0) {
+			gap_8 = gap_8 * -1;
+		}
 
-		PreparedStatement preparedStmt10 = con.prepareStatement(stmtString10);
+		PreparedStatement preparedStmt10 = con.prepareStatement(month_9);
 		preparedStmt10.setString(1, thisMonth);
-		preparedStmt10.setString(2, thisMonth);
 		ResultSet rs10 = preparedStmt10.executeQuery();
 		rs10.next();
-		rs.setThisMonth_9(rs10.getInt(1));
+		gap_9 = rs10.getInt(1) - gap_8;
+		if (gap_9 < 0) {
+			gap_9 = gap_9 * -1;
+		}
 
-		PreparedStatement preparedStmt11 = con.prepareStatement(stmtString11);
+		PreparedStatement preparedStmt11 = con.prepareStatement(month_10);
 		preparedStmt11.setString(1, thisMonth);
-		preparedStmt11.setString(2, thisMonth);
 		ResultSet rs11 = preparedStmt11.executeQuery();
 		rs11.next();
-		rs.setThisMonth_10(rs11.getInt(1));
+		gap_10 = rs11.getInt(1) - gap_9;
+		if (gap_10 < 0) {
+			gap_10 = gap_10 * -1;
+		}
 
-		PreparedStatement preparedStmt12 = con.prepareStatement(stmtString12);
+		PreparedStatement preparedStmt12 = con.prepareStatement(month_11);
 		preparedStmt12.setString(1, thisMonth);
-		preparedStmt12.setString(2, thisMonth);
 		ResultSet rs12 = preparedStmt12.executeQuery();
 		rs12.next();
-		rs.setThisMonth_11(rs12.getInt(1));
+		gap_11 = rs12.getInt(1) - gap_10;
+		if (gap_11 < 0) {
+			gap_11 = gap_11 * -1;
+		}
+
+		rs.setThisMonth_0(gap_0);
+		rs.setThisMonth_1(gap_1);
+		rs.setThisMonth_2(gap_2);
+		rs.setThisMonth_3(gap_3);
+		rs.setThisMonth_4(gap_4);
+		rs.setThisMonth_5(gap_5);
+		rs.setThisMonth_6(gap_6);
+		rs.setThisMonth_7(gap_7);
+		rs.setThisMonth_8(gap_8);
+		rs.setThisMonth_9(gap_9);
+		rs.setThisMonth_10(gap_10);
+		rs.setThisMonth_11(gap_11);
 
 		return rs;
-
 	}
 
 	/**
