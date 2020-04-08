@@ -42,7 +42,7 @@ public class HelpServlet extends HttpServlet {
 	        response.getWriter().write("help");
 		}
 		else if (action.equals("cancel")) {
-			table.setTableStatus(0);
+			table.setTableStatus(3);
 			System.out.println(table.getTableID() + " THIS SI THE TABLEID");
 			tableBroker.updateStatus(table);
 			response.setContentType("text/html;charset=UTF-8");

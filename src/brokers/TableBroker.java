@@ -127,8 +127,8 @@ public class TableBroker {
 						+ " startTime= " + table.getStartTime() + " endTime ="+ table.getEndTime()
 						+ " tableStatus=" + table.getTableStatus() + " where tableID = "+table.getTableID();
 				*/
-				stmtString = "update table SET "
-						+ " endTime ="+ table.getEndTime() + " tableStatus=" + table.getTableStatus() + "staff_sID = " +table.getStaff_sID() 
+				stmtString = "update `table` SET "
+						+ " endTime ="+ table.getEndTime() + " tableStatus=" + table.getTableStatus() + " staff_sID = " +table.getStaff_sID() 
 						+ " where tableID = "+table.getTableID() +" AND startTime = '"+table.getStartTime().toString()+"'";
 
 				preparedStmt = con.prepareStatement(stmtString);

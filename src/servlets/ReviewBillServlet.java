@@ -70,14 +70,14 @@ public class ReviewBillServlet extends HttpServlet {
 		
 		Table table = (Table)session.getAttribute("table");
 		
-		table.setTableStatus(3);
-		table.setEndTime(endTime);
+		table.setTableStatus(2);
+//		table.setEndTime(endTime); // closeSession in tablemonitor system handles to set the endTeim
 		
 		TableBroker tableBroker = new TableBroker();
 		
 		getServletContext().getRequestDispatcher("/ChoiceUI.jsp").forward(request, response);
-		
-//		tableBroker.delete(table);
+		System.out.println(table.getTableStatus() + "THIS IS THE TABLE STATUS");
+		tableBroker.updateStatus(table);
 		
 		
 	}
