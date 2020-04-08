@@ -18,6 +18,8 @@ import model.Table;
 import server.Connect2Server;
 
 /**
+ * TableBroker 
+ * 	communicating data to server
  * @author 730693
  * 
  */
@@ -30,7 +32,13 @@ public class TableBroker {
 	boolean executedResult = false;
 	List <Table> tables; 
 
-	/*implement Survey later */
+	/**
+	 * insertTable 
+	 * 	insert data to table table
+	 * @param table Table object. staff_sID cannot not be null, or not match staff table
+	 * @return boolean true if data inserts success; otherwise false
+	 * @throws SQLException if any exception during running query
+	 */
 	
 	public boolean insertTable(Table table) throws SQLException{
 		executedResult = false;
@@ -81,6 +89,12 @@ public class TableBroker {
 		
 	}
 	
+	/**
+	 * inExisting
+	 * 	checking the data if it exists in database
+	 * @param table Table object, tableID and start time cannot be null.
+	 * @return boolean true if the data is existing in database; otherwise false.
+	 */
 	
 	public boolean isExisting(Table table) {
 		executedResult = false;
@@ -111,7 +125,12 @@ public class TableBroker {
 	}
 	
 	
-	
+	/**
+	 * update 
+	 * 	update data which is existing in database
+	 * @param table Table object. tableID and start time cannot be null.
+	 * @return boolean true if updating success; otherwise false
+	 */
 	
 	public boolean update(Table table) {
 		executedResult = false;
@@ -147,7 +166,12 @@ public class TableBroker {
 		return executedResult;
 	}
 	
-	
+	/**
+	 * updateStatus
+	 * 	update variable, Status, only.
+	 * @param table Table object. tableID and start time cannot be null.
+	 * @return boolean true if updating success; otherwise false
+	 */
 	public boolean updateStatus(Table table) {
 		executedResult = false;
 		if(!isExisting(table)) {
@@ -176,6 +200,12 @@ public class TableBroker {
 		return executedResult;
 	}
 	
+	/**
+	 * delete
+	 * 	delete table from database
+	 * @param table Table object. table ID and start time cannot be null
+	 * @return boolean true if delete success; otherwise false.
+	 */
 	public boolean delete(Table table) {
 		executedResult = false;
 		if(table.getTableID() > 0 && table.getStartTime() != null) {
@@ -200,7 +230,11 @@ public class TableBroker {
 		return executedResult;	
 	}
 	
-	
+	/**
+	 * deleteAll
+	 * 	delete all data in the Table database
+	 * @return boolean true if all data has been deleted in table Table.
+	 */
 	private boolean deleteAll() {
 		executedResult = false;
 		try {
@@ -222,10 +256,14 @@ public class TableBroker {
 		
 	}
 	
+	/**
+	 * dataQty 
+	 * 	total number of database
+	 * @return int the qty of data
+	 */
 	public int qtyData() {
 		int qty = 0;
 		try {
-
 			connect();
 			stmtString = "SELECT count(*) FROM capstone2020.`table`";
 
@@ -242,6 +280,13 @@ public class TableBroker {
 		return qty;
 	}
 	
+	/**
+	 * findByID
+	 * find table data by the tableID and start time
+	 * @param tableID int tableID has be digits and large then 0
+	 * @param startTime timestamp cannot be null
+	 * @return table Table object if the table can be found in Table database
+	 */
 	public Table findByID(int tableID, Timestamp startTime) {
 		Table table = new Table(tableID, startTime);
 		if(isExisting(table)) {
@@ -269,6 +314,12 @@ public class TableBroker {
 		return table;
 	}
 	
+	/**
+	 * findByID
+	 * 	find table data by the tableID and start time
+	 * @param table Table tableID and start time cannot be null
+	 * @return table Table if the data in table database
+	 */
 	public Table findByID(Table table) {
 		System.out.println("[TB]findByID:" + table.toString());
 		if(isExisting(table)) {
@@ -296,6 +347,10 @@ public class TableBroker {
 		return table;
 	}
 	
+	/**findAll
+	 * 
+	 * @return List containing the object
+	 */
 	public List<Table> findAll(){
 		tables = new ArrayList<Table> ();
 		try {
@@ -323,6 +378,12 @@ public class TableBroker {
 	}
 	
 	
+	/**
+	 * close
+	 * 	close all connection between database.
+	 * @throws SQLException if any exception during running query
+	 */
+	
 
 	private void close() throws SQLException {
 		if(!rs.isClosed()) rs.close();
@@ -330,6 +391,12 @@ public class TableBroker {
 		if(!con.isClosed()) con.close();
 	}
 	
+	/**
+	 * connect
+	 * 	Establishing the connection to server.
+	 * @return con Connection
+	 * @throws SQLException if any exception during running query
+	 */
 	private Connection connect() throws SQLException {
 		if(con != null) {
 			con.close();

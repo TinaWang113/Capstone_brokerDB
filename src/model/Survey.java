@@ -7,6 +7,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /**
+ * Survey
+ * 	containing all information for Survey needing.
  * @author 730693
  *
  */
@@ -19,10 +21,10 @@ public class Survey {
 	
 	
 	/**
-	 * @param surveyID
-	 * @param surveyAs
-	 * @param tableID
-	 * @param table_startTime
+	 * @param surveyID survey id, int
+	 * @param survArrayList the result of survey, ArrayList with double datatype
+	 * @param tableID int
+	 * @param table_startTime timestamp
 	 */
 	public Survey(int surveyID, ArrayList<Double> survArrayList, int tableID, Timestamp table_startTime) {
 		super();
@@ -34,9 +36,9 @@ public class Survey {
 	}
 	
 	/**
-	 * @param surveyAs
-	 * @param tableID
-	 * @param table_startTime
+	 * @param survArrayList the result of survey, ArrayList with double datatype
+	 * @param tableID int
+	 * @param table_startTime timestamp
 	 */
 	public Survey( ArrayList<Double> survArrayList, int tableID, Timestamp table_startTime) {
 		super();

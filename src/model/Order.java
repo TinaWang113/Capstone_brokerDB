@@ -3,12 +3,13 @@
  */
 package model;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 import model.Table;
 
 /**
+ * Order
+ * 	containing all information for order object
  * @author 730693
  *
  */
@@ -28,13 +29,12 @@ public class Order {
 	
 	
 	/**
-	 * @param orderID
-	 * @param timeStamp
-	 * @param orderItemQty
-	 * @param orderAmount
-	 * @param orderStatus
-	 * @param table
-	 * @param orderItem
+	 * @param orderID order id, int
+	 * @param timeStamp order time, Timestamp
+	 * @param orderItemQty the qty of ordered item, int
+	 * @param orderStatus order status, int
+	 * @param table Table object
+	 * @param orderItem Item object
 	 */
 	public Order(int orderID, Timestamp timeStamp, int orderItemQty, int orderStatus, Table table,
 			Item orderItem) {
@@ -49,13 +49,10 @@ public class Order {
 	}
 	
 	/**
-	 * @param orderID
-	 * @param timeStamp
-	 * @param orderItemQty
-	 * @param orderAmount
-	 * @param orderStatus
-	 * @param table
-	 * @param orderItem
+	 * 
+	 * @param orderItemQty the qty of ordered item, int
+	 * @param table Table object
+	 * @param orderItem Item object
 	 */
 	public Order(int orderItemQty, Table table, Item orderItem) {
 		super();
@@ -69,6 +66,11 @@ public class Order {
 		
 	}
 	
+	/**
+	 * 
+	 * @param orderID order id, int
+	 * @param timeStamp order time, Timestamp
+	 */
 	public Order(int orderID, Timestamp timeStamp) {
 		
 		setOrderID(orderID);

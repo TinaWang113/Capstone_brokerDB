@@ -156,7 +156,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `creatingRecord`(
 BEGIN 
 -- declare pivot_ts datetime default '2019-06-01 08:00:00';
 -- declare max_span int default 16293600;
-declare bias int default sign(1+RAND());
+declare bias int default sign(-0.5+RAND());
 declare starttime datetime ;
 declare endtime datetime;
 declare records int default 0;
@@ -170,7 +170,7 @@ declare orderAmount double default 0.0;
 		set starttime  = (SELECT FROM_UNIXTIME(
 			UNIX_TIMESTAMP(pivot_ts) + 
             ( bias * (FLOOR(RAND()*max_span)) )));
-		set endtime = DATE_ADD(startTime, INTERVAL 3 MINUTE);
+		set endtime = DATE_ADD(startTime, INTERVAL 60 MINUTE);
         set tableID = FLOOR(1 + RAND()*10);
         insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
 			Values(tableID, starttime, endtime, 0 ,(FLOOR( 1 + RAND() *4 )) );
@@ -182,8 +182,8 @@ declare orderAmount double default 0.0;
 			select itemPrice INTO orderAmount from capstone2020.`item` where itemID = randItemID ;
             set orderAmount  = orderAmount*qty;
 		-- select qty, orderAmount, 3, itemID , tableID, starttime;
-			insert into capstone2020.`order` (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
-			Values (qty, orderAmount, 3, randItemID , tableID, starttime);
+			insert into capstone2020.`order` (timeStamp,orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
+			Values (DATE_ADD(starttime, INTERVAL 3 MINUTE), qty, orderAmount, 3, randItemID , tableID, starttime);
             set orderLoop = orderLoop + 1;
 		END while;
          -- for survery
@@ -197,11 +197,13 @@ DELIMITER ;
 -- for runTime
 DROP PROCEDURE IF EXISTS `runtimeRecord`;
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `runtimeRecord`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `runtimeRecord`(
+	pivot_ts datetime
+)
 BEGIN 
-declare pivot_ts datetime default now() ;
-declare max_span int default 10521000;
-declare bias int default sign(1+RAND());
+-- declare pivot_ts datetime default '2020-04-07 08:00:00' ;
+declare max_span int default 86400;
+declare bias int default sign(-0.5+RAND());
 declare starttime datetime ;
 declare endtime datetime;
 declare records int default 0;
@@ -211,14 +213,14 @@ declare countItem int default (select count(*) from capstone2020.`item`);
 declare qty int default 0;
 declare orderAmount double default 0.0;
 -- add table record
-	while records < 10 DO
+	while records < 20 DO
 		set starttime  = (SELECT FROM_UNIXTIME(
 			UNIX_TIMESTAMP(pivot_ts) + 
             ( bias * (FLOOR(RAND()*max_span)) )));
-		set endtime = DATE_ADD(startTime, INTERVAL 3 MINUTE);
+		-- set endtime = DATE_ADD(startTime, INTERVAL 3 MINUTE);
         set tableID = FLOOR(1 + RAND()*10);
         insert into capstone2020.table(tableID, startTime, endTime, tableStatus,staff_sID)
-			Values(tableID, starttime, endtime,  FLOOR(1+rand()*3) ,(FLOOR( 1 + RAND() *4 )) );
+			Values(tableID, starttime, null,  FLOOR(1+rand()*3) ,(FLOOR( 1 + RAND() *4 )) );
 		-- add order
 		set orderLoop = 0;
 		while orderLoop < 10 DO
@@ -227,8 +229,8 @@ declare orderAmount double default 0.0;
 			select itemPrice INTO orderAmount from capstone2020.`item` where itemID = randItemID ;
             set orderAmount  = orderAmount*qty;
 		-- select qty, orderAmount, 3, itemID , tableID, starttime;
-			insert into capstone2020.`order` (orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
-			Values (qty, orderAmount, FLOOR(rand()*3), randItemID , tableID, starttime);
+			insert into capstone2020.`order` (timeStamp, orderItemQty, orderAmount, orderStatus, item_itemID, table_tableID, table_startTime)
+			Values ( DATE_ADD(starttime, INTERVAL 3 MINUTE), qty, orderAmount, FLOOR(rand()*3), randItemID , tableID, starttime);
             set orderLoop = orderLoop + 1;
 		END while; 
 		set records =  records +1;
@@ -238,11 +240,11 @@ declare orderAmount double default 0.0;
 END$$
 DELIMITER ;
 -- for 6 months
-call creatingRecord('2019-06-01 08:00:00',16293600);
+call creatingRecord('2020-02-01 08:00:00',16293600);
 -- for recently month
-call creatingRecord('2020-03-6 08:00:00',2678400);
-call runtimeRecord();
-     
+call creatingRecord('2020-03-22 08:00:00', 2678400);
+ -- for today
+call runtimeRecord('2020-04-08 08:00:00');
 -- Survery Question 
 insert into capstone2020.surveyQuestions (surveyQuestionID, surveysurveyQuestion)
 values(1, "How was your food?") ;   

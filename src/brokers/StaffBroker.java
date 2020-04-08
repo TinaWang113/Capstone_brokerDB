@@ -74,7 +74,7 @@ public class StaffBroker {
 	*/
 	/**
 	 * insert data into database
-	 * @param object Staff staff
+	 * @param staff Staff object
 	 * @return boolean  true if insert is success, otherwise the return is false
 	 * @throws SQLException  Exception if SQL has any problem.
 	 */
@@ -123,10 +123,9 @@ public class StaffBroker {
 	/**
 	 * isExisitng
 	 * 	check id is existing or not.
-	 * @param tableName String 
 	 * @param id Sting 4 characters ID
 	 * @return boolean indicating the ID is existing in DB, or not
-	 * @throws SQLException
+	 * @throws SQLException Exception if SQL has any problem.
 	 */
 	public boolean isExisitng(int id) throws SQLException {
 		//connect
@@ -150,10 +149,9 @@ public class StaffBroker {
 	
 	/**
 	 * findByID
-	 * @param ID 4 characters ID
-	 * @param tableName String table name
-	 * @return list of searching result.
-	 * @throws SQLException
+	 * @param id staff ID, 4 characters ID
+	 * @return staff list of searching result.
+	 * @throws SQLException Exception if SQL has any problem.
 	 */
 	//public List<Staff> findByIDList( String id) throws SQLException {
 	public Staff findByIDList(int id) throws SQLException {
@@ -191,10 +189,9 @@ public class StaffBroker {
 	/**
 	 * delete 
 	 * 	delete data by staffID
-	 * @param tableName String table name
-	 * @param id String, size == 4
+	 * @param id int, 4 digits
 	 * @return boolean true, the data has been deleted. False, deleting fail.
-	 * @throws SQLException
+	 * @throws SQLException Exception if SQL has any problem.
 	 */
 	public boolean delete(int id) throws SQLException {
 		if(isExisitng(id)) {		
@@ -250,8 +247,8 @@ public class StaffBroker {
 		 * update
 		 * 	update staff data
 		 * @param staff Staff object, staff ID, sID cannot be empty and changed. the jobID must to existing in the Job table.
-		 * @return boolean update 
-		 * @throws SQLException
+		 * @return boolean update result
+		 * @throws SQLException Exception if SQL has any problem.
 		 */
 		public boolean update(Staff staff) throws SQLException{
 			int result = -1;
@@ -340,7 +337,7 @@ public class StaffBroker {
 	 * 	covert the data from ResultSet into object list
 	 * @param rs ResultSet from database
 	 * @return list  staff data
-	 * @throws SQLException
+	 * @throws SQLException Exception if SQL has any problem.
 	 */
 	public List<Staff> fillingData(ResultSet rs) throws SQLException {
 		if(rs != null) {			
@@ -363,9 +360,8 @@ public class StaffBroker {
 	}	
 	/**findAll
 	 * 
-	 * @param tableName database name, cannot be null or empty
 	 * @return List containing the object
-	 * @throws SQLException
+	 * @throws SQLException Exception if SQL has any problem.
 	 */
 	
 		public List<Staff> findAll() throws SQLException {
@@ -396,9 +392,8 @@ public class StaffBroker {
 	/**
 	 * dataQty 
 	 * 	total number of database
-	 * @param tableName  the retrieving  data name
 	 * @return int the qty of data
-	 * @throws SQLException
+	 * @throws SQLException Exception if SQL has any problem.
 	 */
 	
 	public int dataQty() throws SQLException {
@@ -424,7 +419,7 @@ public class StaffBroker {
 	 * @return executedResult int the number of DB has been deleted  
 	 * @throws SQLException
 	 */
-	public int deleteAll() throws SQLException {
+	private int deleteAll() throws SQLException {
 		//connect
 		con = c2s.connect();
 		int executedResult = -1;		
