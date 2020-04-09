@@ -43,7 +43,7 @@ public class ReviewBillServlet extends HttpServlet {
 		ArrayList<Order> tempList = (ArrayList<Order>)orderBroker.getOrders();
 		for (Order order : tempList) {			
 			
-			if (order.getTable().getTableID() == table.getTableID() ) {
+			if (order.getTable().getTableID() == table.getTableID() && order.getTimeStamp().after(table.getStartTime())) {
 				parsedOrderList.put(count, order);
 				count++;
 				total += order.getOrderAmount();

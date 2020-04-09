@@ -1,3 +1,7 @@
-/servlets/
 /brokers/
+/exception/
+/filters/
 /model/
+/server/
+/servlets/
+/unitTest/

@@ -42,8 +42,8 @@ public class OrderServlet extends HttpServlet {
 		Table table = (Table)session.getAttribute("table");
 		ArrayList<Order> tempList = (ArrayList<Order>)orderBroker.getOrders();
 		for (Order order : tempList) {			
-			
-			if (order.getTable().getTableID() == table.getTableID() ) {
+			System.out.println(order.getTable().getEndTime() + " THIS IS THE END TIME");
+			if (order.getTable().getTableID() == table.getTableID() && order.getTimeStamp().after(table.getStartTime())) {
 				parsedOrderList.put(count, order);
 				count++;
 				total += order.getOrderAmount();
