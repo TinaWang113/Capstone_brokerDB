@@ -25,11 +25,11 @@
 	
 	<div align="center">
 		<form action="choice" method="POST">
-	  		<input type="submit" class="btn btn-light hell" aria-haspopup="true" aria-expanded="false" style="width:50%" value="Regular">
+	  		<input type="image" src="img/regular.png" style="width:90%"  value="Regular">
 	  		<input type="hidden" value="1" name="action">
   		</form>
 	  		<form action="choice" method="POST">
-	  		<input type="submit" class="btn btn-light" aria-haspopup="true" aria-expanded="false" style="width:50%" value="AYCE">
+	  		<input type="image" src="img/ayce.png" style="width:90%" value="AYCE">
 	  		<input type="hidden" value="2" name="action">
   		</form>
 	</div>
